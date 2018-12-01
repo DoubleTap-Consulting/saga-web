@@ -1,0 +1,42 @@
+// Set the first few el's in the tree to
+// the full page height, so children will have a % base
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  font-family: "Montserrat";
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.row {
+  display: flex;
+}
+
+// chrome autofill background color from yellow to white
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+// Font styling classes
+.heading-2 {
+  color: white;
+  font-size: 40px;
+  border-bottom: 0.5px solid white;
+  padding-bottom: 10px;
+  font-weight: 400;
+}
+
+// Section styling classes
+.section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

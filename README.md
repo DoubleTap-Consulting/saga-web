@@ -1,44 +1,140 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Saga
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- Setup
+- Testing
+- Git styling
+- Shared components
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Clone the project
+- Install Yarn using your favorite package manager, i.e. `npm install -g yarn`
+  - More on installing yarn [here](https://yarnpkg.com/en/docs/install)
+- `yarn install`
+- `yarn global add esdoc`
+  - We use [esdoc](https://esdoc.org/) to generate a documentation page. Having it lets you update the generated HTML file.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## SCSS/CSS
 
-### `npm test`
+We try to follow a BEM-like syntax for our classes. Don't know what BEM is? Google "BEM CSS".
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In your stylesheet, nest elements within their block and use **@extend** to create modifiers that don't require dual classes added to the element. Do _not_ intentionally fully mirror the DOM in your nests.
 
-### `npm run build`
+See _Writing Maintanable SCSS/CSS_ in the **#esports-arena** channel in Slack.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Testing
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The test suite will be run anytime your local branch is pushed to its remote.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From a file structure standpoint, test files should live with the component they're testing. They should be in the same folder as the component, with a file prefix identical to the component to be tested and with `.test.js` appended. So for `MyComponent`, there should be two files: `myComponent.js` and `myComponent.test.js`.
 
-### `npm run eject`
+If you're testing a component and running functions that are dependent on local state or the Redux store, you'll need [TBD].
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Styling
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Naming: filename.test.js
+- Folder structure: Test files should be contained in the appropriate component's folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Run Tests Manually
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `yarn test`
 
-## Learn More
+## Debugging
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Download React dev tools, either the [extension for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) or the [standalone app shell](https://www.npmjs.com/package/react-devtools) for use with other browsers.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Debugging with the standalone app shell
+
+- `yarn start`
+- `cd` into your project directory
+- Run `react-devtools`
+- A window pops up. Copy the provided script tags into `index.html`.
+- Refresh the web app. The dev tools window should attempt to connect to React now. If you're on Safari on macOS 10.12.x, you may experience prolonged failed attempts to connect to React. You can mitigate this by using Safari Technology Preview or Chrome.
+
+## Documentation
+
+Documentation can be generated from in-line code comments. Follow [JSDoc](http://usejsdoc.org) style commenting, which is how [ESDoc](https://esdoc.org) (our document generation tool) knows what to generate. We're trying to get to 75% documentation coverage. :)
+
+The documentation isn't hosted – it's generated and run locally.
+
+### Generating the documentation
+
+1. `cd` to the project root
+2. Run `./node_modules/.bin/esdoc`
+3. Open _./doc/esdoc/source.html_
+
+## Git styling
+
+### Commit tags
+
+- [feature]
+  - Any new development commits and updates should have this, up to the point that feature has made it to staging.
+  - Extensive refactors.
+- [req-change]
+  - If the change is to an existing and already-deployed feature and was driven by a requirement change.
+- [fix]
+  - Bug fixes to deployed features.
+- [cleanup]
+  - Code cleanup or documentation, or minor refactors.
+
+### Commit description
+
+A short summary of what or why this code is being added.
+
+### Story labels
+
+Most development is probably associated with a story, i.e. ESACP-001. Label branch names with the story label pre-fixed, i.e. ESACP-001-feature-name. Label commits with the associated subtask, or, if there is none or there is only a generic subtask covering front-end development, then use the story label.
+
+### Commit description
+
+- [commit-tag] JIRAPREFIX-STORYNUMBER Single, short, descriptive summary line in the imperative present tense
+
+// blank line
+
+Thorough description of why the change is needed, how it addresses the issue and what side-effects it might have, in the past tense.
+
+- Example:
+
+[feature] ESACP-001 Add login view
+
+Added the login container and stylesheet.
+
+## Shared Components
+
+List of shared components, see the documentation for information on uage.
+
+### Account Linking - shared-components/accountLinking
+
+### Async Component Loader - shared-components/asyncComponentLoader.js
+
+### Hex Image - shared-components/hexImage
+
+### Input state updater - shared-components/inputStateUpdate.js
+
+### Material UI Theme and Styles - shared-components/mui
+
+### Particle Generator - shared-components/cern
+
+### Private route - shared-components/privateRoute.js
+
+### Set Account Link Cookie - shared-components/setAccountLinkCookie.js
+
+### UI props - shared-components/props
+
+_Note: not to be confused with React props. Here, props comes from the 3D graphics term meaning reusable visible objects. A "prop" is a set piece, something that will be user-viewable UI, that can be reused easily._
+
+#### Bonus Header
+
+#### Door
+
+#### Progress Bar
+
+#### Wall Torch
+
+### User snapshot - shared-components/userSnapshot
+
+### Validate input - shared-components/validateInput.js
+
+### Webcam - shared-components/webcam

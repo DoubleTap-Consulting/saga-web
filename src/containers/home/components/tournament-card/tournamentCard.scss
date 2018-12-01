@@ -1,0 +1,11 @@
+.tournamentCard {
+  background-color: white;
+  height: 180px;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  &-name {
+    font-weight: 500;
+  }
+}
