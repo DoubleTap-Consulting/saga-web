@@ -1,10 +1,9 @@
 .header {
-  height: 60px;
-  width: 100%;
-  background-color: #141b26;
+  height: 100px;
+  background-color: #0a031a;
   display: flex;
   margin: 0;
-  padding: 0 10px;
+  padding: 0 20px;
   justify-content: space-between;
   align-items: center;
   color: #fff;
@@ -40,6 +39,24 @@
       &:hover {
         background-color: rgba(117, 117, 117, 0.08);
       }
+    }
+
+    &-login {
+      color: black;
+      padding: 7px 20px;
+      background-color: #d2ced9;
+      border-radius: 5px;
+      margin: 5px 10px;
+      font-weight: 500;
+    }
+
+    &-signup {
+      color: #fff;
+      padding: 7px 20px;
+      background-color: #36a619;
+      border-radius: 5px;
+      margin: 5px 10px;
+      font-weight: 500;
     }
   }
 

@@ -26,18 +26,15 @@ class Header extends Component {
       <div className="header" role="navigation">
         <div className="header-navLinks">
           <Link to={"/"}>
-            <p className="header-navLinks-text">Home</p>
+            <p className="header-navLinks-text">Saga.gg</p>
           </Link>
           {this.props.auth.profile && (
             <div className="header-navLinks-row">
               <Link to={"/home"}>
-                <p className="header-navLinks-text">Home</p>
+                <p className="header-navLinks-text">Teams</p>
               </Link>
             </div>
           )}
-        </div>
-        <div className="header-logo">
-          <h3>saga.gg</h3>
         </div>
         <div className="header-authActions">
           {this.props.auth.profile ? (
@@ -52,10 +49,10 @@ class Header extends Component {
           ) : (
             <div className="header-navLinks-row">
               <Link to={"/login"}>
-                <p className="header-navLinks-text">Login</p>
+                <p className="header-navLinks-login ">Login</p>
               </Link>
               <Link to={"/signup"}>
-                <p className="header-navLinks-text">Signup</p>
+                <p className="header-navLinks-signup">Signup</p>
               </Link>
             </div>
           )}

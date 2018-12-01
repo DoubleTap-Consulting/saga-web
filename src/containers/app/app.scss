@@ -5,7 +5,7 @@ body,
 .app,
 .app-container {
   min-height: 100%;
-  background-color: #1b2536;
+  background-color: #0a031a;
 }
 
 .divider {
@@ -13,4 +13,24 @@ body,
   font-weight: 300;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.social-icon {
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  align-items: center;
 }

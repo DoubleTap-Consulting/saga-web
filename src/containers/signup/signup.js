@@ -118,50 +118,53 @@ class Signup extends Component {
   render() {
     return (
       <div className="signup" autoComplete="off">
-        <h1 className="signup-heading">Welcome!</h1>
-        <input
-          id="email"
-          className="signup-input"
-          placeholder="Email"
-          value={this.state.email}
-          onChange={this.updateEmail}
-          onKeyPress={this.handleKeyPress}
-          onBlur={this.emailTouched}
-          autoComplete="email"
-          type="email"
-        />
-        <input
-          id="username"
-          className="signup-input"
-          placeholder="Username"
-          autoComplete="username"
-          value={this.state.username}
-          onChange={this.updateUsername}
-          onKeyPress={this.handleKeyPress}
-          onBlur={this.emailTouched}
-          type="username"
-        />
-        <input
-          id="password"
-          className="signup-input"
-          autoComplete="password"
-          placeholder="Password"
-          onKeyPress={this.handleKeyPress}
-          onChange={this.inputChanged}
-          type="password"
-        />
-        <button
-          disabled={this.state.loggingIn}
-          className="signup-submit"
-          label="Signup"
-          onClick={this.handleLogin}
-        >
-          Signup
-        </button>
-        <div className="signup-textLinks">
-          <p className="link">
-            <Link to="/login">Login</Link>
-          </p>
+        <div className="signup-container">
+          <h1 className="signup-logo">Saga.GG</h1>
+          <h1 className="signup-heading">Register</h1>
+          <input
+            id="email"
+            className="signup-input"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.updateEmail}
+            onKeyPress={this.handleKeyPress}
+            onBlur={this.emailTouched}
+            autoComplete="email"
+            type="email"
+          />
+          <input
+            id="username"
+            className="signup-input"
+            placeholder="Username"
+            autoComplete="username"
+            value={this.state.username}
+            onChange={this.updateUsername}
+            onKeyPress={this.handleKeyPress}
+            onBlur={this.emailTouched}
+            type="username"
+          />
+          <input
+            id="password"
+            className="signup-input"
+            autoComplete="password"
+            placeholder="Password"
+            onKeyPress={this.handleKeyPress}
+            onChange={this.inputChanged}
+            type="password"
+          />
+          <button
+            disabled={this.state.loggingIn}
+            className="signup-submit"
+            label="Signup"
+            onClick={this.handleLogin}
+          >
+            Create Account
+          </button>
+          <div className="signup-textLinks">
+            <p className="link">
+              <Link to="/login">Login</Link>
+            </p>
+          </div>
         </div>
       </div>
     );

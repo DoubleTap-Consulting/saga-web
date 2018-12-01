@@ -95,45 +95,48 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <h1 className="login-heading">Welcome back!</h1>
-        <input
-          id="email"
-          className="login-input"
-          placeholder="Email"
-          value={this.state.email}
-          onChange={this.updateEmail}
-          autoComplete="email"
-          onKeyPress={this.handleKeyPress}
-          onBlur={this.emailTouched}
-          type="email"
-        />
-        <input
-          id="password"
-          className="login-input"
-          placeholder="Password"
-          autoComplete="password"
-          onKeyPress={this.handleKeyPress}
-          onChange={this.inputChanged}
-          type="password"
-        />
-        {this.props.auth.loginError && (
-          <p className="color-warning">Incorrect email or password</p>
-        )}
-        <button
-          disabled={this.state.loggingIn}
-          className="login-submit"
-          label="Login"
-          onClick={this.handleLogin}
-        >
-          Login
-        </button>
-        <div className="login-textLinks">
-          <p className="link">
-            <Link to="/signup">Create Account</Link>
-          </p>
-          <p className="link">
-            <Link to="/passwordreset/request">Forgot Password</Link>
-          </p>
+        <div className="login-container">
+          <h1 className="login-logo">Saga.GG</h1>
+          <h1 className="login-heading">Login</h1>
+          <input
+            id="email"
+            className="login-input"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.updateEmail}
+            autoComplete="email"
+            onKeyPress={this.handleKeyPress}
+            onBlur={this.emailTouched}
+            type="email"
+          />
+          <input
+            id="password"
+            className="login-input"
+            placeholder="Password"
+            autoComplete="password"
+            onKeyPress={this.handleKeyPress}
+            onChange={this.inputChanged}
+            type="password"
+          />
+          {this.props.auth.loginError && (
+            <p className="color-warning">Incorrect email or password</p>
+          )}
+          <button
+            disabled={this.state.loggingIn}
+            className="login-submit"
+            label="Login"
+            onClick={this.handleLogin}
+          >
+            Login
+          </button>
+          <div className="login-textLinks">
+            <p className="link">
+              <Link to="/signup">Create Account</Link>
+            </p>
+            <p className="link">
+              <Link to="/passwordreset/request">Forgot Password</Link>
+            </p>
+          </div>
         </div>
       </div>
     );
