@@ -9,6 +9,7 @@ import ProfileImage from "images/profile-image.jpeg";
 import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
 import DiscordIcon from "images/discord.png";
+import TwitchIcon from "images/twitch.png";
 
 import Icon from "@material-ui/core/Icon";
 
@@ -28,9 +29,9 @@ class Profile extends Component {
 
     this.experiences = [
       {
-        team: "Liquid",
+        team: "Saga",
         game: "PUBG",
-        role: "Fragger",
+        role: "IGL",
         dateFrom: "11/03/2018",
         dateTo: "Current",
         description: "Some description"
@@ -71,12 +72,13 @@ class Profile extends Component {
             </button>
             <h1 className="profile-playerHeader-info-username">Sultyn</h1>
             <h4 className="profile-playerHeader-info-tagline">
-              Top NA PUBG fragger for Team Liquid
+              IGL for Saga PUBG NA
             </h4>
             <div className="row profile-playerHeader-info-socials">
               <img src={TwitterIcon} className="social-icon" />
               <img src={InstagramIcon} className="social-icon" />
               <img src={DiscordIcon} className="social-icon" />
+              <img src={TwitchIcon} className="social-icon" />
             </div>
           </div>
         </div>

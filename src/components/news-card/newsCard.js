@@ -7,13 +7,6 @@ import ProfileImage from "images/profile-image.jpeg";
 import "./newsCard.css";
 
 class NewsCard extends Component {
-  static get contextTypes() {
-    return {
-      store: PropTypes.object.isRequired,
-      router: PropTypes.object.isRequired
-    };
-  }
-
   constructor() {
     super();
 
@@ -24,7 +17,7 @@ class NewsCard extends Component {
     return (
       <Link to={`/article/${this.props.news.id}`}>
         <div className="newsCard">
-          <img src={ProfileImage} className="newsCard-image" />
+          <img src={this.props.news.image} className="newsCard-image" />
           <div className="newsCard-content">
             <h2 className="newsCard-content-title">{this.props.news.title}</h2>
             <h5 className="newsCard-content-description">
@@ -37,5 +30,18 @@ class NewsCard extends Component {
     );
   }
 }
+
+NewsCard.contextTypes = {
+  news: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
+  })
+};
+
+NewsCard.contextTypes = {
+  store: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
+};
 
 export default NewsCard;

@@ -32,8 +32,27 @@
 
   &-sellingPoints {
     display: flex;
-    .col {
-      flex: 1;
+    justify-content: space-between;
+    margin-top: 40px;
+    &-section {
+      width: 370px;
+      background-color: #23104d;
+      margin: 30px;
+      border: 1px solid #4968ce;
+      padding: 50px;
+      border-radius: 5px;
+      &-image {
+        width: 370px;
+      }
+      &-description {
+        color: white;
+        font-weight: 400;
+        text-align: center;
+      }
+      &-title {
+        color: white;
+        text-align: center;
+      }
     }
   }
 
