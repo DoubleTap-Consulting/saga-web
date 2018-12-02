@@ -13,25 +13,28 @@ class Players extends Component {
 
     this.players = [
       {
-        name: ""
+        gamerTag: "Sultyn",
+        id: 1
       },
       {
-        name: ""
+        gamerTag: "Bulba",
+        id: 2
       },
       {
-        name: ""
+        gamerTag: "BigT",
+        id: 3
       },
       {
-        name: ""
+        gamerTag: "Sultyn",
+        id: 4
       },
       {
-        name: ""
+        gamerTag: "Bulba",
+        id: 5
       },
       {
-        name: ""
-      },
-      {
-        name: ""
+        gamerTag: "BigT",
+        id: 6
       }
     ];
 
@@ -44,10 +47,12 @@ class Players extends Component {
         <div className="players-header">
           <h1>Players</h1>
         </div>
-        <Search />
+        <div className="players-search">
+          <Search />
+        </div>
         <div className="players-container">
           {this.players.map(player => (
-            <PlayerCard className="players-container-player" />
+            <PlayerCard player={player} key={`playersList${player.id}`} />
           ))}
         </div>
       </div>
