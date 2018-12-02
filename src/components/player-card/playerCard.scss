@@ -1,7 +1,7 @@
 .playerCard {
   position: relative;
-  height: 580px;
-  width: 430px;
+  height: 420px;
+  width: 330px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
   background-color: white;
 }
@@ -98,6 +98,7 @@ svg .polygon {
 .playerCard-body {
   text-align: center;
   padding-left: 10px;
+  padding-top: 10px;
 }
 
 .name {
@@ -109,9 +110,9 @@ svg .polygon {
 
 .job-title {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 5px;
-  color: #919191;
+  color: black;
 }
 
 .bio {
@@ -151,10 +152,10 @@ svg .polygon {
 .stat .label {
   display: block;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 11px;
   letter-spacing: 1px;
-  color: #95989a;
+  color: darkgray;
 }
 
 .stat .value {

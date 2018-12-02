@@ -184,7 +184,7 @@ function registerSuccess(response) {
  * Registers a new user with the provided information.
  * @param {object} formData Should contain the email, password, first name, and last name.
  */
-export function registerUser(email, password, username) {
+export function registerUser(email, password, gamerTag) {
   const config = {
     url: "/user",
     method: "post",
@@ -195,7 +195,7 @@ export function registerUser(email, password, username) {
     data: {
       email,
       password,
-      username
+      gamerTag
     }
   };
 

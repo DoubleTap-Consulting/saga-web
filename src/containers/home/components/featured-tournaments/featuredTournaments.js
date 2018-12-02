@@ -4,6 +4,8 @@ import moment from "moment";
 
 import TournamentCard from "components/tournament-card/tournamentCard";
 import PgiImage from "images/pgi.jpg";
+import GllImage from "images/gll.jpg";
+import HkPubg from "images/hkpubg.jpg";
 
 import "./featuredTournaments.css";
 
@@ -15,7 +17,7 @@ class FeaturedTournaments extends Component {
       {
         name: "PGI - PUBG Global Invitational",
         game: "PUBG",
-        prize: 1000,
+        prize: 2000000,
         id: 1,
         date: moment()
           .add(7, "days")
@@ -24,25 +26,25 @@ class FeaturedTournaments extends Component {
         link: "https://twitch.tv"
       },
       {
-        name: "PGI - PUBG Global Invitational",
+        name: "GLL Season 2 World Championship",
         game: "PUBG",
         prize: 1000000,
         id: 2,
         date: moment()
           .add(7, "days")
           .fromNow(),
-        image: PgiImage,
+        image: GllImage,
         link: "https://twitch.tv"
       },
       {
-        name: "PGI - PUBG Global Invitational",
+        name: "Hong Kong World Invitational",
         game: "PUBG",
         prize: 1000000,
         id: 3,
         date: moment()
           .add(7, "days")
           .fromNow(),
-        image: PgiImage,
+        image: HkPubg,
         link: "https://twitch.tv"
       }
     ];

@@ -1,12 +1,12 @@
 import { nonActionApiWithJWT } from "./api";
 
 /**
- * Check if username is taken
+ * Check if gamer tag is taken
  */
-export function checkUsername(username) {
+export function checkGamerTag(gamerTag) {
   // TODO: complete API call
   const settings = {
-    url: `/user/username`,
+    url: `/user/gamerTag`,
     method: "GET",
     headers: {
       enctype: "multipart/form-data",

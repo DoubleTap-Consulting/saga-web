@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { getUserInfo } from "actions/user";
 import { registerUser } from "../../actions/auth";
 
-import { checkUsername } from "utils/signup";
+import { checkGamerTag } from "utils/signup";
 
 import _ from "lodash";
 
@@ -21,7 +21,7 @@ class Signup extends Component {
       emailError: "",
       emailTouched: false,
       password: "",
-      username: "",
+      gamerTag: "",
       signingUp: false
     };
   }
@@ -61,21 +61,21 @@ class Signup extends Component {
     );
   };
 
-  checkUsernameTakenDebounced = _.debounce(() => {
-    checkUsername(this.state.username).then(status => {
+  checkGamerTagTakenDebounced = _.debounce(() => {
+    checkGamerTag(this.state.gamerTag).then(status => {
       this.setState({
-        usernameTaken: status.taken
+        gamerTagTaken: status.taken
       });
     });
   }, 500);
 
-  updateUsername = event => {
-    let newUsername = event.target.value;
+  updateGamerTag = event => {
+    let newGamerTag = event.target.value;
     this.setState({
-      username: newUsername
+      gamerTag: newGamerTag
     });
 
-    this.checkUsernameTakenDebounced();
+    this.checkGamerTagTakenDebounced();
   };
 
   emailTouched = () =>
@@ -100,7 +100,7 @@ class Signup extends Component {
 
     this.props
       .dispatch(
-        registerUser(this.state.email, this.state.password, this.state.username)
+        registerUser(this.state.email, this.state.password, this.state.gamerTag)
       )
       .then(response => {
         if (response.type === "LOGIN_SUCCESS") {
@@ -133,15 +133,15 @@ class Signup extends Component {
             type="email"
           />
           <input
-            id="username"
+            id="gamerTag"
             className="signup-input"
-            placeholder="Username"
-            autoComplete="username"
-            value={this.state.username}
-            onChange={this.updateUsername}
+            placeholder="Gamer Tag"
+            autoComplete="gamerTag"
+            value={this.state.gamerTag}
+            onChange={this.updateGamerTag}
             onKeyPress={this.handleKeyPress}
             onBlur={this.emailTouched}
-            type="username"
+            type="gamerTag"
           />
           <input
             id="password"
@@ -153,10 +153,10 @@ class Signup extends Component {
             type="password"
           />
           <button
-            disabled={this.state.loggingIn}
+            disabled={this.state.signingUp}
             className="signup-submit"
             label="Signup"
-            onClick={this.handleLogin}
+            onClick={this.handleSignup}
           >
             Create Account
           </button>

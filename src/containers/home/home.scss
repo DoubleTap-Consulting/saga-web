@@ -30,6 +30,13 @@
     }
   }
 
+  &-sellingPoints {
+    display: flex;
+    .col {
+      flex: 1;
+    }
+  }
+
   &-search {
     width: 50%;
   }
