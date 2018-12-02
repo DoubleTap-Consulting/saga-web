@@ -35,3 +35,20 @@ body,
   display: flex;
   align-items: center;
 }
+
+.logo {
+  font-size: 72px;
+  margin: 10px;
+  -webkit-text-fill-color: lightgray;
+  -webkit-text-stroke-color: lightgray;
+  -webkit-text-stroke-width: 1px;
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(5.6%, #1b0342),
+    color-stop(28%, #2a0a75)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

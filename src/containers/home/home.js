@@ -24,6 +24,7 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="home-header">
+          <h4 className="logo">Saga.GG</h4>
           <h5 className="home-header-secondary">
             Your Home for All Things Esports
           </h5>

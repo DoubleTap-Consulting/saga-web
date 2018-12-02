@@ -119,7 +119,7 @@ class Signup extends Component {
     return (
       <div className="signup" autoComplete="off">
         <div className="signup-container">
-          <h1 className="signup-logo">Saga.GG</h1>
+          <h1 className="logo">Saga.GG</h1>
           <h1 className="signup-heading">Register</h1>
           <input
             id="email"

@@ -30,6 +30,10 @@
   border-radius: 8px;
   margin: 7.5px 0;
 
+  &:hover {
+    border: 2px solid lightgray;
+  }
+
   &-image {
     height: 250px;
     background: center no-repeat;
