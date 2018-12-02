@@ -16,15 +16,11 @@ class Search extends Component {
         <input type="text" required />
         <span className="highlight" />
         <span className="bar" />
-        <label>Name</label>
+        <label>Search for a gamertag or team</label>
       </div>
     );
   }
 }
-
-Search.propTypes = {
-  search: PropTypes.func.isRequired
-};
 
 Search.contextTypes = {
   store: PropTypes.object.isRequired,

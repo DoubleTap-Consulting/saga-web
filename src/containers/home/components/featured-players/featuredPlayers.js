@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import PlayerCard from "../player-card/playerCard";
+import PlayerCard from "components/player-card/playerCard";
 
 import "./featuredPlayers.css";
 

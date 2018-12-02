@@ -10,6 +10,8 @@ import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
 import DiscordIcon from "images/discord.png";
 
+import Icon from "@material-ui/core/Icon";
+
 import "./profile.css";
 
 class Profile extends Component {
@@ -29,21 +31,14 @@ class Profile extends Component {
         team: "Liquid",
         game: "PUBG",
         role: "Fragger",
-        name: "PGI - Berlin World Championships",
         dateFrom: "11/03/2018",
         dateTo: "Current",
-        description: "Some description",
-        stats: {
-          kills: 142,
-          assists: 98,
-          ADR: 872
-        }
+        description: "Some description"
       },
       {
         team: "FAZE",
         game: "PUBG",
         role: "IGL",
-        name: "GLL - Season 2 LAN",
         dateFrom: "11/05/2017",
         dateTo: "11/02/2018",
         description: "Some description"
@@ -75,32 +70,31 @@ class Profile extends Component {
               Edit
             </button>
             <h1 className="profile-playerHeader-info-username">Sultyn</h1>
+            <h4 className="profile-playerHeader-info-tagline">
+              Top NA PUBG fragger for Team Liquid
+            </h4>
+            <div className="row profile-playerHeader-info-socials">
+              <img src={TwitterIcon} className="social-icon" />
+              <img src={InstagramIcon} className="social-icon" />
+              <img src={DiscordIcon} className="social-icon" />
+            </div>
           </div>
         </div>
+        <button className="profile-container-editAvatar">Edit Avatar</button>
         {/* TODO: ONLY SHOWER IF HACKER FLAG */}
         {/* <div className="profile-hacker">
           <h3>
-            This player has been officially accused and confirmed hacking.
+            * This player has been officially accused and confirmed hacking. #GG
           </h3>
         </div> */}
         <div className="profile-container">
-          <div className="left-column">
-            <div className="row center">
-              <img className="social-icon" src={TwitterIcon} />
-              <h4>Twitter</h4>
-            </div>
-            <div className="row center">
-              <img className="social-icon" src={InstagramIcon} />
-              <h4>Instagram</h4>
-            </div>
-            <div className="row center">
-              <img className="social-icon" src={DiscordIcon} />
-              <h4>Discord</h4>
-            </div>
-          </div>
+          <div className="left-column" />
           <div className="right-column">
             <div className="profile-container-card">
               <div className="profile-container-card-header">
+                <Icon className="profile-container-card-header-icon">
+                  person
+                </Icon>
                 <h3>Personal</h3>
                 {/* TODO: if own profile, show edit button */}
                 <button
@@ -119,10 +113,11 @@ class Profile extends Component {
             </div>
             <div className="profile-container-card">
               <div className="profile-container-card-header">
+                <Icon className="profile-container-card-header-icon">work</Icon>
                 <h3>Experience</h3>
               </div>
               {this.experiences.map(exp => (
-                <div className="profile-container-card-body">
+                <div className="profile-playerHeader-info-experience">
                   {/* TODO: if own profile, show edit button */}
                   <button
                     className="profile-playerHeader-info-edit"
@@ -130,20 +125,18 @@ class Profile extends Component {
                   >
                     Edit
                   </button>
-                  <div className="profile-playerHeader-info-experience">
-                    <h2 className="profile-playerHeader-info-experience-team">
-                      {exp.team}, {exp.game}
-                    </h2>
-                    <h5 className="profile-playerHeader-info-experience-role">
-                      Role: {exp.role}
-                    </h5>
-                    <h5 className="profile-playerHeader-info-experience-date">
-                      {exp.dateFrom} - {exp.dateTo}
-                    </h5>
-                    <h5 className="profile-playerHeader-info-experience-description">
-                      {exp.description}
-                    </h5>
-                  </div>
+                  <h2 className="profile-playerHeader-info-experience-team">
+                    {exp.team}, {exp.game}
+                  </h2>
+                  <h5 className="profile-playerHeader-info-experience-role">
+                    Role: {exp.role}
+                  </h5>
+                  <h5 className="profile-playerHeader-info-experience-date">
+                    {exp.dateFrom} - {exp.dateTo}
+                  </h5>
+                  <h5 className="profile-playerHeader-info-experience-description">
+                    {exp.description}
+                  </h5>
                 </div>
               ))}
             </div>

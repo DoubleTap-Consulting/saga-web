@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import ProfileImage from "images/profile-image.jpeg";
+
 import "./playerCard.css";
 
 class PlayerCard extends Component {
@@ -16,19 +18,10 @@ class PlayerCard extends Component {
         <div
           className="playerCard-header"
           style={{
-            backgroundImage:
-              "url(https://res.cloudinary.com/dj14cmwoz/image/upload/v1491077482/profile-card/images/profile-picture.png)"
+            background: `url(${ProfileImage})`,
+            backgroundSize: "cover"
           }}
         >
-          <div className="playerCard-header-bar">
-            <a href="#" className="btn-message">
-              <span className="sr-only">Message</span>
-            </a>
-            <a href="#" className="btn-menu">
-              <span className="sr-only">Menu</span>
-            </a>
-          </div>
-
           <div className="playerCard-header-slanted-edge">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200">
               <path className="polygon" d="M-20,200,1000,0V200Z" />
@@ -40,19 +33,19 @@ class PlayerCard extends Component {
         </div>
 
         <div className="playerCard-body">
-          <h2 className="name">John Smith</h2>
-          <h4 className="job-title">Product Designer</h4>
-          <div className="bio">
+          <h2 className="name">Sultyn</h2>
+          <h4 className="job-title">Team Liquid - Fragger</h4>
+          {/* <div className="bio">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Dignissimos, aperiam.
-          </div>
+          </div> */}
           <div className="social-accounts">
             <a href="#">
               <img
                 src="https://res.cloudinary.com/dj14cmwoz/image/upload/v1491077480/profile-card/images/dribbble.svg"
                 alt=""
               />
-              <span className="sr-only">Dribbble</span>
+              <span className="sr-only">Discord</span>
             </a>
             <a href="#">
               <img

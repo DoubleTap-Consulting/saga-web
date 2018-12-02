@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import Search from "components/search/search";
 import FeaturedPlayers from "./components/featured-players/featuredPlayers";
 import FeaturedTournaments from "./components/featured-tournaments/featuredTournaments";
-
-import pubgMobileImage from "images/pubgMobile.jpg";
+import FeaturedContent from "./components/featured-news/featuredNews";
 
 import "./home.css";
 
@@ -17,35 +16,23 @@ class Home extends Component {
     this.state = {};
   }
 
-  search = event => {
-    // TODO: finish search
-    console.log("searchText", event.target.value);
-  };
-
   render() {
     return (
       <div className="home">
-        <div
-          className="home-header"
-          style={{
-            background: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url(${pubgMobileImage})`,
-            backgroundSize: "cover",
-            height: 600,
-            width: "100%"
-          }}
-        >
-          <h5 className="home-header-secondary">
-            The home of all esports players
-          </h5>
+        <div className="home-header">
+          <h5 className="home-header-secondary">Your Home for Esports</h5>
           <div className="home-search">
-            <Search search={this.search} />
+            <Search />
           </div>
         </div>
-        <div className="home-featuredPlayers">
-          <FeaturedPlayers />
+        <div className="home-featuredContent">
+          <FeaturedContent />
         </div>
         <div className="home-featuredTournaments">
           <FeaturedTournaments />
+        </div>
+        <div className="home-featuredPlayers">
+          <FeaturedPlayers />
         </div>
       </div>
     );

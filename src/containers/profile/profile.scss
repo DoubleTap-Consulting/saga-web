@@ -55,8 +55,21 @@
       color: white;
       width: 100%;
 
+      &-socials {
+        position: absolute;
+        bottom: 15px;
+        padding-right: 15px;
+      }
+
+      &-tagline {
+        font-style: italic;
+        font-weight: 500;
+        margin-top: 5px;
+      }
+
       &-experience {
         border-bottom: 3px solid #2b1d51;
+        position: relative;
         margin: 20px;
 
         &-team {
@@ -111,6 +124,24 @@
     color: white;
     margin-top: 30px;
 
+    &-editAvatar {
+      background-color: transparent;
+      display: inline-block;
+      border: 2px solid #00a92f;
+      color: #00a92f;
+      font-weight: bold;
+      text-transform: uppercase;
+      width: 270px;
+      height: 60px;
+      margin-left: 50px;
+      transition-duration: 0.15s;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background-color: white;
+      }
+    }
+
     &-card {
       border: 2px solid rgba(122, 122, 204, 0.2);
       margin-bottom: 40px;
@@ -137,6 +168,10 @@
         border-radius: 8px 8px 0 0;
         padding: 8px 15px;
         min-height: 50px;
+
+        &-icon {
+          margin-right: 15px;
+        }
       }
 
       &-body {

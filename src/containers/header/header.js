@@ -30,8 +30,8 @@ class Header extends Component {
           </Link>
           {this.props.auth.profile && (
             <div className="header-navLinks-row">
-              <Link to={"/home"}>
-                <p className="header-navLinks-text">Teams</p>
+              <Link to={"/players"}>
+                <p className="header-navLinks-text">Players</p>
               </Link>
             </div>
           )}

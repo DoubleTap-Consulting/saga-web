@@ -26,6 +26,9 @@ const asyncPasswordReset = asyncLoader(() =>
 const asyncProfile = asyncLoader(() =>
   require("../../containers/profile/profile")
 );
+const asyncPlayers = asyncLoader(() =>
+  require("../../containers/players/players")
+);
 const asyncEmailValidation = asyncLoader(() =>
   require("../../containers/email-validation/emailValidation")
 );
@@ -62,6 +65,7 @@ class App extends Component {
                 location={this.props.location}
               />
               <Route path="/passwordreset" component={asyncPasswordReset} />
+              <PrivateRoute path="/players" component={asyncPlayers} />
               <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute
                 exact

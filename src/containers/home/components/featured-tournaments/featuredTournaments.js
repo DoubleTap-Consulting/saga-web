@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import TournamentCard from "../tournament-card/tournamentCard";
+import TournamentCard from "components/tournament-card/tournamentCard";
 
 import "./featuredTournaments.css";
 
