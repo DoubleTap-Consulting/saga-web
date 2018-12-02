@@ -29,6 +29,9 @@ const asyncProfile = asyncLoader(() =>
 const asyncPlayers = asyncLoader(() =>
   require("../../containers/players/players")
 );
+const asyncTournaments = asyncLoader(() =>
+  require("../../containers/tournaments/tournaments")
+);
 const asyncEmailValidation = asyncLoader(() =>
   require("../../containers/email-validation/emailValidation")
 );
@@ -66,6 +69,7 @@ class App extends Component {
               />
               <Route path="/passwordreset" component={asyncPasswordReset} />
               <PrivateRoute path="/players" component={asyncPlayers} />
+              <PrivateRoute path="/tournaments" component={asyncTournaments} />
               <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute
                 exact

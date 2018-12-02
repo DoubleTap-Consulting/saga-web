@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import pubgMobileImage from "images/pubgMobile.jpg";
+import { convertToCurrency } from "utils/currency";
 
 import "./tournamentCard.css";
 
 class TournamentCard extends Component {
-  static get contextTypes() {
-    return {
-      store: PropTypes.object.isRequired,
-      router: PropTypes.object.isRequired
-    };
-  }
-
   constructor() {
     super();
 
@@ -21,11 +14,42 @@ class TournamentCard extends Component {
 
   render() {
     return (
-      <div className="tournamentCard">
-        <h3 className="tournamentCard-name">PGI - PUBG Global Invitational</h3>
-      </div>
+      <a
+        className="tournamentCard"
+        href={this.props.tournament.link}
+        target="_blank"
+      >
+        <img
+          src={this.props.tournament.image}
+          className="tournamentCard-image"
+        />
+        <h2 className="tournamentCard-date">
+          Starting {this.props.tournament.date}
+        </h2>
+        <h2 className="tournamentCard-game">{this.props.tournament.game}</h2>
+        <h2 className="tournamentCard-name">{this.props.tournament.name}</h2>
+        <h2 className="tournamentCard-prize">
+          {convertToCurrency(this.props.tournament.prize)} Prize Pool
+        </h2>
+      </a>
     );
   }
 }
+
+TournamentCard.propTypes = {
+  tournament: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    prize: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    game: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
+  }).isRequired
+};
+
+TournamentCard.contextTypes = {
+  store: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
+};
 
 export default TournamentCard;

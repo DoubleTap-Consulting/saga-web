@@ -14,19 +14,22 @@ class FeaturedNews extends Component {
         title: "Title #1",
         description:
           "This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. ",
-        date: "November 3rd, 2018"
+        date: "November 3rd, 2018",
+        id: 1
       },
       {
         title: "Title #2",
         description:
           "This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. ",
-        date: "November 3rd, 2018"
+        date: "November 3rd, 2018",
+        id: 2
       },
       {
         title: "Title #3",
         description:
           "This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. This is the worst description of all time. ",
-        date: "November 3rd, 2018"
+        date: "November 3rd, 2018",
+        id: 3
       }
     ];
 
@@ -39,7 +42,7 @@ class FeaturedNews extends Component {
         <h1 className="heading-2">Featured Content</h1>
         <div className="featuredNews-cards">
           {this.featuredNews.map(news => (
-            <NewsCard news={news} />
+            <NewsCard news={news} key={`featuredNews${news.id}`} />
           ))}
         </div>
       </div>

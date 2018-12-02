@@ -29,10 +29,17 @@
   }
 
   &-logo {
-    color: white;
     font-size: 72px;
-    margin-bottom: 0px;
-    margin-top: 0;
+    margin: 10px;
+    background: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(5.6%, #1b0342),
+      color-stop(28%, #2a0a75)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &-heading {

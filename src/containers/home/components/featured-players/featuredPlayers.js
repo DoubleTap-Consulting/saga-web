@@ -9,6 +9,21 @@ class FeaturedPlayers extends Component {
   constructor() {
     super();
 
+    this.players = [
+      {
+        gamerTag: "Sultyn",
+        id: 1
+      },
+      {
+        gamerTag: "Bulba",
+        id: 2
+      },
+      {
+        gamerTag: "BigT",
+        id: 3
+      }
+    ];
+
     this.state = {};
   }
 
@@ -17,9 +32,9 @@ class FeaturedPlayers extends Component {
       <div className="featuredPlayers section">
         <h1 className="heading-2">Featured Players</h1>
         <div className="featuredPlayers-cards">
-          <PlayerCard />
-          <PlayerCard />
-          <PlayerCard />
+          {this.players.map(player => (
+            <PlayerCard key={`featuredPlayer${player.id}`} player={player} />
+          ))}
         </div>
       </div>
     );

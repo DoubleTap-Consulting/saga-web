@@ -33,7 +33,7 @@ class PlayerCard extends Component {
         </div>
 
         <div className="playerCard-body">
-          <h2 className="name">Sultyn</h2>
+          <h2 className="name">{this.props.player.gamerTag}</h2>
           <h4 className="job-title">Team Liquid - Fragger</h4>
           {/* <div className="bio">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.

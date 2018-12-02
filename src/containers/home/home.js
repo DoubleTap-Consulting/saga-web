@@ -20,7 +20,9 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="home-header">
-          <h5 className="home-header-secondary">Your Home for Esports</h5>
+          <h5 className="home-header-secondary">
+            Your Home for All Things Esports
+          </h5>
           <div className="home-search">
             <Search />
           </div>
