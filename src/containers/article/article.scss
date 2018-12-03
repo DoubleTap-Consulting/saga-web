@@ -26,5 +26,11 @@
     padding: 50px;
     font-weight: 600;
     white-space: pre-line;
+
+    @media screen and (max-width: 680px) {
+      font-weight: 500;
+      padding: 20px 40px;
+      font-size: 14px;
+    }
   }
 }

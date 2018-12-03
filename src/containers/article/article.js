@@ -13,7 +13,8 @@ class Article extends Component {
 
     this.article = {
       title: "Article Title",
-      description: "This is my faovrite article. <br> Hi there!"
+      description:
+        "This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there!"
     };
 
     this.state = {};
