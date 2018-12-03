@@ -9,6 +9,7 @@ class PrivateRoute extends Component {
     super();
 
     this.authenticated = getAuth();
+    console.log("this.authenticated", this.authenticated);
   }
 
   render() {
@@ -53,7 +54,7 @@ PrivateRoute.contextTypes = {
 
 function mapStateToProps({ auth: { user, loginError } }) {
   if (user) {
-    return { user: user.profile.userId, loginError };
+    return { user };
   }
   return { user: null };
 }

@@ -20,41 +20,47 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.props.dispatch(getUserInfo(this.props.auth.profile.id));
+    // this.props.dispatch(getUserInfo(this.props.auth.profile.id));
 
     this.state = {
       editingPersonal: false,
-      editingExperiences: false,
       editingHeader: false,
+      editingExperience: null,
       firstName: "",
       lastName: "",
       location: "",
       birthday: "",
       tagline: "",
-      gamerTag: ""
+      gamerTag: "",
+      game: "",
+      teamName: "",
+      role: "",
+      dateFrom: "",
+      dateTo: "",
+      description: "",
+      hacker: false,
+      experiences: [
+        {
+          team: "Saga",
+          game: "PUBG",
+          role: "IGL",
+          dateFrom: "11/03/2018",
+          dateTo: "Current",
+          id: 1,
+          description:
+            "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
+        },
+        {
+          team: "FAZE",
+          game: "PUBG",
+          role: "IGL",
+          dateFrom: "11/05/2017",
+          dateTo: "11/02/2018",
+          id: 2,
+          description: "Some description"
+        }
+      ]
     };
-
-    this.experiences = [
-      {
-        team: "Saga",
-        game: "PUBG",
-        role: "IGL",
-        dateFrom: "11/03/2018",
-        dateTo: "Current",
-        id: 1,
-        description:
-          "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
-      },
-      {
-        team: "FAZE",
-        game: "PUBG",
-        role: "IGL",
-        dateFrom: "11/05/2017",
-        dateTo: "11/02/2018",
-        id: 2,
-        description: "Some description"
-      }
-    ];
   }
 
   editHeader = () => {
@@ -69,10 +75,9 @@ class Profile extends Component {
     });
   };
 
-  editExperience = () => {
+  editExperience = event => {
     this.setState({
-      editingExperiences: true,
-      experienceEditing: 1
+      editingExperience: event.target.name
     });
   };
 
@@ -90,8 +95,7 @@ class Profile extends Component {
 
   submitExperience = () => {
     this.setState({
-      editingExperiences: false,
-      experienceEditing: null
+      editingExperience: false
     });
   };
 
@@ -174,12 +178,14 @@ class Profile extends Component {
           </div>
         </div>
         <button className="profile-container-editAvatar">Edit Avatar</button>
-        {/* TODO: ONLY SHOWER IF HACKER FLAG */}
-        {/* <div className="profile-hacker">
-          <h3>
-            * This player has been officially accused and confirmed hacking. #GG
-          </h3>
-        </div> */}
+        {this.state.hacker && (
+          <div className="profile-hacker">
+            <h3>
+              * This player has been officially accused and confirmed hacking.
+              #GG
+            </h3>
+          </div>
+        )}
         <div className="profile-container">
           <div className="profile-container-card">
             <div className="profile-container-card-header">
@@ -225,7 +231,7 @@ class Profile extends Component {
                   placeholder="Birthday (MM/DD/YYYY)"
                   className="profile-container-card-body-input"
                 />
-                <input
+                <textfield
                   name="location"
                   value={this.state.location}
                   onChange={this.handleChange}
@@ -252,30 +258,89 @@ class Profile extends Component {
               <Icon className="profile-container-card-header-icon">work</Icon>
               <h3>Experience</h3>
             </div>
-            {this.experiences.map(exp => (
+            {this.state.experiences.map(exp => (
               <div
                 className="profile-playerHeader-info-experience"
                 key={`profileExperiences${exp.id}`}
               >
                 {/* TODO: if own profile, show edit button */}
-                <button
-                  className="profile-playerHeader-info-edit"
-                  onClick={this.editProfile}
-                >
-                  Edit
-                </button>
-                <h2 className="profile-playerHeader-info-experience-team">
-                  {exp.team}, {exp.game}
-                </h2>
-                <h5 className="profile-playerHeader-info-experience-role">
-                  Role: {exp.role}
-                </h5>
-                <h5 className="profile-playerHeader-info-experience-date">
-                  {exp.dateFrom} - {exp.dateTo}
-                </h5>
-                <h5 className="profile-playerHeader-info-experience-description">
-                  {exp.description}
-                </h5>
+                {this.state.editingExperience == exp.id ? (
+                  <button
+                    className="profile-playerHeader-info-edit"
+                    onClick={this.submitExperience}
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    className="profile-playerHeader-info-edit"
+                    onClick={this.editExperience}
+                    name={exp.id}
+                  >
+                    Edit
+                  </button>
+                )}
+                {this.state.editingExperience == exp.id ? (
+                  <div className="column">
+                    <input
+                      name="teamName"
+                      value={this.state.teamName}
+                      onChange={this.handleChange}
+                      placeholder="Team Name"
+                      className="profile-container-card-body-input"
+                    />
+                    <input
+                      name="game"
+                      value={this.state.game}
+                      onChange={this.handleChange}
+                      placeholder="Game"
+                      className="profile-container-card-body-input"
+                    />
+                    <input
+                      name="role"
+                      value={this.state.role}
+                      onChange={this.handleChange}
+                      placeholder="Role"
+                      className="profile-container-card-body-input"
+                    />
+                    <input
+                      name="dateFrom"
+                      value={this.state.dateFrom}
+                      onChange={this.handleChange}
+                      placeholder="Date Started (MM/DD/YYYY)"
+                      className="profile-container-card-body-input"
+                    />
+                    <input
+                      name="dateTo"
+                      value={this.state.dateTo}
+                      onChange={this.handleChange}
+                      placeholder="Date Ended (MM/DD/YYYY)"
+                      className="profile-container-card-body-input"
+                    />
+                    <input
+                      name="description"
+                      value={this.state.description}
+                      onChange={this.handleChange}
+                      placeholder="Description"
+                      className="profile-container-card-body-input"
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <h2 className="profile-playerHeader-info-experience-team">
+                      {exp.team}, {exp.game}
+                    </h2>
+                    <h5 className="profile-playerHeader-info-experience-role">
+                      Role: {exp.role}
+                    </h5>
+                    <h5 className="profile-playerHeader-info-experience-date">
+                      {exp.dateFrom} - {exp.dateTo}
+                    </h5>
+                    <h5 className="profile-playerHeader-info-experience-description">
+                      {exp.description}
+                    </h5>
+                  </div>
+                )}
               </div>
             ))}
           </div>

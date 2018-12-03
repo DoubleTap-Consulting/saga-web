@@ -212,6 +212,7 @@ export function removeTokens() {
  */
 export function getAuth() {
   const checkToken = loadUserProfile();
+  console.log("checkToken, checkToken", checkToken);
 
   if (checkToken) {
     return {

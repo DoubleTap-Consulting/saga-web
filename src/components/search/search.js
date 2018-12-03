@@ -36,7 +36,7 @@ class Search extends Component {
 
 Search.propTypes = {
   results: PropTypes.array.isRequired,
-  hideResults: PropTypes.array
+  hideResults: PropTypes.bool
 };
 
 Search.defaultProps = {

@@ -128,6 +128,7 @@ function logoutSuccess(payload) {
 }
 
 function logoutFailure(error) {
+  removeTokens();
   return {
     type: LOGOUT_FAILURE,
     error
