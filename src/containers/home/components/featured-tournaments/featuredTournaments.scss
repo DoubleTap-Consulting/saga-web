@@ -1,4 +1,9 @@
 .featuredTournaments {
+  width: 80%;
+
+  @media screen and (max-width: 700px) {
+    width: 95%;
+  }
   &-cards {
     display: flex;
     flex-direction: column;

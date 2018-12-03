@@ -28,7 +28,7 @@ class Home extends Component {
           <h5 className="home-header-secondary">
             Your Home for All Things Esports
           </h5>
-          {!this.props.user && (
+          {this.props.user && (
             <div className="home-search">
               <Search />
             </div>

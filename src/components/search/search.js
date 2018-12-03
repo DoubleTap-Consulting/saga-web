@@ -17,10 +17,25 @@ class Search extends Component {
         <span className="highlight" />
         <span className="bar" />
         <label>Search for a gamertag or team</label>
+        <div className="search-results">
+          {this.props.results.map(row => (
+            <div className="search-results-row">
+              <h3>Michael Mitrakos</h3>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 }
+
+Search.propTypes = {
+  results: PropTypes.array.isRequired
+};
+
+Search.defaultProps = {
+  results: []
+};
 
 Search.contextTypes = {
   store: PropTypes.object.isRequired,

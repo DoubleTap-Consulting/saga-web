@@ -2,9 +2,32 @@
   position: relative;
   width: 100%;
   margin-bottom: 45px;
+
+  &-results {
+    margin: 0;
+    background-color: white;
+    color: rgb(51, 51, 51);
+    position: absolute;
+    width: 100%;
+    &-row {
+      border-bottom: 1px solid gray;
+      font-size: 14px;
+      margin: 0;
+      cursor: pointer;
+      h3 {
+        margin: 0;
+        padding: 15px;
+      }
+
+      &:hover {
+        border: 1px solid #4968ce;
+        border-bottom: 2px solid #4968ce;
+      }
+    }
+  }
 }
 input {
-  width: 100%;
+  width: 98.5%;
   background-color: white;
   height: 30px;
   text-decoration: none;
@@ -17,7 +40,9 @@ input {
   display: block;
   border: none;
   border-radius: 5px;
-  border-bottom: 1px solid #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid #4968ce;
 }
 input:focus {
   outline: none;
@@ -42,7 +67,7 @@ input:focus ~ label,
 input:valid ~ label {
   top: -30px;
   font-size: 14px;
-  color: #00a92f;
+  color: #4968ce;
 }
 
 /* BOTTOM BARS ================================= */
@@ -59,7 +84,7 @@ input:valid ~ label {
   margin-bottom: -1px;
   bottom: 1px;
   position: absolute;
-  background: #00a92f;
+  background: #4968ce;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
