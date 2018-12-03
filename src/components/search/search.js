@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import "./search.css";
 
@@ -16,13 +17,15 @@ class Search extends Component {
         <input type="text" required />
         <span className="highlight" />
         <span className="bar" />
-        <label>Search for a gamertag or team</label>
+        <label>Search for a gamertag</label>
         {!this.props.hideResults && (
           <div className="search-results">
             {this.props.results.map(row => (
-              <div className="search-results-row">
-                <h3>Michael Mitrakos</h3>
-              </div>
+              <Link to={`/profile/${row.gamerTag}`}>
+                <div className="search-results-row">
+                  <h3>Michael Mitrakos</h3>
+                </div>
+              </Link>
             ))}
           </div>
         )}

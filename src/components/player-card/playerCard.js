@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import ProfileImage from "images/profile-image.jpeg";
 
@@ -34,7 +35,9 @@ class PlayerCard extends Component {
         </div>
 
         <div className="playerCard-body">
-          <h2 className="name">{this.props.player.gamerTag}</h2>
+          <Link to={`/profile/${this.props.player.gamerTag}`}>
+            <h2 className="name">{this.props.player.gamerTag}</h2>
+          </Link>
           <h4 className="job-title">Team Liquid - Fragger</h4>
           {/* <div className="bio">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -44,21 +47,27 @@ class PlayerCard extends Component {
 
         <div className="playerCard-footer">
           <div className="stats">
-            <div className="stat">
-              <img src={TwitchIcon} className="social-icon" />
-              <span className="label">Followers</span>
-              <span className="value">56K</span>
-            </div>
-            <div className="stat">
-              <img src={TwitterIcon} className="social-icon" />
-              <span className="label">Followers</span>
-              <span className="value">940</span>
-            </div>
-            <div className="stat">
-              <img src={InstagramIcon} className="social-icon" />
-              <span className="label">Followers</span>
-              <span className="value">320</span>
-            </div>
+            <a href={`${this.props.player.twitchLink}`} target="_blank">
+              <div className="stat">
+                <img src={TwitchIcon} className="social-icon" />
+                <span className="label">Followers</span>
+                <span className="value">56K</span>
+              </div>
+            </a>
+            <a href={`${this.props.player.twitterLink}`} target="_blank">
+              <div className="stat">
+                <img src={TwitterIcon} className="social-icon" />
+                <span className="label">Followers</span>
+                <span className="value">940</span>
+              </div>
+            </a>
+            <a href={`${this.props.player.instagramLink}`} target="_blank">
+              <div className="stat">
+                <img src={InstagramIcon} className="social-icon" />
+                <span className="label">Followers</span>
+                <span className="value">320</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
