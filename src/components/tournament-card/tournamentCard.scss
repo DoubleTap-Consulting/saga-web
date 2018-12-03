@@ -7,7 +7,6 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-
   background-color: #110726;
   -webkit-box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.4);
@@ -21,6 +20,11 @@
   );
   background: linear-gradient(to top, rgba(51, 0, 102, 0.3) 0%, #110726 30%);
   transition-duration: 0.15s;
+
+  @media screen and (max-width: 480px) {
+    height: 300px;
+  }
+
   &:hover {
     border: 2px solid lightgray;
   }
@@ -29,18 +33,35 @@
     position: absolute;
     bottom: 0;
     left: 15px;
+
+    @media screen and (max-width: 480px) {
+      bottom: 100px;
+      width: 100%;
+      left: 0;
+      text-align: center;
+    }
   }
   &-prize {
     font-weight: 500;
     position: absolute;
     bottom: 0;
     right: 15px;
+
+    @media screen and (max-width: 480px) {
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
   }
   &-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     opacity: 0.5;
+
+    @media screen and (max-width: 480px) {
+      height: 100%;
+    }
   }
   &-game {
     position: absolute;

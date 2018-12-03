@@ -78,15 +78,9 @@ class Home extends Component {
             </div>
           </div>
         )}
-        <div className="home-featuredContent">
-          <FeaturedContent />
-        </div>
-        <div className="home-featuredTournaments">
-          <FeaturedTournaments />
-        </div>
-        <div className="home-featuredPlayers">
-          <FeaturedPlayers />
-        </div>
+        <FeaturedContent />
+        <FeaturedTournaments />
+        <FeaturedPlayers />
       </div>
     );
   }

@@ -6,7 +6,6 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-
   overflow: hidden;
   background: #0a031a;
 
@@ -26,6 +25,11 @@
     justify-content: center;
     width: 600px;
     height: 700px;
+
+    @media screen and (max-width: 680px) {
+      width: 350px;
+      height: 600px;
+    }
   }
 
   &-heading {

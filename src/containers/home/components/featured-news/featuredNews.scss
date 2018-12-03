@@ -1,8 +1,15 @@
 .featuredNews {
-  width: 100%;
+  text-align: center;
   &-cards {
     display: flex;
     flex-wrap: wrap;
+    @media screen and (max-width: 900px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      width: 350px;
+    }
 
     & > * {
       margin: 15px;

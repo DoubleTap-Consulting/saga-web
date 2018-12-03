@@ -10,6 +10,10 @@
   border-bottom: 1px solid grayscale($color: #000000);
   box-shadow: 5px 10px 20px -20px rgba(85, 172, 238, 1);
 
+  @media screen and (max-width: 680px) {
+    height: 150px;
+  }
+
   &-logo {
     margin: 0;
     font-style: italic;
@@ -18,8 +22,16 @@
   &-navLinks {
     display: flex;
 
+    @media screen and (max-width: 680px) {
+      flex-direction: column;
+    }
+
     &-row {
       display: flex;
+
+      @media screen and (max-width: 680px) {
+        flex-direction: column;
+      }
     }
 
     &-text {
@@ -76,5 +88,9 @@
     display: flex;
     margin: 0 10px;
     padding: 0;
+
+    @media screen and (max-width: 680px) {
+      flex-direction: column;
+    }
   }
 }

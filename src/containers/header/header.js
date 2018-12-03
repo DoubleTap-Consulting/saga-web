@@ -18,10 +18,13 @@ class Header extends Component {
   logout = () => {
     this.props.dispatch(logout());
     this.props.dispatch(clearUserInfo());
-    this.context.router.history.push("/");
+    this.context.router.history.push("/login");
   };
 
   render() {
+    let onAuth =
+      this.props.location.pathname === "/signup" ||
+      this.props.location.pathname === "/login";
     return (
       <div className="header" role="navigation">
         <div className="header-navLinks">
@@ -51,12 +54,16 @@ class Header extends Component {
             </div>
           ) : (
             <div className="header-navLinks-row">
-              <Link to={"/login"}>
-                <p className="header-navLinks-login ">Login</p>
-              </Link>
-              <Link to={"/signup"}>
-                <p className="header-navLinks-signup">Signup</p>
-              </Link>
+              {!onAuth && (
+                <Link to={"/login"}>
+                  <p className="header-navLinks-login ">Login</p>
+                </Link>
+              )}
+              {!onAuth && (
+                <Link to={"/signup"}>
+                  <p className="header-navLinks-signup">Signup</p>
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -64,10 +71,6 @@ class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  location: PropTypes.object
-};
 
 Header.contextTypes = {
   store: PropTypes.object.isRequired,

@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <ScrollToTop history={this.props.history}>
         <div className="app">
-          <Header />
+          <Header location={this.props.location} />
           <div className="app-container">
             <Switch>
               <Route exact path="/" component={asyncHome} />
