@@ -29,7 +29,7 @@ class FeaturedPlayers extends Component {
 
   render() {
     return (
-      <div className="featuredPlayers section">
+      <div className="featuredPlayers">
         <h1 className="heading-2">Featured Players</h1>
         <div className="featuredPlayers-cards">
           {this.players.map(player => (
