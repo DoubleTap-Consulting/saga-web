@@ -23,6 +23,7 @@ class TournamentCard extends Component {
           <img
             src={this.props.tournament.image}
             className="tournamentCard-image"
+            alt="tournament"
           />
           <h2 className="tournamentCard-date">
             Starting {this.props.tournament.date}

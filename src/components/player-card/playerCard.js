@@ -91,7 +91,7 @@ class PlayerCard extends Component {
               alt="twitter"
             >
               <div className="stat">
-                <img src={TwitterIcon} className="social-icon" />
+                <img src={TwitterIcon} className="social-icon" alt="twitter" />
                 <span className="label">Followers</span>
                 <span className="value">940</span>
               </div>
@@ -103,7 +103,11 @@ class PlayerCard extends Component {
               alt="instagram"
             >
               <div className="stat">
-                <img src={InstagramIcon} className="social-icon" />
+                <img
+                  src={InstagramIcon}
+                  className="social-icon"
+                  alt="instagram"
+                />
                 <span className="label">Followers</span>
                 <span className="value">320</span>
               </div>

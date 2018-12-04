@@ -41,6 +41,7 @@ class Home extends Component {
               <img
                 src={ProfilePreview}
                 className="home-sellingPoints-section-image"
+                alt="profile preview"
               />
               <h3 className="home-sellingPoints-section-description">
                 Saga.GG is your esports resume. Beautiful, fast and trustworthy.
@@ -53,6 +54,7 @@ class Home extends Component {
               <img
                 src={ContentPreview}
                 className="home-sellingPoints-section-image"
+                alt="content preview"
               />
               <h3 className="home-sellingPoints-section-description">
                 Forget about having to scour Twitter for breaking news, Saga.GG
@@ -66,6 +68,7 @@ class Home extends Component {
               <img
                 src={TournamentsPreview}
                 className="home-sellingPoints-section-image"
+                alt="tournaments preview"
               />
               <h3 className="home-sellingPoints-section-description">
                 Be the first to know about who, what, when and where from our
