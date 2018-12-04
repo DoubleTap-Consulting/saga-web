@@ -16,7 +16,7 @@ export const CLEAR_USER = "CLEAR_USER";
  * @param {Object} updateObject An object containing user properties to be updated (see Swagger docs for accepted properties)
  * @return callApiWithJWT
  */
-export function saveUserInfo({ ...userInfo }) {
+export function saveUserInfo({ userInfo }) {
   // Remove any null, undefined, or empty strings from the request object
   const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === "");
   const config = {

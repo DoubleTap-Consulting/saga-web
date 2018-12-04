@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-import { getUserInfo } from "actions/user";
+import { getUserInfo, saveUserInfo } from "actions/user";
 
 import ProfileImage from "images/profile-image.jpeg";
 
@@ -20,7 +20,7 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    // this.props.dispatch(getUserInfo(this.props.auth.profile.id));
+    this.getUserData();
 
     this.state = {
       editingPersonal: false,
@@ -81,13 +81,35 @@ class Profile extends Component {
     });
   };
 
+  getUserData = () => {
+    this.props.dispatch(getUserInfo(1));
+  };
+
   submitHeader = () => {
+    this.props
+      .dispatch(
+        saveUserInfo({
+          gamerTag: this.state.gamerTag,
+          tagline: this.state.tagline
+        })
+      )
+      .then(() => this.getUserData());
     this.setState({
       editingHeader: false
     });
   };
 
   submitPersonal = () => {
+    this.props
+      .dispatch(
+        saveUserInfo({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          birthday: this.state.birthday,
+          location: this.state.location
+        })
+      )
+      .then(() => this.getUserData());
     this.setState({
       editingPersonal: false
     });
@@ -178,7 +200,7 @@ class Profile extends Component {
           </div>
         </div>
         <button className="profile-container-editAvatar">Edit Avatar</button>
-        {this.state.hacker && (
+        {this.props.user.hacker && (
           <div className="profile-hacker">
             <h3>
               * This player has been officially accused and confirmed hacking.
