@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import ProfileImage from "images/profile-image.jpeg";
-
 import "./newsCard.css";
 
 class NewsCard extends Component {
@@ -17,7 +15,11 @@ class NewsCard extends Component {
     return (
       <Link to={`/article/${this.props.news.id}`}>
         <div className="newsCard brand-background-dark">
-          <img src={this.props.news.image} className="newsCard-image" />
+          <img
+            src={this.props.news.image}
+            className="newsCard-image"
+            alt="news"
+          />
           <div className="newsCard-content">
             <h2 className="newsCard-content-title">{this.props.news.title}</h2>
             <h5 className="newsCard-content-description">

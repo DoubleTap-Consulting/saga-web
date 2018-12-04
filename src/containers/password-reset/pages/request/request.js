@@ -65,7 +65,7 @@ class Request extends Component {
       <div className="requestContainer brand-background-dark">
         <div className="requestContainer-parent align-center text-center row">
           <div className="requestContainer-formContainer column">
-            <img src={envelope} alt="key" />
+            <img src={envelope} alt="envelope" />
             <div>
               <h4 className="requestContainer-formContainer-header">
                 PASSWORD HELP

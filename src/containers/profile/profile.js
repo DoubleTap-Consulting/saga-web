@@ -184,17 +184,37 @@ class Profile extends Component {
               )}
             </div>
             <div className="row profile-playerHeader-info-socials">
-              <a href={this.props.player.twitterLink} target="_blank">
-                <img src={TwitterIcon} className="social-icon" />
+              <a
+                href={this.props.player.twitterLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={TwitterIcon} className="social-icon" alt="twitter" />
               </a>
-              <a href={this.props.player.instagramLink} target="_blank">
-                <img src={InstagramIcon} className="social-icon" />
+              <a
+                href={this.props.player.instagramLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={InstagramIcon}
+                  className="social-icon"
+                  alt="instgram"
+                />
               </a>
-              <a href={this.props.player.discordLink} target="_blank">
-                <img src={DiscordIcon} className="social-icon" />
+              <a
+                href={this.props.player.discordLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={DiscordIcon} className="social-icon" alt="discord" />
               </a>
-              <a href={this.props.player.twitchLink} target="_blank">
-                <img src={TwitchIcon} className="social-icon" />
+              <a
+                href={this.props.player.twitchLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={TwitchIcon} className="social-icon" alt="twitch" />
               </a>
             </div>
           </div>

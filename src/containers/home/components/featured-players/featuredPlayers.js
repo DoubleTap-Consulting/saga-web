@@ -36,7 +36,7 @@ class FeaturedPlayers extends Component {
         instagramLink: "http://www.instagram.com/bulba",
         twitchLink: "http://www.twitch.tv/bulba",
         featured: {
-          tournament: "GLL Season 2",
+          tournament: "GLL Season 2 Week 3",
           stats: {
             games: 9,
             kd: 4.3,
@@ -53,7 +53,7 @@ class FeaturedPlayers extends Component {
         instagramLink: "http://www.instagram.com/bigt",
         twitchLink: "http://www.twitch.tv/thebigt22",
         featured: {
-          tournament: "Hong Kong World Invitational",
+          tournament: "Auzom Season 1 Finals",
           stats: {
             games: 13,
             kd: 3.3,

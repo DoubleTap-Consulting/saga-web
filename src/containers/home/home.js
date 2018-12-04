@@ -7,7 +7,7 @@ import FeaturedPlayers from "./components/featured-players/featuredPlayers";
 import FeaturedTournaments from "./components/featured-tournaments/featuredTournaments";
 import FeaturedContent from "./components/featured-news/featuredNews";
 
-import ProfilePreview from "images/profilepreview.png";
+import ProfilePreview from "images/profilePreview.png";
 import ContentPreview from "images/content.png";
 import TournamentsPreview from "images/tournaments.png";
 

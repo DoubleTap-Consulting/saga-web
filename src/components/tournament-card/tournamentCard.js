@@ -15,7 +15,11 @@ class TournamentCard extends Component {
   render() {
     return (
       <div className="tournamentCard">
-        <a href={this.props.tournament.link} target="_blank">
+        <a
+          href={this.props.tournament.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src={this.props.tournament.image}
             className="tournamentCard-image"

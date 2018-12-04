@@ -72,21 +72,35 @@ class PlayerCard extends Component {
 
         <div className="playerCard-footer">
           <div className="stats">
-            <a href={`${this.props.player.twitchLink}`} target="_blank">
+            <a
+              href={`${this.props.player.twitchLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="stat">
-                <img src={TwitchIcon} className="social-icon" />
+                <img src={TwitchIcon} className="social-icon" alt="twitch" />
                 <span className="label">Followers</span>
                 <span className="value">56K</span>
               </div>
             </a>
-            <a href={`${this.props.player.twitterLink}`} target="_blank">
+            <a
+              href={`${this.props.player.twitterLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              alt="twitter"
+            >
               <div className="stat">
                 <img src={TwitterIcon} className="social-icon" />
                 <span className="label">Followers</span>
                 <span className="value">940</span>
               </div>
             </a>
-            <a href={`${this.props.player.instagramLink}`} target="_blank">
+            <a
+              href={`${this.props.player.instagramLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              alt="instagram"
+            >
               <div className="stat">
                 <img src={InstagramIcon} className="social-icon" />
                 <span className="label">Followers</span>

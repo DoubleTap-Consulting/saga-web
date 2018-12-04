@@ -84,7 +84,7 @@ class Sent extends Component {
       <div className="column sentPasswordContainer brand-background-dark">
         <div style={styles.container} className="center row">
           <div className="sentPasswordContainer-formContainer">
-            <img src={envelope} alt="key" />
+            <img src={envelope} alt="envelope" />
             <div className="column">
               <h1 className="sentPasswordContainer-formContainer-header">
                 EMAIL SENT

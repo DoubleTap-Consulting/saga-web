@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/static/media/discord.a72c86ca.png"
   },
   {
-    "revision": "9de11ad5a1d7d2628326",
-    "url": "/static/css/main.f107bc39.chunk.css"
+    "revision": "f466e5d13ace229e1cd8",
+    "url": "/static/css/main.28d94e18.chunk.css"
   },
   {
-    "revision": "c0cb430acd98d25ecf51",
-    "url": "/static/js/1.c0cb430a.chunk.js"
+    "revision": "7c97668683f90c446deb",
+    "url": "/static/js/1.7c976686.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/static/media/key.02fb7294.png"
   },
   {
-    "revision": "9de11ad5a1d7d2628326",
-    "url": "/static/js/main.9de11ad5.chunk.js"
+    "revision": "f466e5d13ace229e1cd8",
+    "url": "/static/js/main.f466e5d1.chunk.js"
   },
   {
     "revision": "9364144a1ddcc7d26288495a03b90cf8",
@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/static/media/tournaments.40cbed80.png"
   },
   {
-    "revision": "08a7a588fe509bd8f2d11bd0e978b541",
+    "revision": "0a6f753f5ced3388a154b594656269f1",
     "url": "/index.html"
   }
 ];
