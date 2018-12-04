@@ -79,7 +79,7 @@ class Request extends Component {
             <div className="column">
               <input
                 id="email"
-                className="requestContainer-input-text brand-input"
+                className="requestContainer-input-text brand-input-dark"
                 label="Email"
                 onBlur={this.inputChanged}
                 style={{ width: "300px" }}

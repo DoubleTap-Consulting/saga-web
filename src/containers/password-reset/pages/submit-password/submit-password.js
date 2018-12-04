@@ -9,25 +9,13 @@ import { submitPasswordReset } from "actions/password-reset";
 import key from "images/key.png";
 import "./submit-password.css";
 
-const styles = {
-  block: {
-    maxWidth: 250
-  },
-  container: {
-    textAlign: "center",
-    width: "100%"
-  }
-};
-
 class SubmitPassword extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.inputChanged = this.inputChanged.bind(this);
-    this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
-
     this.state = {
       password: "",
+      readonly: true,
       invalidTokenError: false,
       passwordTypeValidation: false,
       passwordLengthValidation: false
@@ -47,12 +35,16 @@ class SubmitPassword extends Component {
     return formData;
   }
 
-  updateLocalState = () => {};
+  updateLocalState = event => {
+    this.setState({
+      password: event.target.value
+    });
+  };
 
   /**
    * Updates the local state of Login Component.
    */
-  inputChanged(event) {
+  inputChanged = event => {
     this.updateLocalState(event, this);
     const password = event.target.value;
     const uppercaseRegex = password.match(/[A-Z]/g);
@@ -83,9 +75,9 @@ class SubmitPassword extends Component {
     this.setState({
       passwordTypeValidation: true
     });
-  }
+  };
 
-  handlePasswordSubmit() {
+  handlePasswordSubmit = () => {
     const parsed = queryString.parse(this.props.location.search);
 
     if (
@@ -106,87 +98,89 @@ class SubmitPassword extends Component {
           });
         }
       });
-  }
+  };
 
   render() {
     return (
       <div className="column submitPasswordContainer brand-background-dark">
-        <div style={styles.container} className="row align-center">
-          <div className="submitPasswordContainer-formContainer column">
-            <img src={key} alt="key" />
-            <h1 className="submitPasswordContainer-formContainer-header">
-              RESET PASSWORD
-            </h1>
-            <input
-              id="password"
-              className="submitPasswordContainer-input-text"
-              label="New Password"
-              type="password"
-              onChange={this.inputChanged}
-              readOnly
-              autoFocus
-            />
-            <div className="submitPasswordContainer-formContainer-password-validators row">
-              <div
-                className="small-centered column submitPasswordContainer-formContainer-password-validators-container"
-                style={isSafari() ? { marginTop: "20px" } : {}}
-              >
-                <div className="row">
-                  <FontAwesome
-                    className={
-                      this.state.passwordLengthValidation
-                        ? "color-positive icon"
-                        : "color-warning icon"
-                    }
-                    name={
-                      this.state.passwordLengthValidation
-                        ? "check-circle"
-                        : "times-circle"
-                    }
-                    style={{ fontSize: "12px" }}
-                  />
-                  <p className="submitPasswordContainer-formContainer-password-validators-container-requirements">
-                    {" "}
-                    Length 8+ characters
-                  </p>
-                </div>
-                <div className="row">
-                  <FontAwesome
-                    className={
-                      this.state.passwordTypeValidation
-                        ? "color-positive icon"
-                        : "color-warning icon"
-                    }
-                    name={
-                      this.state.passwordTypeValidation
-                        ? "check-circle"
-                        : "times-circle"
-                    }
-                    style={{ fontSize: "12px" }}
-                  />
-                  <p className="submitPasswordContainer-formContainer-password-validators-container-requirements">
-                    {" "}
-                    Upper & lower + numeric or special character
-                  </p>
-                </div>
+        <div className="submitPasswordContainer-formContainer column">
+          <img src={key} alt="key" />
+          <h1 className="submitPasswordContainer-formContainer-header">
+            RESET PASSWORD
+          </h1>
+          <input
+            id="password"
+            className="brand-input-dark"
+            label="New Password"
+            type="password"
+            onChange={this.inputChanged}
+            readOnly={this.state.readonly}
+            onFocus={() => {
+              this.setState({
+                readonly: false
+              });
+            }}
+          />
+          <div className="submitPasswordContainer-formContainer-password-validators row">
+            <div
+              className="column submitPasswordContainer-formContainer-password-validators-container"
+              style={isSafari() ? { marginTop: "20px" } : {}}
+            >
+              <div className="row">
+                <FontAwesome
+                  className={
+                    this.state.passwordLengthValidation
+                      ? "color-positive icon"
+                      : "color-warning icon"
+                  }
+                  name={
+                    this.state.passwordLengthValidation
+                      ? "check-circle"
+                      : "times-circle"
+                  }
+                  style={{ fontSize: "12px" }}
+                />
+                <p className="submitPasswordContainer-formContainer-password-validators-container-requirements">
+                  {" "}
+                  Length 8+ characters
+                </p>
+              </div>
+              <div className="row">
+                <FontAwesome
+                  className={
+                    this.state.passwordTypeValidation
+                      ? "color-positive icon"
+                      : "color-warning icon"
+                  }
+                  name={
+                    this.state.passwordTypeValidation
+                      ? "check-circle"
+                      : "times-circle"
+                  }
+                  style={{ fontSize: "12px" }}
+                />
+                <p className="submitPasswordContainer-formContainer-password-validators-container-requirements">
+                  {" "}
+                  Upper & lower + numeric or special character
+                </p>
               </div>
             </div>
-            {this.state.invalidTokenError && (
-              <p className="color-warning">
-                The password reset link you are using is no longer valid. Please
-                request a new one.
-              </p>
-            )}
-            <button
-              className={`submitPasswordContainer-formContainer-submitButton brand-button ${this
-                .state.passwordTypeValidation &&
-                this.state.passwordLengthValidation &&
-                "submitPasswordContainer-formContainer-submitButton-show"}`}
-              label={"Continue"}
-              onClick={this.handlePasswordSubmit}
-              secondary={false}
-            />
           </div>
+          {this.state.invalidTokenError && (
+            <p className="color-warning">
+              The password reset link you are using is no longer valid. Please
+              request a new one.
+            </p>
+          )}
+          <button
+            className={`submitPasswordContainer-formContainer-submitButton brand-button-neutral ${this
+              .state.passwordTypeValidation &&
+              this.state.passwordLengthValidation &&
+              "submitPasswordContainer-formContainer-submitButton-show"}`}
+            onClick={this.handlePasswordSubmit}
+          >
+            Submit
+          </button>
         </div>
       </div>
     );

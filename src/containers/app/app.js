@@ -77,7 +77,7 @@ class App extends Component {
               />
               <PrivateRoute path="/players" component={asyncPlayers} />
               <PrivateRoute path="/tournaments" component={asyncTournaments} />
-              <PrivateRoute path="/profile" component={asyncProfile} />
+              <Route path="/profile" component={asyncProfile} />
               <PrivateRoute
                 exact
                 path="/profile/:username"

@@ -82,7 +82,7 @@ class Sent extends Component {
   render() {
     return (
       <div className="column sentPasswordContainer brand-background-dark">
-        <div style={styles.container} className="text-center row">
+        <div style={styles.container} className="center row">
           <div className="sentPasswordContainer-formContainer">
             <img src={envelope} alt="key" />
             <div className="column">
