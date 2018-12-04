@@ -7,7 +7,6 @@ import asyncLoader from "components/asyncComponentLoader";
 import PrivateRoute from "components/privateRoute";
 // import { refreshLogin } from 'actions/auth';
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
-
 import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
 
@@ -23,6 +22,10 @@ const asyncSignup = asyncLoader(() =>
 const asyncPasswordReset = asyncLoader(() =>
   require("../../containers/password-reset/password-reset")
 );
+const asyncEmailValidation = asyncLoader(() =>
+  require("../../containers/email-validation/emailValidation")
+);
+const asyncHome = asyncLoader(() => require("../../containers/home/home"));
 const asyncProfile = asyncLoader(() =>
   require("../../containers/profile/profile")
 );
@@ -35,10 +38,6 @@ const asyncArticle = asyncLoader(() =>
 const asyncTournaments = asyncLoader(() =>
   require("../../containers/tournaments/tournaments")
 );
-const asyncEmailValidation = asyncLoader(() =>
-  require("../../containers/email-validation/emailValidation")
-);
-const asyncHome = asyncLoader(() => require("../../containers/home/home"));
 
 class App extends Component {
   constructor(props) {
@@ -77,7 +76,7 @@ class App extends Component {
               />
               <PrivateRoute path="/players" component={asyncPlayers} />
               <PrivateRoute path="/tournaments" component={asyncTournaments} />
-              <Route path="/profile" component={asyncProfile} />
+              <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute
                 exact
                 path="/profile/:username"
