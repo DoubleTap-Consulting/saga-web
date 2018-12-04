@@ -19,7 +19,10 @@ class PlayerCard extends Component {
 
   render() {
     return (
-      <div className="playerCard">
+      <div
+        className="playerCard"
+        style={this.props.showStatLine ? { height: 550 } : { height: 420 }}
+      >
         <div
           className="playerCard-header"
           style={{
@@ -38,7 +41,29 @@ class PlayerCard extends Component {
           <Link to={`/profile/${this.props.player.gamerTag}`}>
             <h2 className="name">{this.props.player.gamerTag}</h2>
           </Link>
-          <h4 className="job-title">Team Liquid - Fragger</h4>
+          <h4 className="job-title">
+            {this.props.player.team} - {this.props.player.role}
+          </h4>
+
+          {this.props.showStatLine && (
+            <h4 className="featured-title">Hong Kong Invitational</h4>
+          )}
+          {this.props.showStatLine && (
+            <div className="featured-stats row">
+              <div className="column">
+                <h5 className="featured-stats-title">Games</h5>
+                <p>{this.props.player.featured.stats.games}</p>
+              </div>
+              <div className="column">
+                <h5 className="featured-stats-title">K/D</h5>
+                <p>{this.props.player.featured.stats.kd}</p>
+              </div>
+              <div className="column">
+                <h5 className="featured-stats-title">ADR</h5>
+                <p>{this.props.player.featured.stats.adr}</p>
+              </div>
+            </div>
+          )}
           {/* <div className="bio">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Dignissimos, aperiam.
@@ -74,6 +99,45 @@ class PlayerCard extends Component {
     );
   }
 }
+
+PlayerCard.propTypes = {
+  player: PropTypes.shape({
+    instagramLink: PropTypes.string,
+    twitterLink: PropTypes.string,
+    twitchLink: PropTypes.string,
+    team: PropTypes.string,
+    role: PropTypes.string,
+    gamerTag: PropTypes.string,
+    featured: PropTypes.shape({
+      tournament: PropTypes.string,
+      stats: PropTypes.shape({
+        games: PropTypes.number,
+        kd: PropTypes.number,
+        adr: PropTypes.number
+      })
+    })
+  }),
+  showStatLine: PropTypes.bool
+};
+
+PlayerCard.defaultProps = {
+  player: {
+    instagramLink: "",
+    twitterLink: "",
+    twitchLink: "",
+    team: "",
+    role: "",
+    gamerTag: "",
+    featured: {
+      tournament: "",
+      stats: {
+        games: 0,
+        adr: 0,
+        kd: 0
+      }
+    }
+  }
+};
 
 PlayerCard.contextTypes = {
   store: PropTypes.object.isRequired,

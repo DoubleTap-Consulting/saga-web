@@ -1,6 +1,5 @@
 .playerCard {
   position: relative;
-  height: 420px;
   width: 330px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
   background-color: white;
@@ -97,7 +96,6 @@ svg .polygon {
 
 .playerCard-body {
   text-align: center;
-  padding-left: 10px;
   padding-top: 10px;
 }
 
@@ -172,4 +170,43 @@ svg .polygon {
   font-weight: 700;
   font-size: 20px;
   margin-top: 5px;
+}
+
+.featured {
+  &-title {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  &-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin: 5px 0;
+    .column {
+      margin: 0 10px;
+      padding: 10px;
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &:first-child {
+        border-right: 1px solid black;
+        padding-right: 20px;
+      }
+      &:last-child {
+        border-left: 1px solid black;
+        padding-left: 20px;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+    &-title {
+      border-bottom: 1px solid black;
+      margin-bottom: 0;
+      margin-top: 0;
+      font-weight: 700;
+    }
+  }
 }
