@@ -96,7 +96,7 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="login-container">
-          <h1 className="logo">Saga.GG</h1>
+          <h1 className="logo-big">Saga.GG</h1>
           <h1 className="login-heading">Login</h1>
           <input
             id="email"
