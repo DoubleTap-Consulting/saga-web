@@ -38,8 +38,6 @@ class Sent extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
-
     this.state = {
       resetAlert: false
     };
@@ -56,7 +54,7 @@ class Sent extends Component {
     }
   }
 
-  handleEmailSubmit() {
+  handleEmailSubmit = () => {
     this.props
       .dispatch(requestPasswordReset(this.props.history.location.state.email))
       .then(status => {
@@ -79,13 +77,13 @@ class Sent extends Component {
           });
         }, 4000);
       });
-  }
+  };
 
   render() {
     return (
-      <div className="column sentPasswordContainer">
-        <div style={styles.container} className="align-center text-center row">
-          <div className="sentPasswordContainer-formContainer small-8 align-center">
+      <div className="column sentPasswordContainer brand-background-dark">
+        <div style={styles.container} className="text-center row">
+          <div className="sentPasswordContainer-formContainer">
             <img src={envelope} alt="key" />
             <div className="column">
               <h1 className="sentPasswordContainer-formContainer-header">

@@ -16,7 +16,7 @@ class NewsCard extends Component {
   render() {
     return (
       <Link to={`/article/${this.props.news.id}`}>
-        <div className="newsCard">
+        <div className="newsCard brand-background-dark">
           <img src={this.props.news.image} className="newsCard-image" />
           <div className="newsCard-content">
             <h2 className="newsCard-content-title">{this.props.news.title}</h2>

@@ -17,9 +17,6 @@ class Request extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.inputChanged = this.inputChanged.bind(this);
-    this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
-
     this.state = {
       email: "",
       sentRecoveryEmail: false,
@@ -46,11 +43,11 @@ class Request extends Component {
   /**
    * Updates the local state of Login Component.
    */
-  inputChanged(event) {
+  inputChanged = event => {
     this.updateLocalState(event, this);
-  }
+  };
 
-  handleEmailSubmit() {
+  handleEmailSubmit = () => {
     this.props.dispatch(requestPasswordReset(this.state.email)).then(status => {
       if (status.response.status === "success") {
         this.props.history.push({
@@ -61,33 +58,38 @@ class Request extends Component {
         });
       }
     });
-  }
+  };
 
   render() {
     return (
-      <div className="column requestContainer">
+      <div className="requestContainer brand-background-dark">
         <div className="requestContainer-parent align-center text-center row">
-          <div className="requestContainer-formContainer small-9 medium-6 large-centered column">
+          <div className="requestContainer-formContainer column">
             <img src={envelope} alt="key" />
             <div>
               <h4 className="requestContainer-formContainer-header">
                 PASSWORD HELP
               </h4>
               <p className="requestContainer-formContainer-subHeader">
-                Enter the email associated with your Esports Arena account, then
-                click Continue. We will email you a link to a secret level where
-                you can summon a new password.
+                Enter the email associated with your Saga.GG account, then click
+                Continue. We will email you a link to a secret level where you
+                can summon a new password.
               </p>
             </div>
-            <div>
+            <div className="column">
               <input
                 id="email"
-                className="requestContainer-input-text"
+                className="requestContainer-input-text brand-input"
                 label="Email"
                 onBlur={this.inputChanged}
                 style={{ width: "300px" }}
               />
-              <button label="Continue" onClick={this.handleEmailSubmit} />
+              <button
+                onClick={this.handleEmailSubmit}
+                className="brand-button-neutral"
+              >
+                Continue
+              </button>
             </div>
           </div>
         </div>

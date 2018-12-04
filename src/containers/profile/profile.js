@@ -130,10 +130,10 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <div className="profile-header">
+        <div className="profile-header brand-background-light">
           <h1>Profile</h1>
         </div>
-        <div className="profile-playerHeader">
+        <div className="profile-playerHeader brand-background-dark">
           <img
             className="profile-playerHeader-profileImage"
             src={ProfileImage}
@@ -200,7 +200,7 @@ class Profile extends Component {
           </div>
         </div>
         <button className="profile-container-editAvatar">Edit Avatar</button>
-        {this.props.user.hacker && (
+        {this.props.player.hacker && (
           <div className="profile-hacker">
             <h3>
               * This player has been officially accused and confirmed hacking.
@@ -209,7 +209,7 @@ class Profile extends Component {
           </div>
         )}
         <div className="profile-container">
-          <div className="profile-container-card">
+          <div className="profile-container-card brand-background-dark">
             <div className="profile-container-card-header">
               <Icon className="profile-container-card-header-icon">person</Icon>
               <h3>Personal</h3>
@@ -237,28 +237,28 @@ class Profile extends Component {
                   value={this.state.firstName}
                   onChange={this.handleChange}
                   placeholder="First Name"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
                 <input
                   name="lastName"
                   value={this.state.lastName}
                   onChange={this.handleChange}
                   placeholder="Last Name"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
                 <input
                   name="birthday"
                   value={this.state.birthday}
                   onChange={this.handleChange}
                   placeholder="Birthday (MM/DD/YYYY)"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
-                <textfield
+                <input
                   name="location"
                   value={this.state.location}
                   onChange={this.handleChange}
                   placeholder="Location"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
               </div>
             ) : (
@@ -275,7 +275,7 @@ class Profile extends Component {
               </div>
             )}
           </div>
-          <div className="profile-container-card">
+          <div className="profile-container-card brand-background-dark">
             <div className="profile-container-card-header">
               <Icon className="profile-container-card-header-icon">work</Icon>
               <h3>Experience</h3>
@@ -309,42 +309,44 @@ class Profile extends Component {
                       value={this.state.teamName}
                       onChange={this.handleChange}
                       placeholder="Team Name"
-                      className="profile-container-card-body-input"
+                      className="brand-input-dark"
                     />
                     <input
                       name="game"
                       value={this.state.game}
                       onChange={this.handleChange}
                       placeholder="Game"
-                      className="profile-container-card-body-input"
+                      className="brand-input-dark"
                     />
                     <input
                       name="role"
                       value={this.state.role}
                       onChange={this.handleChange}
                       placeholder="Role"
-                      className="profile-container-card-body-input"
+                      className="brand-input-dark"
                     />
                     <input
                       name="dateFrom"
                       value={this.state.dateFrom}
                       onChange={this.handleChange}
                       placeholder="Date Started (MM/DD/YYYY)"
-                      className="profile-container-card-body-input"
+                      className="brand-input-dark"
                     />
                     <input
                       name="dateTo"
                       value={this.state.dateTo}
                       onChange={this.handleChange}
                       placeholder="Date Ended (MM/DD/YYYY)"
-                      className="profile-container-card-body-input"
+                      className="brand-input-dark"
                     />
-                    <input
+                    <textarea
                       name="description"
                       value={this.state.description}
                       onChange={this.handleChange}
                       placeholder="Description"
-                      className="profile-container-card-body-input"
+                      className="brand-text-area-dark"
+                      rows="5"
+                      maxLength="255"
                     />
                   </div>
                 ) : (
@@ -380,6 +382,7 @@ Profile.propTypes = {
     gamerTag: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
+    hacker: PropTypes.bool,
     birthday: PropTypes.string,
     location: PropTypes.string,
     twitterLink: PropTypes.string,
@@ -397,6 +400,7 @@ Profile.defaultProps = {
     lastName: "",
     birthday: "",
     location: "",
+    hacker: false,
     twitterLink: "",
     twitchLink: "",
     instagramLink: "",
@@ -411,7 +415,7 @@ Profile.contextTypes = {
 };
 
 function mapStateToProps({ auth }) {
-  return { auth, player: {} };
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Profile);

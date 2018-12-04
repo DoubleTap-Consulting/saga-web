@@ -49,3 +49,230 @@ input:-webkit-autofill {
     margin-top: 10px;
   }
 }
+
+// LOGO
+
+@mixin logo() {
+  margin: 10px;
+  -webkit-text-fill-color: lightgray;
+  -webkit-text-stroke-color: lightgray;
+  -webkit-text-stroke-width: 1px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+
+  background: linear-gradient(
+    to right,
+    #1b0342 20%,
+    #2a0a75 40%,
+    #381292 60%,
+    #1b0342 80%
+  );
+  background-size: 200% auto;
+
+  color: #000;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 6s linear infinite;
+}
+
+.logo-big {
+  @include logo();
+  font-size: 72px;
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 44px;
+    text-align: center;
+  }
+}
+
+.logo-small {
+  @include logo();
+  font-size: 28px;
+
+  &:hover {
+    color: #5737a8;
+    -webkit-text-fill-color: #5737a8;
+    -webkit-text-stroke-color: #5737a8;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+// INPUTS
+
+.brand-input-dark {
+  color: white;
+  background-color: #3f178a;
+  border: 1px solid #261d48;
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 250px;
+  font-size: 16px;
+  margin: 10px 0;
+
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: inset 0 -5px 45px rgba(73, 73, 73, 0.2);
+  text-indent: 10px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    border: 1px solid #4968ce;
+  }
+
+  &:focus {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #4968ce;
+  }
+}
+
+.brand-input-light {
+  color: white;
+  background-color: #3f178a;
+  border: 1px solid #261d48;
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 250px;
+  font-size: 16px;
+  margin: 10px 0;
+
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: inset 0 -5px 45px rgba(73, 73, 73, 0.2);
+  text-indent: 10px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    border: 1px solid #4968ce;
+  }
+
+  &:focus {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.brand-text-area-dark {
+  color: white;
+  background-color: #3f178a;
+  border: 1px solid #261d48;
+  border-radius: 5px;
+  padding: 15px 15px;
+  width: 95%;
+  font-size: 16px;
+  margin: 10px 0;
+
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: inset 0 -5px 45px rgba(73, 73, 73, 0.2);
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    border: 1px solid #4968ce;
+  }
+
+  &:focus {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #4968ce;
+  }
+}
+
+// BUTTONS
+
+@mixin brand-button() {
+  font-size: 14px;
+  color: #fff;
+  padding: 7px 20px;
+  border-radius: 5px;
+  margin: 5px 10px;
+  font-weight: 500;
+  transition-duration: 0.25s;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.brand-button-neutral {
+  @include brand-button();
+  background-color: #4d6eb5;
+  &:hover {
+    background-color: #385ba7;
+  }
+}
+
+.brand-button-success {
+  @include brand-button();
+  background-color: #00a92f;
+  &:hover {
+    background-color: #018827;
+  }
+}
+
+.brand-button-failure {
+  @include brand-button();
+  background-color: rgb(160, 0, 0);
+  &:hover {
+    background-color: rgb(128, 0, 0);
+  }
+}
+
+// BACKGROUND
+
+.brand-background-light {
+  background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 5px,
+      rgba(39, 18, 63, 0.8) 6px,
+      rgba(39, 18, 63, 0.8) 6px
+    ),
+    radial-gradient(
+      ellipse farthest-side at top center,
+      #271245,
+      #1e0e37,
+      transparent 90%
+    ),
+    linear-gradient(to top, #271245, #11072d, #0c031d 25%);
+}
+
+.brand-background-dark {
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(2.6%, #180733),
+    color-stop(28%, #110826)
+  );
+  background: linear-gradient(0deg, #180733 2.6%, #110826 28%);
+}

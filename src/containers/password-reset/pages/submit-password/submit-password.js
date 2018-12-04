@@ -110,9 +110,9 @@ class SubmitPassword extends Component {
 
   render() {
     return (
-      <div className="column submitPasswordContainer">
+      <div className="column submitPasswordContainer brand-background-dark">
         <div style={styles.container} className="row align-center">
-          <div className="submitPasswordContainer-formContainer medium-12 large-centered column">
+          <div className="submitPasswordContainer-formContainer column">
             <img src={key} alt="key" />
             <h1 className="submitPasswordContainer-formContainer-header">
               RESET PASSWORD
@@ -178,7 +178,7 @@ class SubmitPassword extends Component {
               </p>
             )}
             <button
-              className={`submitPasswordContainer-formContainer-submitButton ${this
+              className={`submitPasswordContainer-formContainer-submitButton brand-button ${this
                 .state.passwordTypeValidation &&
                 this.state.passwordLengthValidation &&
                 "submitPasswordContainer-formContainer-submitButton-show"}`}

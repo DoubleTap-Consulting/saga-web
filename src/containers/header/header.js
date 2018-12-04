@@ -29,7 +29,7 @@ class Header extends Component {
       <div className="header" role="navigation">
         <div className="header-navLinks">
           <Link to={"/"}>
-            <p className="header-navLinks-text">Saga.gg</p>
+            <p className="logo-small">Saga.GG</p>
           </Link>
           {this.props.auth.profile && (
             <div className="header-navLinks-row">

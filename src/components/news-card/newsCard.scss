@@ -15,28 +15,17 @@
   flex-direction: column;
   cursor: pointer;
   color: #fff;
-  background-color: #110726;
-  -webkit-box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(122, 122, 204, 0.2);
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(rgba(51, 0, 102, 0.3)),
-    color-stop(30%, #110726)
-  );
-  background: linear-gradient(to top, rgba(51, 0, 102, 0.3) 0%, #110726 30%);
-  border-radius: 8px;
+  border-radius: 10px;
   margin: 7.5px 0;
+  border: 2px solid #0a0319;
+
+  &:hover {
+    border: 2px solid lightgray;
+  }
 
   @media screen and (max-width: 480px) {
     width: 100%;
     margin: 0;
-  }
-
-  &:hover {
-    border: 2px solid lightgray;
   }
 
   &-image {
