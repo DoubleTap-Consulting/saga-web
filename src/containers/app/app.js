@@ -9,6 +9,7 @@ import PrivateRoute from "components/privateRoute";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
 import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
+import { Helmet } from "react-helmet";
 
 // Relative imports
 import Header from "../header/header";
@@ -55,6 +56,15 @@ class App extends Component {
     return (
       <ScrollToTop history={this.props.history}>
         <div className="app">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>Saga.GG - your home for esports</title>
+            <meta
+              name="description"
+              content="Your esports resume, curated content, events and much more."
+            />
+            <link rel="canonical" href="http://saga.gg" />
+          </Helmet>
           <Header location={this.props.location} />
           <div className="app-container">
             <Switch>

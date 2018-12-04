@@ -65,10 +65,6 @@ class PlayerCard extends Component {
               </div>
             </div>
           )}
-          {/* <div className="bio">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Dignissimos, aperiam.
-          </div> */}
         </div>
 
         <div className="playerCard-footer">
