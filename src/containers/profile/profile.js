@@ -130,7 +130,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <div className="profile-header brand-background-light">
+        <div className="profile-header brand-background-header">
           <h1>Profile</h1>
         </div>
         <div className="profile-playerHeader brand-background-dark">

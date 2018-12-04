@@ -19,7 +19,7 @@ class FeaturedPlayers extends Component {
         instagramLink: "http://www.instagram.com/michael_mitrakos",
         twitchLink: "http://www.twitch.tv/sultyn",
         featured: {
-          tournament: "Hong Kong World Invitational",
+          tournament: "Hong Kong Invitational",
           stats: {
             games: 5,
             kd: 6.4,

@@ -21,7 +21,7 @@ class PlayerCard extends Component {
     return (
       <div
         className="playerCard"
-        style={this.props.showStatLine ? { height: 550 } : { height: 420 }}
+        style={this.props.showStatLine ? { height: 600 } : { height: 420 }}
       >
         <div
           className="playerCard-header"
@@ -44,23 +44,24 @@ class PlayerCard extends Component {
           <h4 className="job-title">
             {this.props.player.team} - {this.props.player.role}
           </h4>
-
           {this.props.showStatLine && (
-            <h4 className="featured-title">Hong Kong Invitational</h4>
-          )}
-          {this.props.showStatLine && (
-            <div className="featured-stats row">
-              <div className="column">
-                <h5 className="featured-stats-title">Games</h5>
-                <p>{this.props.player.featured.stats.games}</p>
-              </div>
-              <div className="column">
-                <h5 className="featured-stats-title">K/D</h5>
-                <p>{this.props.player.featured.stats.kd}</p>
-              </div>
-              <div className="column">
-                <h5 className="featured-stats-title">ADR</h5>
-                <p>{this.props.player.featured.stats.adr}</p>
+            <div className="brand-background-dark featured">
+              <h4 className="featured-title">
+                {this.props.player.featured.tournament}
+              </h4>
+              <div className="featured-stats row">
+                <div className="column">
+                  <h5 className="featured-stats-title">Games</h5>
+                  <p>{this.props.player.featured.stats.games}</p>
+                </div>
+                <div className="column">
+                  <h5 className="featured-stats-title">K/D</h5>
+                  <p>{this.props.player.featured.stats.kd}</p>
+                </div>
+                <div className="column">
+                  <h5 className="featured-stats-title">ADR</h5>
+                  <p>{this.props.player.featured.stats.adr}</p>
+                </div>
               </div>
             </div>
           )}

@@ -173,9 +173,14 @@ svg .polygon {
 }
 
 .featured {
+  padding: 10px 0px;
+  margin: 0 5px;
+  color: white;
+  border-radius: 5px;
   &-title {
     font-size: 20px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    margin-top: 8px;
   }
   &-stats {
     display: flex;
@@ -191,19 +196,19 @@ svg .polygon {
       flex-direction: column;
       justify-content: center;
       &:first-child {
-        border-right: 1px solid black;
+        border-right: 1px solid gray;
         padding-right: 20px;
       }
       &:last-child {
-        border-left: 1px solid black;
+        border-left: 1px solid gray;
         padding-left: 20px;
       }
     }
     p {
       margin-bottom: 0;
+      font-weight: 500;
     }
     &-title {
-      border-bottom: 1px solid black;
       margin-bottom: 0;
       margin-top: 0;
       font-weight: 700;

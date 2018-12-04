@@ -249,7 +249,7 @@ input:-webkit-autofill {
 
 // BACKGROUND
 
-.brand-background-light {
+.brand-background-header {
   background: repeating-linear-gradient(
       to right,
       transparent,
@@ -275,4 +275,15 @@ input:-webkit-autofill {
     color-stop(28%, #110826)
   );
   background: linear-gradient(0deg, #180733 2.6%, #110826 28%);
+}
+
+.brand-background-light {
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(2.6%, #4c1e96),
+    color-stop(28%, #4715bb)
+  );
+  background: linear-gradient(0deg, #4c1e96 2.6%, #4715bb 28%);
 }
