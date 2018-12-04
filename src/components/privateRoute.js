@@ -9,7 +9,6 @@ class PrivateRoute extends Component {
     super();
 
     this.authenticated = getAuth();
-    console.log("this.authenticated", this.authenticated);
   }
 
   render() {
