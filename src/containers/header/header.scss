@@ -28,6 +28,7 @@
 
     &-row {
       display: flex;
+      align-items: center;
 
       @media screen and (max-width: 680px) {
         flex-direction: column;

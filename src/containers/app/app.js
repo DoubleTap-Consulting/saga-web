@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router";
-
 import asyncLoader from "components/asyncComponentLoader";
 import PrivateRoute from "components/privateRoute";
 // import { refreshLogin } from 'actions/auth';
@@ -10,7 +9,6 @@ import ScrollToTop from "../scroll-to-top/ScrollToTop";
 import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
 import { Helmet } from "react-helmet";
-
 // Relative imports
 import Header from "../header/header";
 
@@ -38,6 +36,9 @@ const asyncArticle = asyncLoader(() =>
 );
 const asyncTournaments = asyncLoader(() =>
   require("../../containers/tournaments/tournaments")
+);
+const asyncContent = asyncLoader(() =>
+  require("../../containers/content/content")
 );
 
 class App extends Component {
@@ -87,6 +88,7 @@ class App extends Component {
               <PrivateRoute path="/players" component={asyncPlayers} />
               <PrivateRoute path="/tournaments" component={asyncTournaments} />
               <PrivateRoute path="/profile" component={asyncProfile} />
+              <PrivateRoute path="/content" component={asyncContent} />
               <PrivateRoute
                 exact
                 path="/profile/:username"

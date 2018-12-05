@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import NewsCard from "components/news-card/newsCard";
+import ContentCard from "components/content-card/contentCard";
 
-import "./news.css";
+import "./content.css";
 
-class News extends Component {
+class Content extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.news = [
+    this.content = [
       {
         name: ""
       },
@@ -30,13 +30,16 @@ class News extends Component {
 
   render() {
     return (
-      <div className="news">
-        <div className="news-header">
-          <h1>News</h1>
+      <div className="content">
+        <div className="content-header brand-background-header">
+          <h1>Content</h1>
         </div>
-        <div className="news-container">
-          {this.news.map(content => (
-            <NewsCard className="news-container-player" />
+        <div className="content-container">
+          {this.content.map(content => (
+            <ContentCard
+              className="content-container-player"
+              content={content}
+            />
           ))}
         </div>
       </div>
@@ -44,17 +47,17 @@ class News extends Component {
   }
 }
 
-News.propTypes = {
+Content.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
-News.defaultProps = {
+Content.defaultProps = {
   user: null
 };
 
-News.contextTypes = {
+Content.contextTypes = {
   router: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 };
@@ -63,4 +66,4 @@ function mapStateToProps({ auth, user }) {
   return { auth, user };
 }
 
-export default connect(mapStateToProps)(News);
+export default connect(mapStateToProps)(Content);

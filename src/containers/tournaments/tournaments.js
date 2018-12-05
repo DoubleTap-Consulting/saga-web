@@ -87,7 +87,7 @@ class Tournaments extends Component {
   render() {
     return (
       <div className="tournaments">
-        <div className="tournaments-header">
+        <div className="tournaments-header brand-background-header">
           <h1>Tournaments</h1>
         </div>
         <div className="tournaments-container">

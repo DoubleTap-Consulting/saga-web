@@ -39,6 +39,9 @@ class Header extends Component {
               <Link to={"/tournaments"}>
                 <p className="header-navLinks-text">Tournaments</p>
               </Link>
+              <Link to={"/content"}>
+                <p className="header-navLinks-text">Curated Content</p>
+              </Link>
             </div>
           )}
         </div>
