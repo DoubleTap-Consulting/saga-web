@@ -5,20 +5,6 @@
     display: flex;
     align-items: center;
     padding: 0 50px;
-    background: repeating-linear-gradient(
-        to right,
-        transparent,
-        transparent 5px,
-        rgba(39, 18, 63, 0.8) 6px,
-        rgba(39, 18, 63, 0.8) 6px
-      ),
-      radial-gradient(
-        ellipse farthest-side at top center,
-        #271245,
-        #1e0e37,
-        transparent 90%
-      ),
-      linear-gradient(to top, #271245, #11072d, #0c031d 25%);
   }
 
   &-container {
