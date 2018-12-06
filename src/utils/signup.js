@@ -5,8 +5,8 @@ import { nonActionApiWithJWT } from "./api";
  */
 export function checkGamerTag(gamerTag) {
   // TODO: complete API call
-  const settings = {
-    url: `/user/gamerTag`,
+  const config = {
+    url: `${process.env.REACT_APP_API_DOMAIN}/users/gamerTag`,
     method: "GET",
     headers: {
       enctype: "multipart/form-data",
@@ -14,8 +14,33 @@ export function checkGamerTag(gamerTag) {
       cacheControl: "no-cache"
     }
   };
-  return nonActionApiWithJWT(settings).then(response => {
+  return nonActionApiWithJWT(config).then(response => {
     console.log("response", response);
     return false;
+  });
+}
+
+/**
+ * Registers a new user with the provided information.
+ * @param {object} formData Should contain the email, password, first name, and last name.
+ */
+export function registerUser(email, password, gamerTag) {
+  const config = {
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/users`,
+    method: "post",
+    header: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    data: {
+      email,
+      password,
+      gamerTag
+    }
+  };
+
+  return nonActionApiWithJWT(config).then(response => {
+    // TODO
+    // if successful, return true, else return {false with error}
   });
 }

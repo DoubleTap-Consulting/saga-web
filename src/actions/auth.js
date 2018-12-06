@@ -169,35 +169,23 @@ function registerRequest(response) {
 }
 
 function registerSuccess(response) {
-  const accessToken = response.Authorization;
-  const profile = decodeUserProfile(accessToken);
-  const userId = profile.id;
-  setAccessToken(accessToken);
-  setUserId(userId);
   return {
-    profile,
     response,
     type: REGISTER_SUCCESS
   };
 }
 
-/**
- * Registers a new user with the provided information.
- * @param {object} formData Should contain the email, password, first name, and last name.
- */
-export function registerUser(email, password, gamerTag) {
+export function emailConfirmed(token) {
   const config = {
-    url: "/user",
+    url: `${
+      process.env.REACT_APP_API_DOMAIN
+    }/v1/authentication/verify-email?token=${token}`,
     method: "post",
     header: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
-    data: {
-      email,
-      password,
-      gamerTag
-    }
+    data: {}
   };
 
   return callApi(config, registerRequest, registerSuccess, registerFailure);

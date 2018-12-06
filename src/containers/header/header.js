@@ -33,7 +33,7 @@ class Header extends Component {
           </Link>
           {this.props.auth.profile && (
             <div className="header-navLinks-row">
-              <Link to={"/players"}>
+              <Link to={"/users"}>
                 <p className="header-navLinks-text">Players</p>
               </Link>
               <Link to={"/tournaments"}>
@@ -48,7 +48,7 @@ class Header extends Component {
         <div className="header-authActions">
           {this.props.auth.profile ? (
             <div className="header-navLinks-row">
-              <Link to={"/profile"}>
+              <Link to={`/${this.props.user.gamerTag}`}>
                 <p className="header-navLinks-text">My Profile</p>
               </Link>
               <p className="header-navLinks-text" onClick={this.logout}>
@@ -75,13 +75,19 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  user: PropTypes.shape({
+    gamerTag: PropTypes.string
+  })
+};
+
 Header.contextTypes = {
   store: PropTypes.object.isRequired,
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, user }) {
+  return { auth, user };
 }
 
 export default connect(mapStateToProps)(Header);

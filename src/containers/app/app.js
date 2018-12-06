@@ -40,6 +40,12 @@ const asyncTournaments = asyncLoader(() =>
 const asyncContent = asyncLoader(() =>
   require("../../containers/content/content")
 );
+const asyncConfirmed = asyncLoader(() =>
+  require("../../containers/confirmed/confirmed")
+);
+const asyncConfirmEmail = asyncLoader(() =>
+  require("../../containers/confirm-email/confirmEmail")
+);
 
 class App extends Component {
   constructor(props) {
@@ -72,10 +78,6 @@ class App extends Component {
               <Route exact path="/" component={asyncHome} />
               <Route path="/signup" component={asyncSignup} />
               <Route
-                path="/emailvalidation/:token"
-                component={asyncEmailValidation}
-              />
-              <Route
                 path="/login"
                 component={asyncLogin}
                 location={this.props.location}
@@ -85,15 +87,15 @@ class App extends Component {
                 path="/article/:articleId"
                 component={asyncArticle}
               />
-              <PrivateRoute path="/players" component={asyncPlayers} />
+              <PrivateRoute path="/users" component={asyncPlayers} />
               <PrivateRoute path="/tournaments" component={asyncTournaments} />
-              <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute path="/content" component={asyncContent} />
-              <PrivateRoute
+              <Route
                 exact
-                path="/profile/:username"
-                component={asyncProfile}
+                path="/account-confirmed"
+                component={asyncConfirmed}
               />
+              <PrivateRoute exact path="/:username" component={asyncProfile} />
               <Route component={asyncHome} />
             </Switch>
           </div>

@@ -12,15 +12,22 @@ class ContentCard extends Component {
   }
 
   render() {
-    return <Link to={`/article/${this.props.content.id}`} />;
+    return (
+      <Link to={`/article/${this.props.content.id}`}>
+        <div className="content" />
+      </Link>
+    );
   }
 }
 
 ContentCard.contextTypes = {
   content: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    summary: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired
   })
 };
 

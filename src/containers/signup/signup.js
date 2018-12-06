@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { getUserInfo } from "actions/user";
-import { registerUser } from "../../actions/auth";
 
-import { checkGamerTag } from "utils/signup";
+import { checkGamerTag, registerUser } from "utils/signup";
 
 import _ from "lodash";
 
@@ -98,16 +97,15 @@ class Signup extends Component {
   handleSignup = () => {
     this.toggleSigningUp();
 
-    this.props
-      .dispatch(
-        registerUser(this.state.email, this.state.password, this.state.gamerTag)
-      )
-      .then(response => {
-        if (response.type === "LOGIN_SUCCESS") {
-          this.props.dispatch(getUserInfo());
-        }
-        this.toggleSigningUp();
-      });
+    registerUser(
+      this.state.email,
+      this.state.password,
+      this.state.gamerTag
+    ).then(response => {
+      // TODO
+      // if successful
+      // navigate to please confirm email page
+    });
   };
 
   toggleSigningUp = () =>
