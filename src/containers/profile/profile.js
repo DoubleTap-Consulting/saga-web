@@ -140,21 +140,16 @@ class Profile extends Component {
           />
           <div className="profile-playerHeader-info">
             {/* TODO: if own profile, show edit button */}
-            {this.state.editingHeader ? (
-              <button
-                className="profile-playerHeader-info-edit profile-playerHeader-info-edit-main"
-                onClick={this.submitHeader}
-              >
-                Save
-              </button>
-            ) : (
-              <button
-                className="profile-playerHeader-info-edit profile-playerHeader-info-edit-main"
-                onClick={this.editHeader}
-              >
-                Edit
-              </button>
-            )}
+            <button
+              className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                .state.editingHeader &&
+                "profile-playerHeader-info-button-save"}`}
+              onClick={
+                this.state.editingHeader ? this.submitHeader : this.editHeader
+              }
+            >
+              {this.state.editingHeader ? "Save" : "Edit"}
+            </button>
             <div className="column">
               {this.state.editingHeader ? (
                 <input
@@ -235,21 +230,18 @@ class Profile extends Component {
               <Icon className="profile-container-card-header-icon">person</Icon>
               <h3>Personal</h3>
               {/* TODO: if own profile, show edit button */}
-              {this.state.editingPersonal ? (
-                <button
-                  className="profile-playerHeader-info-edit"
-                  onClick={this.submitPersonal}
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  className="profile-playerHeader-info-edit"
-                  onClick={this.editPersonal}
-                >
-                  Edit
-                </button>
-              )}
+              <button
+                className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                  .state.editingPersonal &&
+                  "profile-playerHeader-info-button-save"}`}
+                onClick={
+                  this.state.editingPersonal
+                    ? this.submitPersonal
+                    : this.editPersonal
+                }
+              >
+                {this.state.editingPersonal ? "Save" : "Edit"}
+              </button>
             </div>
             {this.state.editingPersonal ? (
               <div className="profile-container-card-body">
@@ -307,22 +299,19 @@ class Profile extends Component {
                 key={`profileExperiences${exp.id}`}
               >
                 {/* TODO: if own profile, show edit button */}
-                {this.state.editingExperience == exp.id ? (
-                  <button
-                    className="profile-playerHeader-info-edit"
-                    onClick={this.submitExperience}
-                  >
-                    Save
-                  </button>
-                ) : (
-                  <button
-                    className="profile-playerHeader-info-edit"
-                    onClick={this.editExperience}
-                    name={exp.id}
-                  >
-                    Edit
-                  </button>
-                )}
+                <button
+                  className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                    .state.editingExperience == exp.id &&
+                    "profile-playerHeader-info-button-save"}`}
+                  name={exp.id}
+                  onClick={
+                    this.state.editingExperience == exp.id
+                      ? this.submitExperience
+                      : this.editExperience
+                  }
+                >
+                  {this.state.editingExperience == exp.id ? "Save" : "Edit"}
+                </button>
                 {this.state.editingExperience == exp.id ? (
                   <div className="column">
                     <input
