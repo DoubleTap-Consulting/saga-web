@@ -179,15 +179,14 @@ export function emailConfirmed(token) {
   const config = {
     url: `${
       process.env.REACT_APP_API_DOMAIN
-    }/v1/authentication/verify-email?token=${token}`,
-    method: "post",
+    }/api/v1/authentication/verify-email?activationToken=${token}`,
+    method: "get",
     header: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
     data: {}
   };
-
   return callApi(config, registerRequest, registerSuccess, registerFailure);
 }
 

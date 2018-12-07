@@ -14,7 +14,7 @@ class Confirmed extends Component {
   }
 
   componentDidMount() {
-    let token = this.props.location.search.slice(7);
+    let token = this.props.location.search.slice(17);
     this.props.dispatch(emailConfirmed(token));
   }
 
