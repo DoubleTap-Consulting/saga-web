@@ -162,7 +162,7 @@ class Profile extends Component {
                   onChange={this.handleChange}
                   name="gamerTag"
                   placeholder="Gamer Tag"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
               ) : (
                 <h1 className="profile-playerHeader-info-gamerTag">
@@ -173,9 +173,10 @@ class Profile extends Component {
                 <input
                   value={this.state.tagline}
                   onChange={this.handleChange}
+                  maxlength="100"
                   name="tagline"
                   placeholder="Tagline"
-                  className="profile-container-card-body-input"
+                  className="brand-input-dark"
                 />
               ) : (
                 <h4 className="profile-playerHeader-info-tagline">
