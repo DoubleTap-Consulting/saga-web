@@ -41,6 +41,18 @@
     }
   }
 
+  &-signupNow {
+    background-color: #23104d;
+    margin: 30px;
+    padding: 20px 0 30px 0;
+    border: 1px solid #4968ce;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   &-sellingPoints {
     display: flex;
     flex-wrap: wrap;

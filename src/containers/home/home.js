@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Search from "components/search/search";
 import FeaturedPlayers from "./components/featured-players/featuredPlayers";
@@ -34,49 +35,59 @@ class Home extends Component {
             </div>
           )}
         </div>
+        {/* TODO: only show if not logged in */}
         {this.props.user && (
-          <div className="home-sellingPoints">
-            <div className="home-sellingPoints-section">
-              <h1 className="home-sellingPoints-section-title">Resume</h1>
-              <img
-                src={ProfilePreview}
-                className="home-sellingPoints-section-image"
-                alt="profile preview"
-              />
-              <h3 className="home-sellingPoints-section-description">
-                Saga.GG is your esports resume. Beautiful, fast and trustworthy.
-                If you're in the scene or aspiring to be, this is what teams and
-                managers will look at to see if you have what it takes.
-              </h3>
+          <span>
+            <div className="home-sellingPoints">
+              <div className="home-sellingPoints-section">
+                <h1 className="home-sellingPoints-section-title">Resume</h1>
+                <img
+                  src={ProfilePreview}
+                  className="home-sellingPoints-section-image"
+                  alt="profile preview"
+                />
+                <h3 className="home-sellingPoints-section-description">
+                  Saga.GG is your esports resume. Beautiful, fast and
+                  trustworthy. If you're in the scene or aspiring to be, this is
+                  what teams and managers will look at to see if you have what
+                  it takes.
+                </h3>
+              </div>
+              <div className="home-sellingPoints-section">
+                <h1 className="home-sellingPoints-section-title">Content</h1>
+                <img
+                  src={ContentPreview}
+                  className="home-sellingPoints-section-image"
+                  alt="content preview"
+                />
+                <h3 className="home-sellingPoints-section-description">
+                  Forget about having to scour Twitter for breaking news,
+                  Saga.GG provides curated content from top tier pros, managers,
+                  coaches, casters and more at the tip of your fingers. You'll
+                  find the best and most up to date content here.
+                </h3>
+              </div>
+              <div className="home-sellingPoints-section">
+                <h1 className="home-sellingPoints-section-title">Events</h1>
+                <img
+                  src={TournamentsPreview}
+                  className="home-sellingPoints-section-image"
+                  alt="tournaments preview"
+                />
+                <h3 className="home-sellingPoints-section-description">
+                  Be the first to know about who, what, when and where from our
+                  beautiful interface. From million dollar tournaments to weekly
+                  leagues games, we've got you covered.
+                </h3>
+              </div>
             </div>
-            <div className="home-sellingPoints-section">
-              <h1 className="home-sellingPoints-section-title">Content</h1>
-              <img
-                src={ContentPreview}
-                className="home-sellingPoints-section-image"
-                alt="content preview"
-              />
-              <h3 className="home-sellingPoints-section-description">
-                Forget about having to scour Twitter for breaking news, Saga.GG
-                provides curated content from top tier pros, managers, coaches,
-                casters and more at the tip of your fingers. You'll find the
-                best and most up to date content here.
-              </h3>
+            <div className="home-signupNow">
+              <h3>Become someone in esports.</h3>
+              <Link to="/signup">
+                <h3 className="brand-button-neutral">Join</h3>
+              </Link>
             </div>
-            <div className="home-sellingPoints-section">
-              <h1 className="home-sellingPoints-section-title">Events</h1>
-              <img
-                src={TournamentsPreview}
-                className="home-sellingPoints-section-image"
-                alt="tournaments preview"
-              />
-              <h3 className="home-sellingPoints-section-description">
-                Be the first to know about who, what, when and where from our
-                beautiful interface. From million dollar tournaments to weekly
-                leagues games, we've got you covered.
-              </h3>
-            </div>
-          </div>
+          </span>
         )}
         <FeaturedContent />
         <FeaturedTournaments />
