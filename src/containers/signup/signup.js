@@ -105,6 +105,7 @@ class Signup extends Component {
       // TODO
       // if successful
       // navigate to please confirm email page
+      this.props.history.push("/confirm-email");
     });
   };
 

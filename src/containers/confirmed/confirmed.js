@@ -21,6 +21,9 @@ class Confirmed extends Component {
   render() {
     return (
       <div className="confirmed">
+        <div className="confirmEmail-header brand-background-header">
+          <h1>Email Validation!</h1>
+        </div>
         <div className="confirmed-container">
           <h3>
             Thanks for confirming your email! Redirecting you in 3... 2... 1...

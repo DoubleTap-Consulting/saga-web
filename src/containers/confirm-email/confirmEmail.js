@@ -14,8 +14,11 @@ class ConfirmEmail extends Component {
   render() {
     return (
       <div className="confirmEmail">
+        <div className="confirmEmail-header brand-background-header">
+          <h1>Registration Successful!</h1>
+        </div>
         <div className="confirmEmail-container">
-          <h3>Please confirm your email address before continuing</h3>
+          <h3>Please confirm your email address before continuing.</h3>
         </div>
       </div>
     );

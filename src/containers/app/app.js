@@ -11,6 +11,7 @@ import { getAuth } from "utils/api";
 import { Helmet } from "react-helmet";
 // Relative imports
 import Header from "../header/header";
+import Footer from "../footer/footer";
 
 import "./app.css";
 
@@ -45,6 +46,12 @@ const asyncConfirmed = asyncLoader(() =>
 );
 const asyncConfirmEmail = asyncLoader(() =>
   require("../../containers/confirm-email/confirmEmail")
+);
+const asyncPrivacy = asyncLoader(() =>
+  require("../../containers/privacy/privacy")
+);
+const asyncContact = asyncLoader(() =>
+  require("../../containers/contact/contact")
 );
 
 class App extends Component {
@@ -95,10 +102,18 @@ class App extends Component {
                 path="/account-confirmed"
                 component={asyncConfirmed}
               />
+              <Route exact path="/privacy" component={asyncPrivacy} />
+              <Route
+                exact
+                path="/confirm-email"
+                component={asyncConfirmEmail}
+              />
+              <Route exact path="/contact" component={asyncContact} />
               <PrivateRoute exact path="/:username" component={asyncProfile} />
               <Route component={asyncHome} />
             </Switch>
           </div>
+          <Footer />
         </div>
       </ScrollToTop>
     );

@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #2a1e50;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  bottom: 0;
+  .column {
+    color: white;
+    width: 250px;
+    @media screen and (max-width: 450px) {
+      width: 100%;
+    }
+
+    h3 {
+      text-decoration: underline;
+    }
+
+    p {
+      margin: 5px 0;
+      transition-duration: 0.15s;
+
+      &:hover {
+        color: #4d6eb5;
+      }
+    }
+  }
+}
