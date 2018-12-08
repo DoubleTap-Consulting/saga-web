@@ -1,4 +1,4 @@
-.privacy {
+.faq {
   &-header {
     color: white;
     height: 100px;
@@ -14,5 +14,14 @@
     min-height: 500px;
     margin: 40px;
     color: white;
+
+    &-question {
+      margin-bottom: 0px;
+    }
+
+    &-answer {
+      margin-left: 40px;
+      margin-bottom: 20px;
+    }
   }
 }

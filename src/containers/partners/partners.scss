@@ -1,4 +1,4 @@
-.privacy {
+.partners {
   &-header {
     color: white;
     height: 100px;
@@ -9,9 +9,7 @@
   &-container {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
     padding: 40px;
-    min-height: 500px;
     margin: 40px;
     color: white;
   }

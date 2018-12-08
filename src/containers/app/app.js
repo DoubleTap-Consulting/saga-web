@@ -53,6 +53,11 @@ const asyncPrivacy = asyncLoader(() =>
 const asyncContact = asyncLoader(() =>
   require("../../containers/contact/contact")
 );
+const asyncPartners = asyncLoader(() =>
+  require("../../containers/partners/partners")
+);
+const asyncAbout = asyncLoader(() => require("../../containers/about/about"));
+const asyncFaq = asyncLoader(() => require("../../containers/faq/faq"));
 
 class App extends Component {
   constructor(props) {
@@ -108,7 +113,10 @@ class App extends Component {
                 path="/confirm-email"
                 component={asyncConfirmEmail}
               />
+              <Route exact path="/faq" component={asyncFaq} />
               <Route exact path="/contact" component={asyncContact} />
+              <Route exact path="/partners" component={asyncPartners} />
+              <Route exact path="/about" component={asyncAbout} />
               <PrivateRoute exact path="/:username" component={asyncProfile} />
               <Route component={asyncHome} />
             </Switch>

@@ -287,3 +287,13 @@ input:-webkit-autofill {
   );
   background: linear-gradient(0deg, #4c1e96 2.6%, #4715bb 28%);
 }
+
+// TEXT
+.hyperlink {
+  color: rgb(77, 105, 181);
+  transition-duration: 0.15s;
+  cursor: pointer;
+  &:hover {
+    color: rgb(70, 118, 252);
+  }
+}

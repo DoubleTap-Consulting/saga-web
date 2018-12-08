@@ -18,15 +18,26 @@ class Contact extends Component {
           <h1>Contact</h1>
         </div>
         <div className="contact-container">
-          <h2>Need to get into contact with us?</h2>
+          <h1>Need to get into contact with us?</h1>
           <h4>
             Please either tweet us at
-            <a href="www.twitter.com/sagaHQ_GG" target="_blank">
+            <a
+              href="www.twitter.com/sagaHQ_GG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hyperlink"
+            >
+              {" "}
               @SagaHQ_GG
-            </a>
-            or join our
+            </a>{" "}
+            or join our{" "}
             {/* TODO: if logged in user, give one link. If not signed in, give other link */}
-            <a href="https://discord.gg/9Qa94Vw" target="_blank">
+            <a
+              href="https://discord.gg/9Qa94Vw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hyperlink"
+            >
               discord server
             </a>
           </h4>
