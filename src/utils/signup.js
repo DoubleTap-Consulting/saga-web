@@ -6,7 +6,7 @@ import { nonActionApiWithJWT } from "./api";
 export function checkGamerTag(gamerTag) {
   // TODO: complete API call
   const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/users/gamerTag`,
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/users/gamerTag`,
     method: "GET",
     headers: {
       enctype: "multipart/form-data",
@@ -38,6 +38,7 @@ export function registerUser(email, password, gamerTag) {
       gamerTag
     }
   };
+  console.log("config", config);
 
   return nonActionApiWithJWT(config).then(response => {
     // TODO

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { emailConfirmed } from "actions/auth";
 
@@ -21,12 +22,16 @@ class Confirmed extends Component {
   render() {
     return (
       <div className="confirmed">
-        <div className="confirmEmail-header brand-background-header">
-          <h1>Email Validation!</h1>
+        <div className="brand-background-header">
+          <h1>Email Validation</h1>
         </div>
         <div className="confirmed-container">
           <h3>
-            Thanks for confirming your email! Redirecting you in 3... 2... 1...
+            Thanks for confirming your email! Please continue to{" "}
+            <Link to="/login" className="confirmed-login">
+              Login
+            </Link>
+            .
           </h3>
         </div>
       </div>
