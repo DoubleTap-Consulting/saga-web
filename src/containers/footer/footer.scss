@@ -8,6 +8,8 @@
   .column {
     color: white;
     width: 250px;
+    display: flex;
+    align-items: center;
     @media screen and (max-width: 450px) {
       width: 100%;
     }

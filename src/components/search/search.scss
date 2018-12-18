@@ -60,6 +60,10 @@ label {
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
+
+  @media screen and (max-width: 550px) {
+    font-size: 15px;
+  }
 }
 
 /* active state */

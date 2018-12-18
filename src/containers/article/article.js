@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import renderHTML from "react-render-html";
+
 import "./article.css";
 
 class Article extends Component {
@@ -14,7 +16,7 @@ class Article extends Component {
     this.article = {
       title: "Article Title",
       description:
-        "This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there!"
+        "<p>This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there! This is my faovrite article. <br> Hi there!</p>"
     };
 
     this.state = {};
@@ -27,7 +29,7 @@ class Article extends Component {
           <h1>{this.article.title}</h1>
         </div>
         <div className="article-container">
-          <p>{this.article.description}</p>
+          {renderHTML(this.article.description)}
         </div>
       </div>
     );

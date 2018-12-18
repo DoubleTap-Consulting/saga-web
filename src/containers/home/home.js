@@ -82,7 +82,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="home-signupNow">
-              <h3>Become someone in esports.</h3>
+              <h3>Show the esports world who you are. #MySaga</h3>
               <Link to="/signup">
                 <h3 className="brand-button-neutral">Join</h3>
               </Link>
