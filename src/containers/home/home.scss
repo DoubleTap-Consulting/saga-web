@@ -53,51 +53,6 @@
     align-items: center;
   }
 
-  &-sellingPoints {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 40px;
-
-    @media screen and (max-width: 900px) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    &-section {
-      width: 370px;
-      background-color: #23104d;
-      margin: 30px;
-      border: 1px solid #4968ce;
-      padding: 50px;
-      border-radius: 5px;
-      &-image {
-        width: 370px;
-
-        @media screen and (max-width: 750px) {
-          width: 100%;
-        }
-      }
-      &-description {
-        color: white;
-        font-weight: 400;
-        text-align: center;
-
-        @media screen and (max-width: 480px) {
-          max-width: 80%;
-          margin: 30px auto 0px auto;
-        }
-      }
-      &-title {
-        color: white;
-        text-align: center;
-        @media screen and (max-width: 480px) {
-          font-size: 28px;
-          text-align: center;
-        }
-      }
-    }
-  }
-
   &-search {
     width: 50%;
   }
