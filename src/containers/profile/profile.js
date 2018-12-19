@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-import { getUserInfo, saveUserInfo } from "actions/user";
+import { saveUserInfo } from "actions/user";
+
+import { getUserProfile } from "utils/profile";
 
 import ProfileImage from "images/profile-image.jpeg";
 
@@ -20,25 +22,25 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.getUserData();
-
     this.state = {
       editingPersonal: false,
       editingHeader: false,
       editingExperience: null,
-      firstName: "",
-      lastName: "",
-      location: "",
-      birthday: "",
-      tagline: "",
-      gamerTag: "",
-      game: "",
-      teamName: "",
-      role: "",
+      player: {
+        firstName: "",
+        lastName: "",
+        location: "",
+        birthday: "",
+        tagline: "",
+        gamerTag: "",
+        game: "",
+        teamName: "",
+        role: "",
+        hacker: false
+      },
       dateFrom: "",
       dateTo: "",
       description: "",
-      hacker: false,
       experiences: [
         {
           team: "Saga",
@@ -63,6 +65,15 @@ class Profile extends Component {
     };
   }
 
+  componentDidMount() {
+    // TODO: have to make sure state is structured correctly above for this
+    getUserProfile(this.props.location.pathname.slice(1)).then(player => {
+      this.setState({
+        player
+      });
+    });
+  }
+
   editHeader = () => {
     this.setState({
       editingHeader: true
@@ -81,35 +92,27 @@ class Profile extends Component {
     });
   };
 
-  getUserData = () => {
-    this.props.dispatch(getUserInfo(1));
-  };
-
   submitHeader = () => {
-    this.props
-      .dispatch(
-        saveUserInfo({
-          gamerTag: this.state.gamerTag,
-          tagline: this.state.tagline
-        })
-      )
-      .then(() => this.getUserData());
+    this.props.dispatch(
+      saveUserInfo({
+        gamerTag: this.state.player.gamerTag,
+        tagline: this.state.player.tagline
+      })
+    );
     this.setState({
       editingHeader: false
     });
   };
 
   submitPersonal = () => {
-    this.props
-      .dispatch(
-        saveUserInfo({
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          birthday: this.state.birthday,
-          location: this.state.location
-        })
-      )
-      .then(() => this.getUserData());
+    this.props.dispatch(
+      saveUserInfo({
+        firstName: this.state.player.firstName,
+        lastName: this.state.player.lastName,
+        birthday: this.state.player.birthday,
+        location: this.state.player.location
+      })
+    );
     this.setState({
       editingPersonal: false
     });
@@ -153,7 +156,7 @@ class Profile extends Component {
             <div className="column">
               {this.state.editingHeader ? (
                 <input
-                  value={this.state.gamerTag}
+                  value={this.state.player.gamerTag}
                   onChange={this.handleChange}
                   name="gamerTag"
                   placeholder="Gamer Tag"
@@ -161,12 +164,12 @@ class Profile extends Component {
                 />
               ) : (
                 <h1 className="profile-playerHeader-info-gamerTag">
-                  {this.state.gamerTag}
+                  {this.state.player.gamerTag}
                 </h1>
               )}
               {this.state.editingHeader ? (
                 <input
-                  value={this.state.tagline}
+                  value={this.state.player.tagline}
                   onChange={this.handleChange}
                   maxlength="100"
                   name="tagline"
@@ -175,20 +178,20 @@ class Profile extends Component {
                 />
               ) : (
                 <h4 className="profile-playerHeader-info-tagline">
-                  {this.state.tagline}
+                  {this.state.player.tagline}
                 </h4>
               )}
             </div>
             <div className="row profile-playerHeader-info-socials">
               <a
-                href={this.props.player.twitterLink}
+                href={this.state.player.twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img src={TwitterIcon} className="social-icon" alt="twitter" />
               </a>
               <a
-                href={this.props.player.instagramLink}
+                href={this.state.player.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -199,14 +202,14 @@ class Profile extends Component {
                 />
               </a>
               <a
-                href={this.props.player.discordLink}
+                href={this.state.player.discordUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img src={DiscordIcon} className="social-icon" alt="discord" />
               </a>
               <a
-                href={this.props.player.twitchLink}
+                href={this.state.player.twitchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -216,7 +219,7 @@ class Profile extends Component {
           </div>
         </div>
         <button className="profile-container-editAvatar">Edit Avatar</button>
-        {this.props.player.hacker && (
+        {this.state.player.hacker && (
           <div className="profile-hacker">
             <h3>
               * This player has been officially accused and confirmed hacking.
@@ -247,28 +250,28 @@ class Profile extends Component {
               <div className="profile-container-card-body">
                 <input
                   name="firstName"
-                  value={this.state.firstName}
+                  value={this.state.player.firstName}
                   onChange={this.handleChange}
                   placeholder="First Name"
                   className="brand-input-dark"
                 />
                 <input
                   name="lastName"
-                  value={this.state.lastName}
+                  value={this.state.player.lastName}
                   onChange={this.handleChange}
                   placeholder="Last Name"
                   className="brand-input-dark"
                 />
                 <input
                   name="birthday"
-                  value={this.state.birthday}
+                  value={this.state.player.birthday}
                   onChange={this.handleChange}
                   placeholder="Birthday (MM/DD/YYYY)"
                   className="brand-input-dark"
                 />
                 <input
                   name="location"
-                  value={this.state.location}
+                  value={this.state.player.location}
                   onChange={this.handleChange}
                   placeholder="Location"
                   className="brand-input-dark"
@@ -276,12 +279,12 @@ class Profile extends Component {
               </div>
             ) : (
               <div className="profile-container-card-body">
-                <h3>First Name: {this.state.firstName}</h3>
-                <h3>Last Name: {this.state.lastName}</h3>
+                <h3>First Name: {this.state.player.firstName}</h3>
+                <h3>Last Name: {this.state.player.lastName}</h3>
                 <h3>
                   Age:{" "}
                   {this.state.birthday
-                    ? moment().diff(this.state.birthday, "years")
+                    ? moment().diff(this.state.player.birthday, "years")
                     : ""}
                 </h3>
                 <h3>Location: {this.state.location}</h3>
@@ -316,21 +319,21 @@ class Profile extends Component {
                   <div className="column">
                     <input
                       name="teamName"
-                      value={this.state.teamName}
+                      value={this.state.player.teamName}
                       onChange={this.handleChange}
                       placeholder="Team Name"
                       className="brand-input-dark"
                     />
                     <input
                       name="game"
-                      value={this.state.game}
+                      value={this.state.player.game}
                       onChange={this.handleChange}
                       placeholder="Game"
                       className="brand-input-dark"
                     />
                     <input
                       name="role"
-                      value={this.state.role}
+                      value={this.state.player.role}
                       onChange={this.handleChange}
                       placeholder="Role"
                       className="brand-input-dark"
@@ -387,36 +390,7 @@ class Profile extends Component {
 Profile.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  player: PropTypes.shape({
-    gamerTag: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    hacker: PropTypes.bool,
-    birthday: PropTypes.string,
-    location: PropTypes.string,
-    twitterLink: PropTypes.string,
-    twitchLink: PropTypes.string,
-    instagramLink: PropTypes.string,
-    discordLink: PropTypes.string,
-    experiences: PropTypes.array
-  })
-};
-
-Profile.defaultProps = {
-  player: PropTypes.shape({
-    gamerTag: "",
-    firstName: "",
-    lastName: "",
-    birthday: "",
-    location: "",
-    hacker: false,
-    twitterLink: "",
-    twitchLink: "",
-    instagramLink: "",
-    discordLink: "",
-    experiences: []
-  })
+  auth: PropTypes.object.isRequired
 };
 
 Profile.contextTypes = {
