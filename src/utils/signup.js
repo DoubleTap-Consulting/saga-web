@@ -38,10 +38,9 @@ export function registerUser(email, password, gamerTag) {
       gamerTag
     }
   };
-  console.log("config", config);
 
   return nonActionApiWithJWT(config).then(response => {
-    // TODO
-    // if successful, return true, else return {false with error}
+    console.log("res", response);
+    return response;
   });
 }

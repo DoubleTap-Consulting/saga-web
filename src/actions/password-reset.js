@@ -29,7 +29,7 @@ function requestPasswordResetSuccess(response) {
 }
 
 export function requestPasswordReset(email) {
-  const url = `/cp/auth/passwordreset?email=${email}`;
+  const url = `/auth/passwordreset?email=${email}`;
   const config = {
     url,
     method: "get",
@@ -70,7 +70,7 @@ function submitPasswordResetSuccess(response) {
 
 export function submitPasswordReset(new_password, reset_token) {
   const config = {
-    url: "/cp/auth/passwordreset",
+    url: "/auth/passwordreset",
     method: "post",
     header: {
       Accept: "application/json",

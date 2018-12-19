@@ -115,9 +115,8 @@ class Privacy extends Component {
             Saga.GG also pursues its legitimate interests by collecting minimal data of logged out users to provide the services, as outlined above.
             <br><br>
             Where Saga.GG collects and stores personal data about non-users, it does so under performance of contract obligations with users who use the services to publish content on web sites hosted by Saga.GG. In such cases, users authoring such content containing personal data of third parties are responsible for that content. Saga.GG will consider related complaints in compliance with the General Data Protection Regulation’s rights of the data subject, as well as rights of expression and access to information.
-            <br><br>
-            Public Nature of Personal Data
-            <br><br>
+            <h1>Public Nature of Personal Data</h1>
+
             Logged-in users may choose to interact publicly with the Saga.GG Services in the form of clapping for a post, highlighting parts of a post, following other user accounts, sharing links on connected social media accounts, or writing original posts. Where such personal data may reveal special category protected data, it is processed on the basis that it is manifestly made public by the user. Additional information on potential consequences of such processing can be found below. If you do not agree to this public usage, do not create an account or use these features of Saga.GG Services.
             <br><br>
             <h1>Categories of Personal Data Collected</h1>

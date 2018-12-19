@@ -37,10 +37,14 @@ function loginRequest(user) {
 }
 
 function loginSuccess(payload) {
+  console.log("payload", payload);
   if (payload.Authorization) {
+    console.log("payload.Authorization", payload.Authorization);
     const accessToken = payload.Authorization;
+    const refreshToken = payload.refreshToken;
     const profile = decodeUserProfile(accessToken);
     setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
     setUserId(profile.id);
     return {
       type: LOGIN_SUCCESS,

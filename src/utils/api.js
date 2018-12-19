@@ -36,11 +36,13 @@ export function callApi(config, request, onRequestSuccess, onRequestFailure) {
  */
 export function request(configObject) {
   const token = loadToken();
+  const refreshToken = loadRefreshToken();
   const config = configObject || {};
   if (!config.headers) {
     config.headers = {};
   }
   config.headers.Authorization = `${token}`;
+  config.headers.refreshToken = refreshToken;
 
   return axios
     .request(config)
@@ -203,6 +205,7 @@ export function getUserId() {
 export function removeTokens() {
   localStorage.removeItem(USER_ID);
   localStorage.removeItem(ACCESS_TOKEN);
+  localStorage.removeItem(REFRESH_TOKEN);
 }
 
 /**

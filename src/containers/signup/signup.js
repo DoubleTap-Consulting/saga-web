@@ -21,7 +21,8 @@ class Signup extends Component {
       emailTouched: false,
       password: "",
       gamerTag: "",
-      signingUp: false
+      signingUp: false,
+      emailTakenError: false
     };
   }
 
@@ -77,10 +78,14 @@ class Signup extends Component {
     this.checkGamerTagTakenDebounced();
   };
 
-  emailTouched = () =>
+  emailTouched = () => {
+    if (this.state.emailTouched) {
+      return;
+    }
     this.setState({
       emailTouched: true
     });
+  };
 
   /**
    * Key listener to login on 'enter'
@@ -102,9 +107,13 @@ class Signup extends Component {
       this.state.password,
       this.state.gamerTag
     ).then(response => {
-      // TODO
-      // if successful
-      // navigate to please confirm email page
+      console.log("response", response);
+      if (response.status === 409) {
+        this.setState({
+          emailError: response.data
+        });
+        return;
+      }
       this.props.history.push("/confirm-email");
     });
   };
@@ -131,6 +140,9 @@ class Signup extends Component {
             autoComplete="email"
             type="email"
           />
+          {this.state.emailError && (
+            <p className="warning">{this.state.emailError}</p>
+          )}
           <input
             id="gamerTag"
             className="signup-input"

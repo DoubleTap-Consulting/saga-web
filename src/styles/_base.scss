@@ -50,6 +50,14 @@ input:-webkit-autofill {
   }
 }
 
+.warning {
+  color: $warning-color;
+}
+
+.success {
+  color: $success-color;
+}
+
 // LOGO
 
 @mixin logo() {

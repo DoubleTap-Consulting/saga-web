@@ -119,7 +119,7 @@ class Login extends Component {
             type="password"
           />
           {this.props.auth.loginError && (
-            <p className="color-warning">Incorrect email or password</p>
+            <p className="warning">Incorrect email or password</p>
           )}
           <button
             disabled={this.state.loggingIn}
@@ -158,8 +158,9 @@ Login.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps(props) {
+  console.log("props", props);
+  return { auth: props.auth };
 }
 
 export default connect(mapStateToProps)(Login);
