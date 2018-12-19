@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import ProfileImage from "images/profile-image.jpeg";
+import ReactTooltip from "react-tooltip";
 
 import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
@@ -39,8 +40,16 @@ class PlayerCard extends Component {
 
         <div className="playerCard-body">
           <Link to={`/profile/${this.props.player.gamerTag}`}>
-            <h2 className="name">{this.props.player.gamerTag}</h2>
+            <h2
+              className="name"
+              data-tip="You must sign in to view a player's profile"
+            >
+              {this.props.player.gamerTag}
+            </h2>
           </Link>
+          {/* TODO: if user not logged in, make unclickable */}
+          {/* TODO: if user logged in, don't show tooltip */}
+          <ReactTooltip />
           <h4 className="job-title">
             {this.props.player.team} - {this.props.player.role}
           </h4>

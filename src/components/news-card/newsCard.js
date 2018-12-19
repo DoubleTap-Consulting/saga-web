@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 import "./newsCard.css";
 
@@ -14,7 +15,10 @@ class NewsCard extends Component {
   render() {
     return (
       <Link to={`/article/${this.props.news.id}`}>
-        <div className="newsCard brand-background-dark">
+        <div
+          className="newsCard brand-background-dark"
+          data-tip="You must sign in to view articles"
+        >
           <img
             src={this.props.news.image}
             className="newsCard-image"
@@ -28,6 +32,9 @@ class NewsCard extends Component {
             <h4 className="newsCard-content-date">{this.props.news.date}</h4>
           </div>
         </div>
+        {/* TODO: if user not logged in, make unclickable */}
+        {/* TODO: if user logged in, don't show tooltip */}
+        <ReactTooltip />
       </Link>
     );
   }
