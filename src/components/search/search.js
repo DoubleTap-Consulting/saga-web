@@ -21,7 +21,7 @@ class Search extends Component {
         {!this.props.hideResults && (
           <div className="search-results">
             {this.props.results.map(row => (
-              <Link to={`/profile/${row.gamerTag}`}>
+              <Link to={`/${row.gamerTag}`}>
                 <div className="search-results-row">
                   <h3>Michael Mitrakos</h3>
                 </div>

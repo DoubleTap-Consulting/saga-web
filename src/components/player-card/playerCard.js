@@ -39,13 +39,13 @@ class PlayerCard extends Component {
         </div>
 
         <div className="playerCard-body">
-          <Link to={`/profile/${this.props.player.gamerTag}`}>
-            <h2
-              className="name"
-              data-tip="You must sign in to view a player's profile"
-            >
-              {this.props.player.gamerTag}
-            </h2>
+          <Link
+            to={`/${this.props.player.gamerTag}`}
+            style={{ cursor: "not-allowed" }}
+            // TODO: only if not signed in
+            data-tip="You must sign in to view a player's profile"
+          >
+            <h2 className="name">{this.props.player.gamerTag}</h2>
           </Link>
           {/* TODO: if user not logged in, make unclickable */}
           {/* TODO: if user logged in, don't show tooltip */}

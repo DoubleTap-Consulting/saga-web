@@ -51,6 +51,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &-text {
+      width: 300px;
+      text-align: center;
+      @media screen and (max-width: 580px) {
+        font-size: 18px;
+      }
+    }
   }
 
   &-search {

@@ -17,6 +17,8 @@ class NewsCard extends Component {
       <Link to={`/article/${this.props.news.id}`}>
         <div
           className="newsCard brand-background-dark"
+          style={{ cursor: "not-allowed" }}
+          // TODO: only if not signed in
           data-tip="You must sign in to view articles"
         >
           <img
