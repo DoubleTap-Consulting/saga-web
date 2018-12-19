@@ -176,7 +176,7 @@ export const USER_ID = "user_id";
  * @param {*} accessToken - The access token.
  */
 export function setAccessToken(accessToken) {
-  localStorage.setItem(ACCESS_TOKEN, accessToken);
+  localStorage.setItem("ACCESS_TOKEN", accessToken);
 }
 
 /**
@@ -184,7 +184,7 @@ export function setAccessToken(accessToken) {
  * @param {string} refreshToken - The refresh token.
  */
 export function setRefreshToken(refreshToken) {
-  localStorage.setItem(REFRESH_TOKEN, refreshToken);
+  localStorage.setItem("REFRESH_TOKEN", refreshToken);
 }
 
 /**
@@ -192,20 +192,20 @@ export function setRefreshToken(refreshToken) {
  * @param {number} userId - The user's ID.
  */
 export function setUserId(userId) {
-  localStorage.setItem(USER_ID, userId);
+  localStorage.setItem("USER_ID", userId);
 }
 
 export function getUserId() {
-  return localStorage.getItem(USER_ID);
+  return localStorage.getItem("USER_ID");
 }
 
 /**
  * Removes the access token, refresh token, and user ID from local storage.
  */
 export function removeTokens() {
-  localStorage.removeItem(USER_ID);
-  localStorage.removeItem(ACCESS_TOKEN);
-  localStorage.removeItem(REFRESH_TOKEN);
+  localStorage.removeItem("USER_ID");
+  localStorage.removeItem("ACCESS_TOKEN");
+  localStorage.removeItem("REFRESH_TOKEN");
 }
 
 /**
@@ -215,7 +215,6 @@ export function removeTokens() {
  */
 export function getAuth() {
   const checkToken = loadUserProfile();
-  console.log("checkToken", checkToken);
 
   if (checkToken) {
     return {
@@ -236,14 +235,14 @@ export function getAuth() {
  * Retrieves the access token from local storage.
  */
 export function loadToken() {
-  return localStorage.getItem(ACCESS_TOKEN);
+  return localStorage.getItem("ACCESS_TOKEN");
 }
 
 /**
  * Retrieves the refresh token from local storage.
  */
 export function loadRefreshToken() {
-  return localStorage.getItem(REFRESH_TOKEN);
+  return localStorage.getItem("REFRESH_TOKEN");
 }
 
 export function decodeUserProfile(accessToken) {
@@ -274,12 +273,13 @@ export function normalizePhone(phone) {
  */
 export function loadUserProfile() {
   try {
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    const accessToken = localStorage.getItem("ACCESS_TOKEN");
     const userProfile = jwtDecode(accessToken);
     const now = new Date().getTime() / 1000; // Date().getTime() returns milliseconds.
     // So divide by 1000 to get seconds
     if (now > userProfile.exp) {
       // user profile has expired.
+      // TODO: Do we do refresh token request here instead?
       removeTokens();
       return null;
     }

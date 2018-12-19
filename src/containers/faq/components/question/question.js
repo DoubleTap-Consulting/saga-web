@@ -14,7 +14,6 @@ class Question extends Component {
   }
 
   render() {
-    console.log("answe", this.props.answer);
     return (
       <div className="question">
         <h2>{this.props.question}</h2>

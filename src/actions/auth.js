@@ -143,7 +143,7 @@ function logoutFailure(error) {
  * Removes the locally stored refresh and access tokens and calls the logout API.
  */
 export function logout() {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/user/logout`,
     method: "delete",

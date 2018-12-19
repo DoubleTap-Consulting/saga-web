@@ -14,6 +14,7 @@ class Content extends Component {
 
     this.content = [
       {
+        id: 1,
         title: "Test Content",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -23,6 +24,7 @@ class Content extends Component {
         role: "Caster"
       },
       {
+        id: 2,
         title: "PUBG Article",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -32,6 +34,7 @@ class Content extends Component {
         role: "Pro"
       },
       {
+        id: 3,
         title: "Best advice from a pro",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Let me tell you all about it.",
@@ -41,6 +44,7 @@ class Content extends Component {
         role: "Pro"
       },
       {
+        id: 4,
         title: "Test Content",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -50,6 +54,7 @@ class Content extends Component {
         role: "Caster"
       },
       {
+        id: 5,
         title: "PUBG Article",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -59,6 +64,7 @@ class Content extends Component {
         role: "Pro"
       },
       {
+        id: 6,
         title: "Best advice from a pro",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Let me tell you all about it.",
@@ -68,6 +74,7 @@ class Content extends Component {
         role: "Pro"
       },
       {
+        id: 7,
         title: "Test Content",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -77,6 +84,7 @@ class Content extends Component {
         role: "Caster"
       },
       {
+        id: 8,
         title: "PUBG Article",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Something no one is talking about is this dirty little secret that will help you be the best.",
@@ -86,6 +94,7 @@ class Content extends Component {
         role: "Pro"
       },
       {
+        id: 9,
         title: "Best advice from a pro",
         summary:
           "Something no one is talking about is this dirty little secret that will help you be the best. Let me tell you all about it.",
@@ -110,6 +119,7 @@ class Content extends Component {
             <ContentCard
               className="content-container-player"
               content={content}
+              key={`contentCard-${content.id}`}
             />
           ))}
         </div>

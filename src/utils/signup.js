@@ -15,7 +15,6 @@ export function checkGamerTag(gamerTag) {
     }
   };
   return nonActionApiWithJWT(config).then(response => {
-    console.log("response", response);
     return false;
   });
 }
@@ -40,7 +39,6 @@ export function registerUser(email, password, gamerTag) {
   };
 
   return nonActionApiWithJWT(config).then(response => {
-    console.log("res", response);
     return response;
   });
 }
