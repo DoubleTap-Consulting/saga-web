@@ -38,7 +38,7 @@ PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   rest: PropTypes.array,
-  user: PropTypes.number
+  user: PropTypes.object
 };
 
 PrivateRoute.defaultProps = {

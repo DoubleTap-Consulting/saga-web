@@ -2,6 +2,8 @@
  * Contents
  * 1. Login
  * 2. Registration
+ * 3. Email Confirmed
+ * 4. Save User to Store
  */
 
 import {
@@ -13,9 +15,9 @@ import {
   REFRESH_TOKEN,
   removeTokens,
   setAccessToken,
+  setGamerTag,
   setRefreshToken,
-  setUserId,
-  USER_ID
+  setUserId
 } from "../utils/api";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -27,8 +29,33 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
+export const SAVE_USER_SUCCESS = "SAVE_USER_SUCCESS";
 
 // Login
+
+/**
+ * Calls the login API.
+ * @param {string} email The user's email.
+ * @param {string} password The user's password.
+ * @returns {object} The status object returned by the server.
+ */
+export function login(email, password) {
+  const config = {
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/auth/login`,
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    data: {
+      email,
+      password
+    }
+  };
+
+  return callApi(config, loginRequest(email), loginSuccess, loginFailure);
+}
+
 function loginRequest(user) {
   return {
     type: LOGIN_REQUEST,
@@ -37,18 +64,17 @@ function loginRequest(user) {
 }
 
 function loginSuccess(payload) {
-  console.log("payload", payload);
-  if (payload.Authorization) {
-    console.log("payload.Authorization", payload.Authorization);
-    const accessToken = payload.Authorization;
+  if (payload.accessToken) {
+    const accessToken = payload.accessToken;
     const refreshToken = payload.refreshToken;
-    const profile = decodeUserProfile(accessToken);
+    const user = payload.user;
     setAccessToken(accessToken);
     setRefreshToken(refreshToken);
-    setUserId(profile.id);
+    setUserId(payload.user.id);
+    setGamerTag(payload.user.gamerTag);
     return {
       type: LOGIN_SUCCESS,
-      profile
+      user
     };
   }
   return {
@@ -71,35 +97,12 @@ function loginFailure(error) {
 }
 
 /**
- * Calls the login API.
- * @param {string} email The user's email.
- * @param {string} password The user's password.
- * @returns {object} The status object returned by the server.
- */
-export function login(email, password) {
-  const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/user/login`,
-    method: "post",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    data: {
-      email,
-      password
-    }
-  };
-
-  return callApi(config, loginRequest(email), loginSuccess, loginFailure);
-}
-
-/**
  * Reauthenticates the user based on the refresh token in local storage.
  * @param {string} refreshToken
  */
 export function refreshLogin(refresh_token = loadRefreshToken()) {
   const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/user/verify`,
+    url: `${process.env.REACT_APP_API_DOMAIN}/auth/refresh`,
     method: "post",
     headers: {
       Accept: "application/json",
@@ -118,34 +121,13 @@ export function refreshLogin(refresh_token = loadRefreshToken()) {
   );
 }
 
-function logoutRequest() {
-  return {
-    type: LOGOUT_REQUEST
-  };
-}
-
-function logoutSuccess(payload) {
-  removeTokens();
-  return {
-    type: LOGOUT_SUCCESS
-  };
-}
-
-function logoutFailure(error) {
-  removeTokens();
-  return {
-    type: LOGOUT_FAILURE,
-    error
-  };
-}
-
 /**
  * Removes the locally stored refresh and access tokens and calls the logout API.
  */
 export function logout() {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/user/logout`,
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/auth/logout`,
     method: "delete",
     headers: {
       Accept: "application/json",
@@ -155,6 +137,28 @@ export function logout() {
   };
 
   return callApiWithJWT(config, logoutRequest, logoutSuccess, logoutFailure);
+}
+
+function logoutRequest() {
+  return {
+    type: LOGOUT_REQUEST
+  };
+}
+
+function logoutSuccess(payload) {
+  removeTokens();
+  return {
+    type: LOGOUT_SUCCESS,
+    auth: null
+  };
+}
+
+function logoutFailure(error) {
+  removeTokens();
+  return {
+    type: LOGOUT_FAILURE,
+    error
+  };
 }
 
 // Registration
@@ -179,11 +183,12 @@ function registerSuccess(response) {
   };
 }
 
+// Confirm Email
 export function emailConfirmed(token) {
   const config = {
     url: `${
       process.env.REACT_APP_API_DOMAIN
-    }/v1/authentication/verify-email?activationToken=${token}`,
+    }/v1/auth/verify-email?activationToken=${token}`,
     method: "get",
     header: {
       Accept: "application/json",
@@ -193,22 +198,20 @@ export function emailConfirmed(token) {
   return callApi(config, registerRequest, registerSuccess, registerFailure);
 }
 
-function clearUserSuccess() {
-  return {
-    type: "CLEAR_USER_SUCCESS"
-  };
-}
-
-function saveUserSuccess() {
-  return {
-    type: "SAVE_USER_SUCCESS"
-  };
-}
-
 /**
- * [Beta] Haven't used this too much, may have bugs.
  * Saves the user to the redux store.
  */
 export function saveUserToStore() {
-  return dispatch => dispatch(saveUserSuccess());
+  const user = {
+    id: localStorage.getItem("USER_ID"),
+    gamerTag: localStorage.getItem("GAMERTAG")
+  };
+  return dispatch => dispatch(saveUserSuccess(user));
+}
+
+function saveUserSuccess(user) {
+  return {
+    type: SAVE_USER_SUCCESS,
+    user
+  };
 }

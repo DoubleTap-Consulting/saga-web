@@ -26,14 +26,14 @@ class Home extends Component {
           <h5 className="home-header-secondary">
             Your Home for All Things Esports
           </h5>
-          {this.props.user && (
+          {this.props.auth.user && (
             <div className="home-search">
               <Search />
             </div>
           )}
         </div>
         {/* TODO: only show if not logged in */}
-        {this.props.user && (
+        {!this.props.auth.user && (
           <span>
             <SellingPoints />
             <div className="home-signupNow">
@@ -69,8 +69,8 @@ Home.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth, user }) {
-  return { auth, user };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Home);

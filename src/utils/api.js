@@ -180,6 +180,14 @@ export function setAccessToken(accessToken) {
 }
 
 /**
+ * Stores the provided access token in local storage.
+ * @param {*} accessToken - The access token.
+ */
+export function setGamerTag(gamerTag) {
+  localStorage.setItem("GAMERTAG", gamerTag);
+}
+
+/**
  * Stores the refresh token in local storage.
  * @param {string} refreshToken - The refresh token.
  */
@@ -206,6 +214,7 @@ export function removeTokens() {
   localStorage.removeItem("USER_ID");
   localStorage.removeItem("ACCESS_TOKEN");
   localStorage.removeItem("REFRESH_TOKEN");
+  localStorage.removeItem("GAMERTAG");
 }
 
 /**
@@ -279,7 +288,7 @@ export function loadUserProfile() {
     // So divide by 1000 to get seconds
     if (now > userProfile.exp) {
       // user profile has expired.
-      // TODO: Do we do refresh token request here instead?
+      // TODO: Do we attempt refresh token request here instead?
       removeTokens();
       return null;
     }

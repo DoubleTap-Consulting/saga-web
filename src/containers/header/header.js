@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { logout } from "actions/auth";
-import { clearUserInfo } from "actions/user";
 
 import "./header.css";
 
@@ -17,7 +16,6 @@ class Header extends Component {
 
   logout = () => {
     this.props.dispatch(logout());
-    this.props.dispatch(clearUserInfo());
     this.context.router.history.push("/login");
   };
 
@@ -31,7 +29,7 @@ class Header extends Component {
           <Link to={"/"}>
             <p className="logo-small">Saga.GG</p>
           </Link>
-          {this.props.auth.profile && (
+          {this.props.auth.user && (
             <div className="header-navLinks-row">
               <Link to={"/users"}>
                 <p className="header-navLinks-text">Players</p>
@@ -46,9 +44,9 @@ class Header extends Component {
           )}
         </div>
         <div className="header-authActions">
-          {this.props.auth.profile ? (
+          {this.props.auth.user ? (
             <div className="header-navLinks-row">
-              <Link to={`/${this.props.user.gamerTag}`}>
+              <Link to={`/${this.props.auth.user.gamerTag}`}>
                 <p className="header-navLinks-text">My Profile</p>
               </Link>
               <p className="header-navLinks-text" onClick={this.logout}>
@@ -75,19 +73,13 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  user: PropTypes.shape({
-    gamerTag: PropTypes.string
-  })
-};
-
 Header.contextTypes = {
   store: PropTypes.object.isRequired,
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth, user }) {
-  return { auth, user };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Header);

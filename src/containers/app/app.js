@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { Route, Switch } from "react-router";
 import asyncLoader from "components/asyncComponentLoader";
 import PrivateRoute from "components/privateRoute";
-// import { refreshLogin } from 'actions/auth';
+import { refreshLogin, saveUserToStore } from "actions/auth";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
-import { getUserInfo } from "actions/user";
+// import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
 import { Helmet } from "react-helmet";
 // Relative imports
@@ -63,9 +63,9 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    getAuth();
-    if (this.props.auth.profile) {
-      this.props.dispatch(getUserInfo());
+    this.authenticated = getAuth();
+    if (this.authenticated.hasValidToken) {
+      this.props.dispatch(saveUserToStore());
     }
 
     this.state = {};

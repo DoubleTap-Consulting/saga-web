@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-import { saveUserInfo } from "actions/user";
-
 import { getUserProfile } from "utils/profile";
 
 import ProfileImage from "images/profile-image.jpeg";
@@ -93,26 +91,27 @@ class Profile extends Component {
   };
 
   submitHeader = () => {
-    this.props.dispatch(
-      saveUserInfo({
-        gamerTag: this.state.player.gamerTag,
-        tagline: this.state.player.tagline
-      })
-    );
+    // TODO: save user
+    // this.props.dispatch(
+    //   saveUserInfo({
+    //     gamerTag: this.state.player.gamerTag,
+    //     tagline: this.state.player.tagline
+    //   })
+    // );
     this.setState({
       editingHeader: false
     });
   };
 
   submitPersonal = () => {
-    this.props.dispatch(
-      saveUserInfo({
-        firstName: this.state.player.firstName,
-        lastName: this.state.player.lastName,
-        birthday: this.state.player.birthday,
-        location: this.state.player.location
-      })
-    );
+    // this.props.dispatch(
+    //   saveUserInfo({
+    //     firstName: this.state.player.firstName,
+    //     lastName: this.state.player.lastName,
+    //     birthday: this.state.player.birthday,
+    //     location: this.state.player.location
+    //   })
+    // );
     this.setState({
       editingPersonal: false
     });
@@ -171,7 +170,7 @@ class Profile extends Component {
                 <input
                   value={this.state.player.tagline}
                   onChange={this.handleChange}
-                  maxlength="100"
+                  maxLength="100"
                   name="tagline"
                   placeholder="Tagline"
                   className="brand-input-dark"

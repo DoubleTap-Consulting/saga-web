@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { getUserInfo } from "actions/user";
-
 import { checkGamerTag, registerUser } from "utils/signup";
 
 import _ from "lodash";
@@ -107,7 +105,6 @@ class Signup extends Component {
       this.state.password,
       this.state.gamerTag
     ).then(response => {
-      console.log("response", response);
       if (response.status === 409) {
         this.setState({
           emailError: response.data

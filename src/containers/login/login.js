@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { getUserInfo } from "actions/user";
 import { login } from "../../actions/auth";
 
 import "./login.css";
@@ -81,7 +80,6 @@ class Login extends Component {
       .then(response => {
         this.toggleLoggingIn();
         if (response.type === "LOGIN_SUCCESS") {
-          this.props.dispatch(getUserInfo());
           this.context.router.history.push("/");
         }
       });
@@ -145,12 +143,7 @@ class Login extends Component {
 
 Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
-
-Login.defaultProps = {
-  user: null
+  location: PropTypes.object.isRequired
 };
 
 Login.contextTypes = {
@@ -158,9 +151,8 @@ Login.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps(props) {
-  console.log("props", props);
-  return { auth: props.auth };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Login);

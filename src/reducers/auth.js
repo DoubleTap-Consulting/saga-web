@@ -7,13 +7,14 @@ import {
   LOGOUT_FAILURE,
   REGISTER_FAILURE,
   REGISTER_REQUEST,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  SAVE_USER_SUCCESS
 } from "../actions/auth";
 
 import { loadUserProfile } from "../utils/api";
 
 const initialState = {
-  profile: null,
+  user: null,
   loggingIn: false,
   loggingOut: false,
   loginError: null
@@ -21,7 +22,7 @@ const initialState = {
 
 function initializeState() {
   const userProfile = {
-    profile: loadUserProfile()
+    user: loadUserProfile()
   };
   return Object.assign({}, initialState, userProfile);
 }
@@ -35,14 +36,14 @@ export default function auth(state = initializeState(), action = {}) {
       });
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        profile: action.profile,
+        user: action.user,
         loggingIn: false,
         loginError: null
       });
     case LOGIN_FAILURE:
       return {
         ...state,
-        profile: null,
+        user: null,
         loggingIn: false,
         loginError: action.error
       };
@@ -55,15 +56,14 @@ export default function auth(state = initializeState(), action = {}) {
       return {
         ...state,
         loggingOut: false,
-        profile: null,
+        user: null,
         loginError: null
       };
     case LOGOUT_FAILURE:
       return {
         ...state,
         loggingOut: false,
-        profile: null,
-        user: {},
+        user: null,
         logoutError: action.error
       };
     case REGISTER_REQUEST:
@@ -71,21 +71,17 @@ export default function auth(state = initializeState(), action = {}) {
     case REGISTER_SUCCESS:
       return Object.assign({}, state, {
         ...state,
-        profile: action.profile
+        user: action.user
       });
     case REGISTER_FAILURE:
       return {
         ...state,
-        profile: null
+        user: null
       };
-    case "CLEAR_USER_SUCCESS":
+    case SAVE_USER_SUCCESS:
       return {
         ...state,
-        profile: null
-      };
-    case "SAVE_USER_SUCCESS":
-      return {
-        ...state
+        user: action.user
       };
     default:
       return state;
