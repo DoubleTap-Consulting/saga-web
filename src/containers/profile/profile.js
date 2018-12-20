@@ -91,27 +91,14 @@ class Profile extends Component {
   };
 
   submitHeader = () => {
-    // TODO: save user
-    // this.props.dispatch(
-    //   saveUserInfo({
-    //     gamerTag: this.state.player.gamerTag,
-    //     tagline: this.state.player.tagline
-    //   })
-    // );
+    // TODO: Save user info: gamerTag, tagline
     this.setState({
       editingHeader: false
     });
   };
 
   submitPersonal = () => {
-    // this.props.dispatch(
-    //   saveUserInfo({
-    //     firstName: this.state.player.firstName,
-    //     lastName: this.state.player.lastName,
-    //     birthday: this.state.player.birthday,
-    //     location: this.state.player.location
-    //   })
-    // );
+    // TODO: Save user info: firstName, lastName, birthday, lcoation
     this.setState({
       editingPersonal: false
     });
@@ -130,6 +117,8 @@ class Profile extends Component {
   };
 
   render() {
+    let isOwnProfile =
+      this.props.auth.user.gamerTag === this.props.location.pathname.slice(1);
     return (
       <div className="profile">
         <div className="profile-header brand-background-header">
@@ -141,17 +130,18 @@ class Profile extends Component {
             src={ProfileImage}
           />
           <div className="profile-playerHeader-info">
-            {/* TODO: if own profile, show edit button */}
-            <button
-              className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                .state.editingHeader &&
-                "profile-playerHeader-info-button-save"}`}
-              onClick={
-                this.state.editingHeader ? this.submitHeader : this.editHeader
-              }
-            >
-              {this.state.editingHeader ? "Save" : "Edit"}
-            </button>
+            {isOwnProfile && (
+              <button
+                className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                  .state.editingHeader &&
+                  "profile-playerHeader-info-button-save"}`}
+                onClick={
+                  this.state.editingHeader ? this.submitHeader : this.editHeader
+                }
+              >
+                {this.state.editingHeader ? "Save" : "Edit"}
+              </button>
+            )}
             <div className="column">
               {this.state.editingHeader ? (
                 <input
@@ -163,7 +153,9 @@ class Profile extends Component {
                 />
               ) : (
                 <h1 className="profile-playerHeader-info-gamerTag">
-                  {this.state.player.gamerTag}
+                  {isOwnProfile
+                    ? this.props.auth.user.gamerTag
+                    : this.state.player.gamerTag}
                 </h1>
               )}
               {this.state.editingHeader ? (
@@ -231,19 +223,20 @@ class Profile extends Component {
             <div className="profile-container-card-header">
               <Icon className="profile-container-card-header-icon">person</Icon>
               <h3>Personal</h3>
-              {/* TODO: if own profile, show edit button */}
-              <button
-                className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                  .state.editingPersonal &&
-                  "profile-playerHeader-info-button-save"}`}
-                onClick={
-                  this.state.editingPersonal
-                    ? this.submitPersonal
-                    : this.editPersonal
-                }
-              >
-                {this.state.editingPersonal ? "Save" : "Edit"}
-              </button>
+              {isOwnProfile && (
+                <button
+                  className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                    .state.editingPersonal &&
+                    "profile-playerHeader-info-button-save"}`}
+                  onClick={
+                    this.state.editingPersonal
+                      ? this.submitPersonal
+                      : this.editPersonal
+                  }
+                >
+                  {this.state.editingPersonal ? "Save" : "Edit"}
+                </button>
+              )}
             </div>
             {this.state.editingPersonal ? (
               <div className="profile-container-card-body">
@@ -300,20 +293,21 @@ class Profile extends Component {
                 className="profile-playerHeader-info-experience"
                 key={`profileExperiences${exp.id}`}
               >
-                {/* TODO: if own profile, show edit button */}
-                <button
-                  className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                    .state.editingExperience == exp.id &&
-                    "profile-playerHeader-info-button-save"}`}
-                  name={exp.id}
-                  onClick={
-                    this.state.editingExperience == exp.id
-                      ? this.submitExperience
-                      : this.editExperience
-                  }
-                >
-                  {this.state.editingExperience == exp.id ? "Save" : "Edit"}
-                </button>
+                {isOwnProfile && (
+                  <button
+                    className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
+                      .state.editingExperience == exp.id &&
+                      "profile-playerHeader-info-button-save"}`}
+                    name={exp.id}
+                    onClick={
+                      this.state.editingExperience == exp.id
+                        ? this.submitExperience
+                        : this.editExperience
+                    }
+                  >
+                    {this.state.editingExperience == exp.id ? "Save" : "Edit"}
+                  </button>
+                )}
                 {this.state.editingExperience == exp.id ? (
                   <div className="column">
                     <input
