@@ -40,6 +40,9 @@ class Header extends Component {
               <Link to={"/content"}>
                 <p className="header-navLinks-text">Curated Content</p>
               </Link>
+              <Link to={"/marketplace"}>
+                <p className="header-navLinks-text">Marketplace</p>
+              </Link>
             </div>
           )}
         </div>

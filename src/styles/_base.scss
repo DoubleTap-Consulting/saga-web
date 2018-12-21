@@ -221,14 +221,18 @@ input:-webkit-autofill {
 
 @mixin brand-button() {
   font-size: 14px;
+  max-width: 300px;
   color: #fff;
-  padding: 7px 20px;
+  padding: 10px 25px;
   border-radius: 5px;
   margin: 5px 10px;
   font-weight: 500;
   transition-duration: 0.25s;
   cursor: pointer;
   text-transform: uppercase;
+  &:focus {
+    outline: 0;
+  }
 }
 
 .brand-button-neutral {
@@ -250,9 +254,19 @@ input:-webkit-autofill {
 .brand-button-failure {
   @include brand-button();
   background-color: rgb(160, 0, 0);
+  border: 1px solid gray;
   &:hover {
     background-color: rgb(128, 0, 0);
   }
+}
+
+// DIVIDER
+
+.divider {
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-top: 2px solid #271f48;
 }
 
 // BACKGROUND

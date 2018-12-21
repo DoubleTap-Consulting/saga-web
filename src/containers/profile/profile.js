@@ -1,18 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import moment from "moment";
 
 import { getUserProfile } from "utils/profile";
 
-import ProfileImage from "images/profile-image.jpeg";
+import Experiences from "./components/experiences/experiences";
+import Personal from "./components/personal/personal";
+import Endorsements from "./components/endorsements/endorsements";
+import Peripherals from "./components/peripherals/peripherals";
+import Schedule from "./components/schedule/schedule";
+import Settings from "./components/settings/settings";
+import Summary from "./components/summary/summary";
 
+import ProfileImage from "images/profile-image.jpeg";
 import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
 import DiscordIcon from "images/discord.png";
 import TwitchIcon from "images/twitch.png";
 
-import Icon from "@material-ui/core/Icon";
+import ReactTwitchEmbedVideo from "react-twitch-embed-video";
+import SwipeableViews from "react-swipeable-views";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 import "./profile.css";
 
@@ -21,56 +31,57 @@ class Profile extends Component {
     super(props, context);
 
     this.state = {
+      value: 0,
       editingPersonal: false,
       editingHeader: false,
-      editingExperience: null,
+      editingExperience: false,
+      editingPeripherals: false,
+      editingSchedule: false,
+      editingSummary: false,
       player: {
-        firstName: "",
-        lastName: "",
-        location: "",
-        birthday: "",
-        tagline: "",
-        gamerTag: "",
-        game: "",
-        teamName: "",
-        role: "",
-        hacker: false
+        firstName: "Michael",
+        lastName: "Mitrakos",
+        location: "Austin, Texas",
+        birthday: "02/19/1990",
+        tagline: "Fragger for Saga.GG",
+        summary: "This is my best summary of all time :)",
+        gamerTag: "Sultyn",
+        game: "PUBG",
+        teamName: "Saga.GG",
+        twitchUsername: "Sultyn",
+        twitchHighlightVideo: "176854397",
+        role: "Fragger",
+        twitchUrl: "http://www.twitch.tv/sultyn",
+        twitterUrl: "http://www.twitter.com/mike_mitrakos",
+        discordUrl: "",
+        instagramUrl: "http://www.instagram.com/michael_mitrakos",
+        hacker: false,
+        schedule: {
+          monday: "5pm - 11pm CST",
+          tuesday: "",
+          wednesday: "5pm - 11pm CST",
+          thursday: "",
+          friday: "5pm - 11pm CST",
+          saturday: "5pm - 11pm CST",
+          sunday: ""
+        }
       },
       dateFrom: "",
       dateTo: "",
-      description: "",
-      experiences: [
-        {
-          team: "Saga",
-          game: "PUBG",
-          role: "IGL",
-          dateFrom: "11/03/2018",
-          dateTo: "Current",
-          id: 1,
-          description:
-            "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
-        },
-        {
-          team: "FAZE",
-          game: "PUBG",
-          role: "IGL",
-          dateFrom: "11/05/2017",
-          dateTo: "11/02/2018",
-          id: 2,
-          description: "Some description"
-        }
-      ]
+      description: ""
     };
   }
 
   componentDidMount() {
     // TODO: have to make sure state is structured correctly above for this
     getUserProfile(this.props.location.pathname.slice(1)).then(player => {
-      this.setState({
-        player
-      });
+      // this.setState({
+      //   player
+      // });
     });
   }
+
+  // TODO: remove all these useless functions below by combining by function
 
   editHeader = () => {
     this.setState({
@@ -90,6 +101,24 @@ class Profile extends Component {
     });
   };
 
+  editPeripherals = () => {
+    this.setState({
+      editingPeripherals: true
+    });
+  };
+
+  editSchedule = () => {
+    this.setState({
+      editingSchedule: true
+    });
+  };
+
+  editSummary = () => {
+    this.setState({
+      editingSummary: true
+    });
+  };
+
   submitHeader = () => {
     // TODO: Save user info: gamerTag, tagline
     this.setState({
@@ -98,7 +127,7 @@ class Profile extends Component {
   };
 
   submitPersonal = () => {
-    // TODO: Save user info: firstName, lastName, birthday, lcoation
+    // TODO: Save user info: firstName, lastName, birthday, lcoation, summary
     this.setState({
       editingPersonal: false
     });
@@ -110,10 +139,36 @@ class Profile extends Component {
     });
   };
 
+  submitPeripherals = () => {
+    this.setState({
+      editingPeripherals: false
+    });
+  };
+
+  submitSchedule = () => {
+    this.setState({
+      editingSchedule: false
+    });
+  };
+
+  submitSummary = () => {
+    this.setState({
+      editingSummary: false
+    });
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+
+  handleChangeIndex = index => {
+    this.setState({ value: index });
+  };
+
+  handleTabChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
@@ -174,42 +229,60 @@ class Profile extends Component {
               )}
             </div>
             <div className="row profile-playerHeader-info-socials">
-              <a
-                href={this.state.player.twitterUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={TwitterIcon} className="social-icon" alt="twitter" />
-              </a>
-              <a
-                href={this.state.player.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={InstagramIcon}
-                  className="social-icon"
-                  alt="instgram"
-                />
-              </a>
-              <a
-                href={this.state.player.discordUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={DiscordIcon} className="social-icon" alt="discord" />
-              </a>
-              <a
-                href={this.state.player.twitchUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={TwitchIcon} className="social-icon" alt="twitch" />
-              </a>
+              {this.state.player.twitterUrl && (
+                <a
+                  href={this.state.player.twitterUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={TwitterIcon}
+                    className="social-icon"
+                    alt="twitter"
+                  />
+                </a>
+              )}
+              {this.state.player.instagramUrl && (
+                <a
+                  href={this.state.player.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={InstagramIcon}
+                    className="social-icon"
+                    alt="instgram"
+                  />
+                </a>
+              )}
+              {this.state.player.discordUrl && (
+                <a
+                  href={this.state.player.discordUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={DiscordIcon}
+                    className="social-icon"
+                    alt="discord"
+                  />
+                </a>
+              )}
+              {this.state.player.twitchUrl && (
+                <a
+                  href={this.state.player.twitchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={TwitchIcon} className="social-icon" alt="twitch" />
+                </a>
+              )}
             </div>
           </div>
         </div>
-        <button className="profile-container-editAvatar">Edit Avatar</button>
+        {isOwnProfile && (
+          <button className="profile-container-editAvatar">Edit Avatar</button>
+        )}
         {this.state.player.hacker && (
           <div className="profile-hacker">
             <h3>
@@ -218,162 +291,107 @@ class Profile extends Component {
             </h3>
           </div>
         )}
-        <div className="profile-container">
-          <div className="profile-container-card brand-background-dark">
-            <div className="profile-container-card-header">
-              <Icon className="profile-container-card-header-icon">person</Icon>
-              <h3>Personal</h3>
-              {isOwnProfile && (
-                <button
-                  className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                    .state.editingPersonal &&
-                    "profile-playerHeader-info-button-save"}`}
-                  onClick={
-                    this.state.editingPersonal
-                      ? this.submitPersonal
-                      : this.editPersonal
-                  }
-                >
-                  {this.state.editingPersonal ? "Save" : "Edit"}
-                </button>
-              )}
-            </div>
-            {this.state.editingPersonal ? (
-              <div className="profile-container-card-body">
-                <input
-                  name="firstName"
-                  value={this.state.player.firstName}
-                  onChange={this.handleChange}
-                  placeholder="First Name"
-                  className="brand-input-dark"
-                />
-                <input
-                  name="lastName"
-                  value={this.state.player.lastName}
-                  onChange={this.handleChange}
-                  placeholder="Last Name"
-                  className="brand-input-dark"
-                />
-                <input
-                  name="birthday"
-                  value={this.state.player.birthday}
-                  onChange={this.handleChange}
-                  placeholder="Birthday (MM/DD/YYYY)"
-                  className="brand-input-dark"
-                />
-                <input
-                  name="location"
-                  value={this.state.player.location}
-                  onChange={this.handleChange}
-                  placeholder="Location"
-                  className="brand-input-dark"
+        <div className="profile-tabs brand-background-dark">
+          <AppBar position="static" color="default">
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleTabChange}
+              indicatorColor="primary"
+              textColor="primary"
+            >
+              <Tab label="Professional" />
+              <Tab label="Stats & Highlights" />
+              <Tab label="Personal" />
+              {isOwnProfile && <Tab label="Settings" />}
+            </Tabs>
+          </AppBar>
+          <SwipeableViews
+            axis={"x"}
+            index={this.state.value}
+            onChangeIndex={this.handleChangeIndex}
+          >
+            <div>
+              <div className="profile-stream">
+                <ReactTwitchEmbedVideo
+                  id="twitchStream"
+                  channel={this.state.player.twitchUsername}
+                  width="100%"
+                  theme="dark"
+                  muted={true}
+                  autoplay={false}
                 />
               </div>
-            ) : (
-              <div className="profile-container-card-body">
-                <h3>First Name: {this.state.player.firstName}</h3>
-                <h3>Last Name: {this.state.player.lastName}</h3>
-                <h3>
-                  Age:{" "}
-                  {this.state.birthday
-                    ? moment().diff(this.state.player.birthday, "years")
-                    : ""}
-                </h3>
-                <h3>Location: {this.state.location}</h3>
+              <Experiences
+                isOwnProfile={isOwnProfile}
+                editingExperience={this.state.editingExperience}
+                player={this.state.player}
+                dateFrom={this.state.dateFrom}
+                dateTo={this.state.dateTo}
+                description={this.state.description}
+                editExperience={this.editExperience}
+                submitExperience={this.submitExperience}
+                handleChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <div className="profile-stream">
+                <ReactTwitchEmbedVideo
+                  id="highlightVideo"
+                  video={this.state.player.twitchHighlightVideo}
+                  width="100%"
+                  layout="video"
+                  time="0:00"
+                  targetClass="profile-highlight-video" // View breaks without this
+                  theme="dark"
+                  muted={true}
+                  autoplay={false}
+                />
+              </div>
+            </div>
+            <div>
+              <Summary
+                player={this.state.player}
+                isOwnProfile={isOwnProfile}
+                handleChange={this.handleChange}
+                editingSummary={this.state.editingSummary}
+                editSummary={this.editSummary}
+                submitSummary={this.submitSummary}
+              />
+              <Personal
+                player={this.state.player}
+                isOwnProfile={isOwnProfile}
+                handleChange={this.handleChange}
+                editingPersonal={this.state.editingPersonal}
+                editPersonal={this.editPersonal}
+                submitPersonal={this.submitPersonal}
+              />
+              <Peripherals
+                editingPeripherals={this.state.editingPeripherals}
+                editPeripherals={this.editPeripherals}
+                submitPeripherals={this.submitPeripherals}
+                player={this.state.player}
+                handleChange={this.handleChange}
+                isOwnProfile={isOwnProfile}
+              />
+              <Schedule
+                editingSchedule={this.state.editingSchedule}
+                editSchedule={this.editSchedule}
+                submitSchedule={this.submitSchedule}
+                player={this.state.player}
+                handleChange={this.handleChange}
+                isOwnProfile={isOwnProfile}
+              />
+              <Endorsements endorsements={this.state.player.endorsements} />
+            </div>
+            {isOwnProfile && (
+              <div>
+                <Settings
+                  player={this.state.player}
+                  handleChange={this.handleChange}
+                />
               </div>
             )}
-          </div>
-          <div className="profile-container-card brand-background-dark">
-            <div className="profile-container-card-header">
-              <Icon className="profile-container-card-header-icon">work</Icon>
-              <h3>Experience</h3>
-            </div>
-            {this.state.experiences.map(exp => (
-              <div
-                className="profile-playerHeader-info-experience"
-                key={`profileExperiences${exp.id}`}
-              >
-                {isOwnProfile && (
-                  <button
-                    className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                      .state.editingExperience == exp.id &&
-                      "profile-playerHeader-info-button-save"}`}
-                    name={exp.id}
-                    onClick={
-                      this.state.editingExperience == exp.id
-                        ? this.submitExperience
-                        : this.editExperience
-                    }
-                  >
-                    {this.state.editingExperience == exp.id ? "Save" : "Edit"}
-                  </button>
-                )}
-                {this.state.editingExperience == exp.id ? (
-                  <div className="column">
-                    <input
-                      name="teamName"
-                      value={this.state.player.teamName}
-                      onChange={this.handleChange}
-                      placeholder="Team Name"
-                      className="brand-input-dark"
-                    />
-                    <input
-                      name="game"
-                      value={this.state.player.game}
-                      onChange={this.handleChange}
-                      placeholder="Game"
-                      className="brand-input-dark"
-                    />
-                    <input
-                      name="role"
-                      value={this.state.player.role}
-                      onChange={this.handleChange}
-                      placeholder="Role"
-                      className="brand-input-dark"
-                    />
-                    <input
-                      name="dateFrom"
-                      value={this.state.dateFrom}
-                      onChange={this.handleChange}
-                      placeholder="Date Started (MM/DD/YYYY)"
-                      className="brand-input-dark"
-                    />
-                    <input
-                      name="dateTo"
-                      value={this.state.dateTo}
-                      onChange={this.handleChange}
-                      placeholder="Date Ended (MM/DD/YYYY)"
-                      className="brand-input-dark"
-                    />
-                    <textarea
-                      name="description"
-                      value={this.state.description}
-                      onChange={this.handleChange}
-                      placeholder="Description"
-                      className="brand-text-area-dark"
-                      rows="5"
-                      maxLength="255"
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <h2 className="profile-playerHeader-info-experience-team">
-                      {exp.team}, {exp.game}
-                    </h2>
-                    <h5 className="profile-playerHeader-info-experience-role">
-                      Role: {exp.role}
-                    </h5>
-                    <h5 className="profile-playerHeader-info-experience-date">
-                      {exp.dateFrom} - {exp.dateTo}
-                    </h5>
-                    <h5 className="profile-playerHeader-info-experience-description">
-                      {exp.description}
-                    </h5>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          </SwipeableViews>
         </div>
       </div>
     );

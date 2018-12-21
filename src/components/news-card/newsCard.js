@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
@@ -17,9 +18,9 @@ class NewsCard extends Component {
       <Link to={`/article/${this.props.news.id}`}>
         <div
           className="newsCard brand-background-dark"
-          style={{ cursor: "not-allowed" }}
-          // TODO: only if not signed in
+          style={!this.props.auth.user ? { cursor: "not-allowed" } : {}}
           data-tip="You must sign in to view articles"
+          data-tip-disable={this.props.auth.user ? true : false}
         >
           <img
             src={this.props.news.image}
@@ -34,8 +35,6 @@ class NewsCard extends Component {
             <h4 className="newsCard-content-date">{this.props.news.date}</h4>
           </div>
         </div>
-        {/* TODO: if user not logged in, make unclickable */}
-        {/* TODO: if user logged in, don't show tooltip */}
         <ReactTooltip />
       </Link>
     );
@@ -55,4 +54,8 @@ NewsCard.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default NewsCard;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(NewsCard);

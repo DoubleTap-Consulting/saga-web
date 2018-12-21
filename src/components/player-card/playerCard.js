@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -41,14 +42,12 @@ class PlayerCard extends Component {
         <div className="playerCard-body">
           <Link
             to={`/${this.props.player.gamerTag}`}
-            style={{ cursor: "not-allowed" }}
-            // TODO: only if not signed in
+            style={!this.props.auth.user ? { cursor: "not-allowed" } : {}}
             data-tip="You must sign in to view a player's profile"
+            data-tip-disable={this.props.auth.user ? true : false}
           >
             <h2 className="name">{this.props.player.gamerTag}</h2>
           </Link>
-          {/* TODO: if user not logged in, make unclickable */}
-          {/* TODO: if user logged in, don't show tooltip */}
           <ReactTooltip />
           <h4 className="job-title">
             {this.props.player.team} - {this.props.player.role}
@@ -168,4 +167,8 @@ PlayerCard.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default PlayerCard;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(PlayerCard);

@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 // Relative imports
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import Profile from "../../containers/profile/profile";
 
 import "./app.css";
 
@@ -28,6 +29,9 @@ const asyncEmailValidation = asyncLoader(() =>
 const asyncHome = asyncLoader(() => require("../../containers/home/home"));
 const asyncProfile = asyncLoader(() =>
   require("../../containers/profile/profile")
+);
+const asyncMarketplace = asyncLoader(() =>
+  require("../../containers/marketplace/marketplace")
 );
 const asyncPlayers = asyncLoader(() =>
   require("../../containers/players/players")
@@ -116,8 +120,17 @@ class App extends Component {
               <Route exact path="/faq" component={asyncFaq} />
               <Route exact path="/contact" component={asyncContact} />
               <Route exact path="/partners" component={asyncPartners} />
+              <Route exact path="/marketplace" component={asyncMarketplace} />
               <Route exact path="/about" component={asyncAbout} />
               <PrivateRoute exact path="/:username" component={asyncProfile} />
+              {/* TODO: check to see if below worked for refreshing profile upon URL change */}
+              <Route
+                exact
+                path="/:username"
+                render={props => (
+                  <Profile key={this.props.location.pathname} {...props} />
+                )}
+              />
               <Route component={asyncHome} />
             </Switch>
           </div>
