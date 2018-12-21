@@ -19,7 +19,7 @@ class Endorsements extends Component {
     return (
       <div className="profile-container-card brand-background-dark">
         <div className="profile-container-card-header">
-          <Icon className="profile-card-header-icon">group</Icon>
+          <Icon className="profile-container-card-header-icon">group</Icon>
           <h3>Endorsements</h3>
         </div>
         {this.state.endorsements.map(exp => (
@@ -32,7 +32,9 @@ class Endorsements extends Component {
         ))}
         {this.state.endorsements.length === 0 && (
           <div className="profile-playerHeader-info-experience">
-            <h5>No endorsements to show.</h5>
+            <h3 className="profile-container-card-body-text">
+              No endorsements to show.
+            </h3>
           </div>
         )}
       </div>

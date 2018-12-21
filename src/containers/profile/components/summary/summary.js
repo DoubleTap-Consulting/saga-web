@@ -36,23 +36,19 @@ class Summary extends Component {
         </div>
         <div className="profile-container-card-body">
           {this.props.editingSummary ? (
-            <div className="profile-container-card-body">
-              <textarea
-                name="summary"
-                value={this.props.player.summary}
-                onChange={this.props.handleChange}
-                placeholder="Summary"
-                className="brand-text-area-dark"
-                rows="5"
-                maxLength="255"
-              />
-            </div>
+            <textarea
+              name="summary"
+              value={this.props.player.summary}
+              onChange={this.props.handleChange}
+              placeholder="Summary"
+              className="brand-text-area-dark"
+              rows="5"
+              maxLength="255"
+            />
           ) : (
-            <div className="profile-container-card-body">
-              <h5 className="profile-playerHeader-info-experience-description">
-                {this.props.player.summary}
-              </h5>
-            </div>
+            <h3 className="profile-container-card-body-text">
+              {this.props.player.summary}
+            </h3>
           )}
         </div>
       </div>

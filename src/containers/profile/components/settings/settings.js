@@ -21,7 +21,12 @@ class Settings extends Component {
           <h3>Settings</h3>
         </div>
         <div className="profile-container-card-body">
-          <h3>Selected Game: {this.props.player.game}</h3>
+          <h3 className="profile-container-card-body-text">
+            Selected Game: {this.props.player.game}
+          </h3>
+          <h3 className="profile-container-card-body-text">
+            Gaming Level: Competitive
+          </h3>
           <div className="divider" />
           <button className="brand-button-failure">Delete my Account</button>
         </div>

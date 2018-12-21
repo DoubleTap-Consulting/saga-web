@@ -68,15 +68,21 @@ class Personal extends Component {
           </div>
         ) : (
           <div className="profile-container-card-body">
-            <h3>First Name: {this.props.player.firstName}</h3>
-            <h3>Last Name: {this.props.player.lastName}</h3>
-            <h3>
+            <h3 className="profile-container-card-body-text">
+              First Name: {this.props.player.firstName}
+            </h3>
+            <h3 className="profile-container-card-body-text">
+              Last Name: {this.props.player.lastName}
+            </h3>
+            <h3 className="profile-container-card-body-text">
               Age:{" "}
               {this.props.player.birthday
                 ? moment().diff(this.props.player.birthday, "years")
                 : ""}
             </h3>
-            <h3>Location: {this.props.player.location}</h3>
+            <h3 className="profile-container-card-body-text">
+              Location: {this.props.player.location}
+            </h3>
           </div>
         )}
       </div>

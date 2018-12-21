@@ -17,7 +17,9 @@ class Schedule extends Component {
     return (
       <div className="profile-container-card brand-background-dark">
         <div className="profile-container-card-header">
-          <Icon className="profile-container-card-header-icon">calendar</Icon>
+          <Icon className="profile-container-card-header-icon">
+            calendar_today
+          </Icon>
           <h3>Schedule</h3>
           {this.props.isOwnProfile && (
             <button
@@ -88,19 +90,27 @@ class Schedule extends Component {
           </div>
         ) : (
           <div className="profile-container-card-body">
-            <h3>Monday: {this.props.player.schedule.monday || "Day Off"}</h3>
-            <h3>Tuesday: {this.props.player.schedule.tuesday || "Day Off"}</h3>
-            <h3>
+            <h3 className="profile-container-card-body-text">
+              Monday: {this.props.player.schedule.monday || "Day Off"}
+            </h3>
+            <h3 className="profile-container-card-body-text">
+              Tuesday: {this.props.player.schedule.tuesday || "Day Off"}
+            </h3>
+            <h3 className="profile-container-card-body-text">
               Wednesday: {this.props.player.schedule.wednesday || "Day Off"}
             </h3>
-            <h3>
+            <h3 className="profile-container-card-body-text">
               Thursday: {this.props.player.schedule.thursday || "Day Off"}
             </h3>
-            <h3>Friday: {this.props.player.schedule.friday || "Day Off"}</h3>
-            <h3>
+            <h3 className="profile-container-card-body-text">
+              Friday: {this.props.player.schedule.friday || "Day Off"}
+            </h3>
+            <h3 className="profile-container-card-body-text">
               Saturday: {this.props.player.schedule.saturday || "Day Off"}
             </h3>
-            <h3>Sunday: {this.props.player.schedule.sunday || "Day Off"}</h3>
+            <h3 className="profile-container-card-body-text">
+              Sunday: {this.props.player.schedule.sunday || "Day Off"}
+            </h3>
           </div>
         )}
       </div>

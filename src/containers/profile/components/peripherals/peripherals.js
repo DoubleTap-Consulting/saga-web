@@ -49,7 +49,7 @@ class Peripherals extends Component {
           </div>
         ) : (
           <div className="profile-container-card-body">
-            <h3>Logitech G933</h3>
+            <h3 className="profile-container-card-body-text">Logitech G933</h3>
           </div>
         )}
       </div>

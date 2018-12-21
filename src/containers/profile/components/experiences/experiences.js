@@ -39,7 +39,7 @@ class Experiences extends Component {
     return (
       <div className="profile-container-card brand-background-dark">
         <div className="profile-container-card-header">
-          <Icon className="profile-card-header-icon">work</Icon>
+          <Icon className="profile-container-card-header-icon">work</Icon>
           <h3>Experience</h3>
         </div>
         {this.state.experiences.map(exp => (
