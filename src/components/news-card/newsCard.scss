@@ -29,6 +29,7 @@
   }
 
   &-image {
+    object-fit: cover;
     height: 250px;
     background: center no-repeat;
     background-size: cover;
@@ -67,6 +68,11 @@
     &-date {
       position: absolute;
       bottom: 0;
+    }
+
+    &-author {
+      position: absolute;
+      bottom: 20px;
     }
   }
 }

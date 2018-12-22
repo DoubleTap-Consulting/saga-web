@@ -30,9 +30,12 @@ class NewsCard extends Component {
           <div className="newsCard-content">
             <h2 className="newsCard-content-title">{this.props.news.title}</h2>
             <h5 className="newsCard-content-description">
-              {this.props.news.description}
+              {this.props.news.summary}
             </h5>
             <h4 className="newsCard-content-date">{this.props.news.date}</h4>
+            <h4 className="newsCard-content-author">
+              {this.props.news.author}
+            </h4>
           </div>
         </div>
         <ReactTooltip />

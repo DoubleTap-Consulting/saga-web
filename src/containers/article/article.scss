@@ -23,6 +23,7 @@
 
   &-container {
     padding: 50px 150px;
+    position: relative;
 
     @media screen and (max-width: 680px) {
       font-weight: 500;
@@ -31,10 +32,12 @@
     }
 
     &-text {
+      position: relative;
       font-weight: 300;
       white-space: pre-line;
       line-height: 45px;
       font-family: sans-serif;
+      padding: 30px 50px;
       font-size: 26px;
       letter-spacing: 0px;
       color: white;
@@ -46,6 +49,33 @@
         font-size: 5em;
         margin: 10px 0.1em 1px 0;
       }
+    }
+
+    &-articleView {
+      background-color: #0a031a;
+      margin-top: -100px;
+      z-index: 100;
+      position: absolute;
+      margin-top: 400px;
+      width: 80%;
+      border-radius: 5px;
+
+      &-date {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 14px;
+        color: white;
+      }
+    }
+
+    &-banner {
+      object-fit: cover;
+      top: 0;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      max-height: 700px;
     }
   }
 }
