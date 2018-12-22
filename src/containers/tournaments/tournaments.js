@@ -109,17 +109,13 @@ Tournaments.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Tournaments.defaultProps = {
-  user: null
-};
-
 Tournaments.contextTypes = {
   router: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth, user }) {
-  return { auth, user };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Tournaments);

@@ -39,6 +39,9 @@ const asyncPlayers = asyncLoader(() =>
 const asyncArticle = asyncLoader(() =>
   require("../../containers/article/article")
 );
+const asyncLeagues = asyncLoader(() =>
+  require("../../containers/leagues/leagues")
+);
 const asyncTournaments = asyncLoader(() =>
   require("../../containers/tournaments/tournaments")
 );
@@ -105,6 +108,7 @@ class App extends Component {
               />
               <PrivateRoute path="/users" component={asyncPlayers} />
               <PrivateRoute path="/tournaments" component={asyncTournaments} />
+              <PrivateRoute path="/leagues" component={asyncLeagues} />
               <PrivateRoute path="/content" component={asyncContent} />
               <Route
                 exact

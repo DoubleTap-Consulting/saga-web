@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import DiscordLink from "components/discord-link/discordLink";
-import TwitterLink from "components/twitter-link/twitterLink";
 import Question from "./components/question/question";
 
 import "./faq.css";

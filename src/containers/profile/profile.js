@@ -51,6 +51,7 @@ class Profile extends Component {
         twitchUsername: "Sultyn",
         twitchHighlightVideo: "176854397",
         role: "Fragger",
+        level: "Casual",
         twitchUrl: "http://www.twitch.tv/sultyn",
         twitterUrl: "http://www.twitter.com/mike_mitrakos",
         discordUrl: "",
@@ -157,9 +158,21 @@ class Profile extends Component {
     });
   };
 
+  deleteAccount = () => {
+    // TODO: delete account functionality
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
+    });
+  };
+
+  handlePlayerChange = event => {
+    let playerSnapshot = Object.assign({}, this.state.player);
+    playerSnapshot[event.target.name] = event.target.value;
+    this.setState({
+      player: playerSnapshot
     });
   };
 
@@ -314,6 +327,7 @@ class Profile extends Component {
               <div className="profile-stream">
                 <ReactTwitchEmbedVideo
                   id="twitchStream"
+                  targetClass="twitch-stream"
                   channel={this.state.player.twitchUsername}
                   width="100%"
                   theme="dark"
@@ -335,16 +349,15 @@ class Profile extends Component {
             </div>
             <div>
               <div className="profile-stream">
-                <ReactTwitchEmbedVideo
-                  id="highlightVideo"
-                  video={this.state.player.twitchHighlightVideo}
+                <iframe
+                  src={`https://player.twitch.tv/?video=v${
+                    this.state.player.twitchHighlightVideo
+                  }&autoplay=false&muted=true`}
+                  height="520"
                   width="100%"
-                  layout="video"
-                  time="0:00"
-                  targetClass="profile-highlight-video" // View breaks without this
                   theme="dark"
-                  muted={true}
-                  autoplay={false}
+                  layout="video"
+                  allowFullScreen={true}
                 />
               </div>
             </div>
@@ -387,7 +400,8 @@ class Profile extends Component {
               <div>
                 <Settings
                   player={this.state.player}
-                  handleChange={this.handleChange}
+                  handleChange={this.handlePlayerChange}
+                  deleteAccount={this.deleteAccount}
                 />
               </div>
             )}

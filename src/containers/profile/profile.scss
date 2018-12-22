@@ -251,8 +251,18 @@
           font-size: 14px;
         }
 
+        &-line {
+          padding: 10px 0;
+        }
+
         &-text {
           font-weight: 400;
+          margin: 5px 0 15px 0;
+        }
+
+        &-subtitle {
+          font-weight: 700;
+          margin: 0 0 0 0;
         }
       }
     }

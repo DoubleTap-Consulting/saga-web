@@ -269,6 +269,23 @@ input:-webkit-autofill {
   border-top: 2px solid #271f48;
 }
 
+// SELECT
+
+.brand-select {
+  padding: 10px 15px;
+  height: 35px;
+  width: 150px;
+  background-color: #3f178a;
+  color: white;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 // BACKGROUND
 
 .brand-background-header {

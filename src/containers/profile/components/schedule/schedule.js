@@ -90,27 +90,50 @@ class Schedule extends Component {
           </div>
         ) : (
           <div className="profile-container-card-body">
-            <h3 className="profile-container-card-body-text">
-              Monday: {this.props.player.schedule.monday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Tuesday: {this.props.player.schedule.tuesday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Wednesday: {this.props.player.schedule.wednesday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Thursday: {this.props.player.schedule.thursday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Friday: {this.props.player.schedule.friday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Saturday: {this.props.player.schedule.saturday || "Day Off"}
-            </h3>
-            <h3 className="profile-container-card-body-text">
-              Sunday: {this.props.player.schedule.sunday || "Day Off"}
-            </h3>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Monday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.monday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Tuesday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.tuesday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">
+                Wednesday
+              </h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.wednesday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Thursday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.thursday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Friday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.friday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Saturday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.saturday || "Day Off"}
+              </h3>
+            </div>
+            <div className="profile-container-card-body-line">
+              <h3 className="profile-container-card-body-subtitle">Sunday</h3>
+              <h3 className="profile-container-card-body-text">
+                {this.props.player.schedule.sunday || "Day Off"}
+              </h3>
+            </div>
           </div>
         )}
       </div>
