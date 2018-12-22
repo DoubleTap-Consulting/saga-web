@@ -45,7 +45,8 @@ class Profile extends Component {
         location: "Austin, Texas",
         birthday: "02/19/1990",
         tagline: "Fragger for Saga.GG",
-        summary: "This is my best summary of all time :)",
+        summary:
+          "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognisable eSports personality out there, in any game or genre. His years in the industry have seen him cast, host and work behind the scenes on the biggest eSports events in the world and in this 90 page book he offers up some fascinating insight.",
         gamerTag: "Sultyn",
         game: "PUBG",
         views: "52345",

@@ -46,7 +46,7 @@ class Summary extends Component {
               maxLength="255"
             />
           ) : (
-            <h3 className="profile-container-card-body-text">
+            <h3 className="profile-container-card-body-text profile-container-card-body-summary">
               {this.props.player.summary}
             </h3>
           )}
