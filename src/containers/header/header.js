@@ -3,6 +3,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import Icon from "@material-ui/core/Icon";
+import Divider from "@material-ui/core/Divider";
+
 import { logout } from "actions/auth";
 
 import "./header.css";
@@ -11,8 +20,14 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      mobileMenuOpen: false
+    };
   }
+
+  handleToggle = () => {
+    this.setState(state => ({ mobileMenuOpen: !state.mobileMenuOpen }));
+  };
 
   logout = () => {
     this.props.dispatch(logout());
@@ -23,9 +38,10 @@ class Header extends Component {
     let onAuth =
       this.props.location.pathname === "/signup" ||
       this.props.location.pathname === "/login";
+    const { mobileMenuOpen } = this.state;
     return (
       <div className="header" role="navigation">
-        <div className="header-navLinks">
+        <div className="header-navLinks header-desktopMenu">
           <Link to={"/"}>
             <p className="logo-small">Saga.GG</p>
           </Link>
@@ -49,7 +65,7 @@ class Header extends Component {
             </div>
           )}
         </div>
-        <div className="header-authActions">
+        <div className="header-authActions header-desktopMenu">
           {this.props.auth.user ? (
             <div className="header-navLinks-row">
               <Link to={`/${this.props.auth.user.gamerTag}`}>
@@ -61,18 +77,89 @@ class Header extends Component {
             </div>
           ) : (
             <div className="header-navLinks-row">
-              {!onAuth && (
-                <Link to={"/login"}>
-                  <p className="header-navLinks-login ">Login</p>
-                </Link>
-              )}
-              {!onAuth && (
-                <Link to={"/signup"}>
-                  <p className="header-navLinks-signup">Signup</p>
-                </Link>
-              )}
+              <Link to={"/login"}>
+                <p className="header-navLinks-login ">Login</p>
+              </Link>
+              <Link to={"/signup"}>
+                <p className="header-navLinks-signup">Signup</p>
+              </Link>
             </div>
           )}
+        </div>
+        <div className="header-mobileMenu">
+          <Icon
+            className="profile-container-card-header-icon"
+            aria-owns={mobileMenuOpen ? "menu-list-grow" : undefined}
+            aria-haspopup="true"
+            onClick={this.handleToggle}
+            style={{ cursor: "pointer" }}
+            fontSize="large"
+          >
+            menu
+          </Icon>
+          <Popper
+            open={mobileMenuOpen}
+            anchorEl={this.anchorEl}
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                id="menu-list-grow"
+                style={{
+                  transformOrigin:
+                    placement === "bottom" ? "center top" : "center bottom"
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={this.handleToggle}>
+                    <MenuList>
+                      <MenuItem onClick={this.handleToggle}>Home</MenuItem>
+                      {this.props.auth.user && (
+                        <span>
+                          <MenuItem onClick={this.handleToggle}>
+                            Players
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Tournaments
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Leagues
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Curated Content
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Marketplace
+                          </MenuItem>
+                        </span>
+                      )}
+                      <Divider />
+                      {this.props.auth.user ? (
+                        <span>
+                          {/* `/${this.props.auth.user.gamerTag}` */}
+                          <MenuItem onClick={this.handleToggle}>
+                            Profile
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Logout
+                          </MenuItem>
+                        </span>
+                      ) : (
+                        <span>
+                          <MenuItem onClick={this.handleToggle}>Login</MenuItem>
+                          <MenuItem onClick={this.handleToggle}>
+                            Signup
+                          </MenuItem>
+                        </span>
+                      )}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
         </div>
       </div>
     );

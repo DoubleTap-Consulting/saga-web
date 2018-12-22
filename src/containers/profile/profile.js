@@ -17,6 +17,7 @@ import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
 import DiscordIcon from "images/discord.png";
 import TwitchIcon from "images/twitch.png";
+import EyeIcon from "images/eye.svg";
 
 import ReactTwitchEmbedVideo from "react-twitch-embed-video";
 import SwipeableViews from "react-swipeable-views";
@@ -47,6 +48,7 @@ class Profile extends Component {
         summary: "This is my best summary of all time :)",
         gamerTag: "Sultyn",
         game: "PUBG",
+        views: "52345",
         teamName: "Saga.GG",
         twitchUsername: "Sultyn",
         twitchHighlightVideo: "176854397",
@@ -292,6 +294,10 @@ class Profile extends Component {
               )}
             </div>
           </div>
+          <div className="profile-playerHeader-views">
+            <img src={EyeIcon} />
+            <p>{this.state.player.views}</p>
+          </div>
         </div>
         {isOwnProfile && (
           <button className="profile-container-editAvatar">Edit Avatar</button>
@@ -332,7 +338,6 @@ class Profile extends Component {
                   width="100%"
                   theme="dark"
                   muted={true}
-                  autoplay={false}
                 />
               </div>
               <Experiences

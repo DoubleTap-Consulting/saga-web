@@ -94,4 +94,18 @@
       flex-direction: column;
     }
   }
+
+  &-mobileMenu {
+    display: none;
+
+    @media screen and (max-width: 1050px) {
+      display: block;
+    }
+  }
+
+  &-desktopMenu {
+    @media screen and (max-width: 1050px) {
+      display: none;
+    }
+  }
 }
