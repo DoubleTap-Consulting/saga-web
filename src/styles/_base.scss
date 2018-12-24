@@ -54,8 +54,18 @@ input:-webkit-autofill {
   color: $warning-color;
 }
 
+.warning-dark {
+  color: $warning-color-dark;
+}
+
 .success {
   color: $success-color;
+}
+
+// LAYOUT
+
+.right {
+  margin-left: auto !important;
 }
 
 // LOGO
@@ -257,6 +267,15 @@ input:-webkit-autofill {
   border: 1px solid gray;
   &:hover {
     background-color: rgb(128, 0, 0);
+  }
+}
+
+.brand-button-failure-dark {
+  @include brand-button();
+  background-color: $warning-color-dark;
+  border: 1px solid gray;
+  &:hover {
+    background-color: #550404;
   }
 }
 

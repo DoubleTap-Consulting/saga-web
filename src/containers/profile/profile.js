@@ -46,7 +46,7 @@ class Profile extends Component {
         birthday: "02/19/1990",
         tagline: "Fragger for Saga.GG",
         summary:
-          "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognisable eSports personality out there, in any game or genre. His years in the industry have seen him cast, host and work behind the scenes on the biggest eSports events in the world and in this 90 page book he offers up some fascinating insight.",
+          "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognizable eSports personality out there, in any game or genre. Get in touch with inquires please :)",
         gamerTag: "Sultyn",
         game: "PUBG",
         views: "52345",
@@ -172,6 +172,10 @@ class Profile extends Component {
   };
 
   handlePlayerChange = event => {
+    if (event.target.name === "summary" && event.target.value.length > 255) {
+      return;
+    }
+
     let playerSnapshot = Object.assign({}, this.state.player);
     playerSnapshot[event.target.name] = event.target.value;
     this.setState({
@@ -217,7 +221,7 @@ class Profile extends Component {
               {this.state.editingHeader ? (
                 <input
                   value={this.state.player.gamerTag}
-                  onChange={this.handleChange}
+                  onChange={this.handlePlayerChange}
                   name="gamerTag"
                   placeholder="Gamer Tag"
                   className="brand-input-dark"
@@ -232,7 +236,7 @@ class Profile extends Component {
               {this.state.editingHeader ? (
                 <input
                   value={this.state.player.tagline}
-                  onChange={this.handleChange}
+                  onChange={this.handlePlayerChange}
                   maxLength="100"
                   name="tagline"
                   placeholder="Tagline"
@@ -371,7 +375,7 @@ class Profile extends Component {
               <Summary
                 player={this.state.player}
                 isOwnProfile={isOwnProfile}
-                handleChange={this.handleChange}
+                handlePlayerChange={this.handlePlayerChange}
                 editingSummary={this.state.editingSummary}
                 editSummary={this.editSummary}
                 submitSummary={this.submitSummary}
@@ -379,7 +383,7 @@ class Profile extends Component {
               <Personal
                 player={this.state.player}
                 isOwnProfile={isOwnProfile}
-                handleChange={this.handleChange}
+                handlePlayerChange={this.handlePlayerChange}
                 editingPersonal={this.state.editingPersonal}
                 editPersonal={this.editPersonal}
                 submitPersonal={this.submitPersonal}
@@ -389,7 +393,7 @@ class Profile extends Component {
                 editPeripherals={this.editPeripherals}
                 submitPeripherals={this.submitPeripherals}
                 player={this.state.player}
-                handleChange={this.handleChange}
+                handlePlayerChange={this.handlePlayerChange}
                 isOwnProfile={isOwnProfile}
               />
               <Schedule
@@ -397,7 +401,7 @@ class Profile extends Component {
                 editSchedule={this.editSchedule}
                 submitSchedule={this.submitSchedule}
                 player={this.state.player}
-                handleChange={this.handleChange}
+                handlePlayerChange={this.handlePlayerChange}
                 isOwnProfile={isOwnProfile}
               />
               <Endorsements endorsements={this.state.player.endorsements} />

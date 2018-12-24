@@ -41,49 +41,49 @@ class Schedule extends Component {
             <input
               name="monday"
               value={this.props.player.schedule.monday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="tuesday"
               value={this.props.player.schedule.tuesday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="wednesday"
               value={this.props.player.schedule.wednesday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="thursday"
               value={this.props.player.schedule.thursday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="friday"
               value={this.props.player.schedule.friday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="saturday"
               value={this.props.player.schedule.saturday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />
             <input
               name="sunday"
               value={this.props.player.schedule.sunday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Day Off"
               className="brand-input-dark"
             />

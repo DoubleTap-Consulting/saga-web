@@ -54,7 +54,7 @@ class Settings extends Component {
           </h3>
           <div className="divider" />
           <button
-            className="brand-button-failure"
+            className="brand-button-failure-dark right"
             onClick={this.props.deleteAccount}
           >
             Delete my Account

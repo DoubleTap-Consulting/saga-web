@@ -42,8 +42,14 @@ const asyncArticle = asyncLoader(() =>
 const asyncLeagues = asyncLoader(() =>
   require("../../containers/leagues/leagues")
 );
+const asyncLeague = asyncLoader(() =>
+  require("../../containers/league/league")
+);
 const asyncTournaments = asyncLoader(() =>
   require("../../containers/tournaments/tournaments")
+);
+const asyncTournament = asyncLoader(() =>
+  require("../../containers/tournament/tournament")
 );
 const asyncContent = asyncLoader(() =>
   require("../../containers/content/content")
@@ -106,10 +112,24 @@ class App extends Component {
                 path="/article/:articleId"
                 component={asyncArticle}
               />
-              <PrivateRoute path="/users" component={asyncPlayers} />
-              <PrivateRoute path="/tournaments" component={asyncTournaments} />
-              <PrivateRoute path="/leagues" component={asyncLeagues} />
-              <PrivateRoute path="/content" component={asyncContent} />
+              <PrivateRoute exact path="/users" component={asyncPlayers} />
+              <PrivateRoute
+                exact
+                path="/tournaments"
+                component={asyncTournaments}
+              />
+              <PrivateRoute
+                exact
+                path="/tournaments/:tournamentId"
+                component={asyncTournament}
+              />
+              <PrivateRoute exact path="/leagues" component={asyncLeagues} />
+              <PrivateRoute
+                exact
+                path="/leagues/:leagueId"
+                component={asyncLeague}
+              />
+              <PrivateRoute exact path="/content" component={asyncContent} />
               <Route
                 exact
                 path="/account-confirmed"

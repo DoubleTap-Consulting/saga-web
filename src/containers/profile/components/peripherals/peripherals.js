@@ -42,7 +42,7 @@ class Peripherals extends Component {
             <input
               name="peripheral"
               value="Logitech G933"
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Peripheral"
               className="brand-input-dark"
             />

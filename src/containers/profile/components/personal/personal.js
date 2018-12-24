@@ -40,28 +40,28 @@ class Personal extends Component {
             <input
               name="firstName"
               value={this.props.player.firstName}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="First Name"
               className="brand-input-dark"
             />
             <input
               name="lastName"
               value={this.props.player.lastName}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Last Name"
               className="brand-input-dark"
             />
             <input
               name="birthday"
               value={this.props.player.birthday}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Birthday (MM/DD/YYYY)"
               className="brand-input-dark"
             />
             <input
               name="location"
               value={this.props.player.location}
-              onChange={this.props.handleChange}
+              onChange={this.props.handlePlayerChange}
               placeholder="Location"
               className="brand-input-dark"
             />
