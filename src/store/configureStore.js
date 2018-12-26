@@ -3,6 +3,11 @@ import thunkMiddleware from "redux-thunk";
 // import { createLogger } from 'redux-logger';
 // Reducers
 import auth from "../reducers/auth";
+import tournaments from "../reducers/tournaments";
+import leagues from "../reducers/leagues";
+import players from "../reducers/players";
+import marketplace from "../reducers/marketplace";
+import content from "../reducers/content";
 import {
   requestPasswordReset,
   submitPasswordReset
@@ -17,7 +22,12 @@ import {
 const rootReducer = combineReducers({
   auth,
   requestPasswordReset,
-  submitPasswordReset
+  submitPasswordReset,
+  tournaments,
+  leagues,
+  players,
+  marketplace,
+  content
 });
 const initialState = {};
 

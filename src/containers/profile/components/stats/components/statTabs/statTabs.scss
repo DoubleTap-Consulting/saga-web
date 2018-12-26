@@ -1,0 +1,25 @@
+.statTabs {
+  &-container {
+    &-statContainer {
+      display: flex;
+      flex-wrap: wrap;
+      @media (max-width: 400px) {
+        display: block;
+      }
+
+      &-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border: 1px solid gray;
+        flex: 1 0 15%; /* explanation below */
+      }
+      .row-light {
+        background-color: #372e50;
+      }
+      .row-dark {
+        background-color: #16152e;
+      }
+    }
+  }
+}

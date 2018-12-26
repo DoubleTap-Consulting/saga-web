@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Icon from "@material-ui/core/Icon";
 
@@ -14,6 +15,7 @@ class Tournament extends Component {
 
     this.state = {
       selectedVideo: null,
+      selectedTeam: null,
       tournament: {
         name: "GLL - Season 3 Championship",
         game: "PUBG",
@@ -29,28 +31,52 @@ class Tournament extends Component {
             totalKills: 55,
             killPoints: 248,
             placementPoints: 982,
-            totalPoints: 3200
+            totalPoints: 3200,
+            players: [
+              {
+                gamerTag: "sultyn"
+              }
+            ],
+            id: 123
           },
           {
             name: "FaZe Clan",
             totalKills: 55,
             killPoints: 248,
             placementPoints: 982,
-            totalPoints: 3200
+            totalPoints: 3200,
+            players: [
+              {
+                gamerTag: "sultyn1"
+              }
+            ],
+            id: 543
           },
           {
             name: "TwistedSin Esports",
             totalKills: 55,
             killPoints: 248,
             placementPoints: 982,
-            totalPoints: 3200
+            totalPoints: 3200,
+            players: [
+              {
+                gamerTag: "sultyn2"
+              }
+            ],
+            id: 983
           },
           {
             name: "Team Saga",
             totalKills: 55,
             killPoints: 248,
             placementPoints: 982,
-            totalPoints: 3200
+            totalPoints: 3200,
+            players: [
+              {
+                gamerTag: "sultyn3"
+              }
+            ],
+            id: 254
           }
         ],
         discord: "https://discordapp.com/invite/e3NQ3mk",
@@ -78,6 +104,18 @@ class Tournament extends Component {
     });
   };
 
+  selectTeam = team => {
+    this.setState({
+      selectedTeam: team
+    });
+  };
+
+  unselectTeam = () => {
+    this.setState({
+      selectedTeam: null
+    });
+  };
+
   resetVideosList = () => {
     this.setState({
       selectedVideo: null
@@ -91,18 +129,36 @@ class Tournament extends Component {
         <div className="tournament-header brand-background-header">
           <h1>{this.state.tournament.name}</h1>
         </div>
+        <Link to={`/tournaments`} className="row center tournament-backButton">
+          <Icon className="icon" fontSize="large">
+            reply
+          </Icon>
+          <h3>Back to tournaments</h3>
+        </Link>
         <div className="tournament-container">
           <div className="tournament-overview">
             <div>
               <h2>General Info</h2>
               <div>
-                <div>
-                  <h4>{this.state.tournament.prizePool}</h4>
-                  <h4>{this.state.tournament.region}</h4>
+                <div className="tournament-overview-row">
+                  <div className="tournament-overview-info">
+                    <h5>Prize</h5>
+                    <h3>{this.state.tournament.prizePool}</h3>
+                  </div>
+                  <div className="tournament-overview-info">
+                    <h5>Region</h5>
+                    <h3>{this.state.tournament.region}</h3>
+                  </div>
                 </div>
-                <div>
-                  <h4>{this.state.tournament.game}</h4>
-                  <h4>{this.state.tournament.gameType}</h4>
+                <div className="tournament-overview-row">
+                  <div className="tournament-overview-info">
+                    <h5>Game</h5>
+                    <h3>{this.state.tournament.game}</h3>
+                  </div>
+                  <div className="tournament-overview-info">
+                    <h5>Game Type</h5>
+                    <h3>{this.state.tournament.gameType}</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,10 +166,19 @@ class Tournament extends Component {
               <h2>Date & Time</h2>
               <div>
                 <div>
-                  <h4>{this.state.tournament.date}</h4>
+                  <div className="tournament-overview-info">
+                    <h5>Date</h5>
+                    <h3>
+                      {this.state.tournament.startDate} -{" "}
+                      {this.state.tournament.endDate}
+                    </h3>
+                  </div>
                 </div>
                 <div>
-                  <h4>{this.state.tournament.time}</h4>
+                  <div className="tournament-overview-info">
+                    <h5>Time</h5>
+                    <h3>{this.state.tournament.time}</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,18 +196,29 @@ class Tournament extends Component {
             )}
             {this.state.tournament.completed && this.state.selectedVideo ? (
               <div>
-                <Icon
-                  className="profile-container-card-header-icon"
-                  onClick={this.resetVideosList}
-                >
-                  reply
-                </Icon>
+                <div className="row center">
+                  <Icon
+                    className="icon"
+                    onClick={this.resetVideosList}
+                    fontSize="large"
+                  >
+                    reply
+                  </Icon>
+                  <h4
+                    onClick={this.resetVideosList}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {" "}
+                    Back to videos
+                  </h4>
+                </div>
                 <iframe
                   src={`https://player.twitch.tv/?video=v${
                     this.state.selectedVideo
                   }&muted=true`}
                   height="520"
                   width="100%"
+                  title="TournamentTwitchStream"
                   theme="dark"
                   layout="video"
                   allowFullScreen={true}
@@ -150,13 +226,17 @@ class Tournament extends Component {
               </div>
             ) : (
               <div className="tournament-videos">
+                <h2>Recorded Videos</h2>
                 {this.state.tournament.videos.map((video, index) => (
-                  <h4
+                  <div
+                    className="tournament-videos-row"
                     onClick={() => {
                       this.selectVideo(video);
                     }}
                     key={`selectedTwitchVideo${video}`}
-                  >{`Day ${index + 1}`}</h4>
+                  >
+                    <h4>{`Day ${index + 1}`}</h4>
+                  </div>
                 ))}
               </div>
             )}
@@ -172,17 +252,64 @@ class Tournament extends Component {
               <h5>TOTAL PTS</h5>
             </div>
             {this.state.tournament.leaderboard.map((team, index) => (
-              <div
-                className="tournament-leaderboard-row"
-                key={`tournamentLeaderboard${team.name}`}
-              >
-                <h3>{index + 1}</h3>
-                <h3>{team.name}</h3>
-                <h3>{team.totalKills}</h3>
-                <h3>{team.killPoints}</h3>
-                <h3>{team.placementPoints}</h3>
-                <h3>{team.totalPoints}</h3>
-              </div>
+              <span key={`tournamentLeaderboard${team.name}`}>
+                <div
+                  className="tournament-leaderboard-row"
+                  style={
+                    index % 2 === 0
+                      ? { backgroundColor: "#16162e" }
+                      : { backgroundColor: "rgb(55, 46, 80)" }
+                  }
+                >
+                  <h3>{index + 1}</h3>
+                  <h3>{team.name}</h3>
+                  <h3>{team.totalKills}</h3>
+                  <h3>{team.killPoints}</h3>
+                  <h3>{team.placementPoints}</h3>
+                  <h3>{team.totalPoints}</h3>
+                  {this.state.selectedTeam === team.id ? (
+                    <Icon
+                      className="icon"
+                      fontSize="large"
+                      onClick={this.unselectTeam}
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        width: "10px"
+                      }}
+                    >
+                      expand_less
+                    </Icon>
+                  ) : (
+                    <Icon
+                      className="icon"
+                      fontSize="large"
+                      onClick={() => this.selectTeam(team.id)}
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        width: "10px"
+                      }}
+                    >
+                      expand_more
+                    </Icon>
+                  )}
+                </div>
+                {this.state.selectedTeam === team.id && (
+                  <div>
+                    {team.players.map(player => (
+                      <Link
+                        to={`/${player.gamerTag}`}
+                        key={`tournamentPlayer${player.gamerTag}`}
+                      >
+                        <div className="tournament-leaderboard-row-player row">
+                          <h4>{player.gamerTag}</h4>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </span>
             ))}
           </div>
           <div className="tournament-rules">

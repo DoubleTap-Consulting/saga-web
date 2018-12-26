@@ -96,13 +96,13 @@ class Sent extends Component {
             <div className="sentPasswordContainer-link column">
               {!this.state.resetAlert && (
                 <p className="resend-text-button">
-                  <a
+                  <p
                     onClick={this.handleEmailSubmit}
                     role="button"
                     tabIndex="0"
                   >
                     Resend password recovery email
-                  </a>
+                  </p>
                 </p>
               )}
               {this.state.resetAlert && (

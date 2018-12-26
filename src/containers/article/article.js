@@ -37,7 +37,11 @@ class Article extends Component {
           <h1>{this.article.title}</h1>
         </div>
         <div className="article-container">
-          <img src={this.article.image} className="article-container-banner" />
+          <img
+            src={this.article.image}
+            className="article-container-banner"
+            alt="Article Header"
+          />
           <div className="article-container-articleView">
             <p className="article-container-articleView-date">
               {this.article.date}

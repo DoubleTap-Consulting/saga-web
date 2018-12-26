@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 import NewsCard from "components/news-card/newsCard";
 
-import ProfileImage from "images/profile-image.jpeg";
 import Article1Image from "images/article1.jpeg";
 import Article2Image from "images/article2.jpg";
 import Article3Image from "images/article3.jpg";

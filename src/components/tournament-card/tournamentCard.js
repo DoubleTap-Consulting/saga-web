@@ -15,25 +15,19 @@ class TournamentCard extends Component {
   render() {
     return (
       <div className="tournamentCard">
-        <a
-          href={this.props.tournament.link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src={this.props.tournament.image}
-            className="tournamentCard-image"
-            alt="tournament"
-          />
-          <h2 className="tournamentCard-date">
-            Starting {this.props.tournament.date}
-          </h2>
-          <h2 className="tournamentCard-game">{this.props.tournament.game}</h2>
-          <h2 className="tournamentCard-name">{this.props.tournament.name}</h2>
-          <h2 className="tournamentCard-prize">
-            {convertToCurrency(this.props.tournament.prize)} Prize Pool
-          </h2>
-        </a>
+        <img
+          src={this.props.tournament.image}
+          className="tournamentCard-image"
+          alt="tournament"
+        />
+        <h2 className="tournamentCard-date">
+          Starting {this.props.tournament.date}
+        </h2>
+        <h2 className="tournamentCard-game">{this.props.tournament.game}</h2>
+        <h2 className="tournamentCard-name">{this.props.tournament.name}</h2>
+        <h2 className="tournamentCard-prize">
+          {convertToCurrency(this.props.tournament.prize)} Prize Pool
+        </h2>
       </div>
     );
   }

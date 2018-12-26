@@ -25,8 +25,11 @@ class Header extends Component {
     };
   }
 
-  handleToggle = () => {
+  handleToggle = event => {
     this.setState(state => ({ mobileMenuOpen: !state.mobileMenuOpen }));
+    if (event.target.id) {
+      this.context.router.history.push(event.target.id);
+    }
   };
 
   logout = () => {
@@ -39,6 +42,11 @@ class Header extends Component {
       this.props.location.pathname === "/signup" ||
       this.props.location.pathname === "/login";
     const { mobileMenuOpen } = this.state;
+    var styles = {
+      dropDown: {
+        zIndex: "9999"
+      }
+    };
     return (
       <div className="header" role="navigation">
         <div className="header-navLinks header-desktopMenu">
@@ -114,23 +122,31 @@ class Header extends Component {
               >
                 <Paper>
                   <ClickAwayListener onClickAway={this.handleToggle}>
-                    <MenuList>
-                      <MenuItem onClick={this.handleToggle}>Home</MenuItem>
+                    <MenuList style={styles}>
+                      <MenuItem onClick={this.handleToggle} id="/">
+                        Home
+                      </MenuItem>
                       {this.props.auth.user && (
                         <span>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem onClick={this.handleToggle} id="/players">
                             Players
                           </MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem
+                            onClick={this.handleToggle}
+                            id="/tournaments"
+                          >
                             Tournaments
                           </MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem onClick={this.handleToggle} id="/leagues">
                             Leagues
                           </MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem onClick={this.handleToggle} id="/content">
                             Curated Content
                           </MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem
+                            onClick={this.handleToggle}
+                            id="/marketplace"
+                          >
                             Marketplace
                           </MenuItem>
                         </span>
@@ -139,17 +155,17 @@ class Header extends Component {
                       {this.props.auth.user ? (
                         <span>
                           {/* `/${this.props.auth.user.gamerTag}` */}
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem onClick={this.handleToggle} id="/profile">
                             Profile
                           </MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
-                            Logout
-                          </MenuItem>
+                          <MenuItem onClick={this.logout}>Logout</MenuItem>
                         </span>
                       ) : (
                         <span>
-                          <MenuItem onClick={this.handleToggle}>Login</MenuItem>
-                          <MenuItem onClick={this.handleToggle}>
+                          <MenuItem onClick={this.handleToggle} id="/login">
+                            Login
+                          </MenuItem>
+                          <MenuItem onClick={this.handleToggle} id="/signup">
                             Signup
                           </MenuItem>
                         </span>

@@ -66,17 +66,13 @@ Players.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Players.defaultProps = {
-  user: null
-};
-
 Players.contextTypes = {
   router: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth, user }) {
-  return { auth, user };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Players);

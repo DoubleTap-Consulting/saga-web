@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 import TournamentCard from "components/tournament-card/tournamentCard";
 import PgiImage from "images/pgi.jpg";
@@ -16,7 +17,18 @@ class Tournaments extends Component {
       {
         name: "PGI World Qualifiers",
         prize: 1000000,
-        id: 1,
+        game: "PUBG",
+        id: "346304342",
+        date: moment()
+          .add(7, "days")
+          .fromNow(),
+        image: PgiImage,
+        link: "https://twitch.tv"
+      },
+      {
+        name: "PGI World Qualifiers",
+        prize: 1000000,
+        id: "146304342",
         game: "PUBG",
         date: moment()
           .add(7, "days")
@@ -27,7 +39,7 @@ class Tournaments extends Component {
       {
         name: "PGI World Qualifiers",
         prize: 1000000,
-        id: 2,
+        id: "246304342",
         game: "PUBG",
         date: moment()
           .add(7, "days")
@@ -38,7 +50,7 @@ class Tournaments extends Component {
       {
         name: "PGI World Qualifiers",
         prize: 1000000,
-        id: 3,
+        id: "446304342",
         game: "PUBG",
         date: moment()
           .add(7, "days")
@@ -49,7 +61,7 @@ class Tournaments extends Component {
       {
         name: "PGI World Qualifiers",
         prize: 1000000,
-        id: 4,
+        id: "546304342",
         game: "PUBG",
         date: moment()
           .add(7, "days")
@@ -60,18 +72,7 @@ class Tournaments extends Component {
       {
         name: "PGI World Qualifiers",
         prize: 1000000,
-        id: 5,
-        game: "PUBG",
-        date: moment()
-          .add(7, "days")
-          .fromNow(),
-        image: PgiImage,
-        link: "https://twitch.tv"
-      },
-      {
-        name: "PGI World Qualifiers",
-        prize: 1000000,
-        id: 6,
+        id: "646304342",
         game: "PUBG",
         date: moment()
           .add(7, "days")
@@ -92,10 +93,12 @@ class Tournaments extends Component {
         </div>
         <div className="tournaments-container">
           {this.tournaments.map(tournament => (
-            <TournamentCard
-              tournament={tournament}
+            <Link
+              to={`/tournaments/${tournament.id}`}
               key={`tournamentList${tournament.id}`}
-            />
+            >
+              <TournamentCard tournament={tournament} />
+            </Link>
           ))}
         </div>
       </div>

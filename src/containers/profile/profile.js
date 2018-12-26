@@ -11,6 +11,7 @@ import Peripherals from "./components/peripherals/peripherals";
 import Schedule from "./components/schedule/schedule";
 import Settings from "./components/settings/settings";
 import Summary from "./components/summary/summary";
+import Stats from "./components/stats/stats";
 
 import ProfileImage from "images/profile-image.jpeg";
 import TwitterIcon from "images/twitter.png";
@@ -24,6 +25,12 @@ import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+
+import {
+  getLifetimeStats,
+  getSeasonStats,
+  getLastTenGames
+} from "utils/pubgApi";
 
 import "./profile.css";
 
@@ -39,6 +46,57 @@ class Profile extends Component {
       editingPeripherals: false,
       editingSchedule: false,
       editingSummary: false,
+      pubgLifetimeStats: [],
+      pubgLifetimeStatsOrder: [],
+      pubgLast10Games: [],
+      pubgSeasons: [
+        {
+          id: "division.bro.official.pc-2018-02",
+          name: ""
+        },
+        {
+          id: "division.bro.official.pc-2018-01",
+          name: ""
+        },
+        {
+          id: "division.bro.official.2018-09",
+          name: "2018 Season 9"
+        },
+        {
+          id: "division.bro.official.2018-09",
+          name: "2018 Season 8"
+        },
+        {
+          id: "division.bro.official.2018-07",
+          name: "2018 Season 7"
+        },
+        {
+          id: "division.bro.official.2018-06",
+          name: "2018 Season 6"
+        },
+        {
+          id: "division.bro.official.2018-05",
+          name: "2018 Season 5"
+        },
+        {
+          id: "division.bro.official.2018-04",
+          name: "2018 Season 4"
+        },
+        {
+          id: "division.bro.official.2018-03",
+          name: "2018 Season 3"
+        },
+        {
+          id: "division.bro.official.2018-02",
+          name: "2018 Season 2"
+        },
+        {
+          id: "division.bro.official.2018-01",
+          name: "2018 Season 1"
+        }
+      ],
+      pubgSeasonStats: [],
+      pubgSeasonStatsOrder: [],
       player: {
         firstName: "Michael",
         lastName: "Mitrakos",
@@ -48,6 +106,7 @@ class Profile extends Component {
         summary:
           "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognizable eSports personality out there, in any game or genre. Get in touch with inquires please :)",
         gamerTag: "Sultyn",
+        pubgId: "account.b03956cdb3274db086d49cb423ef057d",
         game: "PUBG",
         views: "52345",
         teamName: "Saga.GG",
@@ -78,11 +137,49 @@ class Profile extends Component {
 
   componentDidMount() {
     // TODO: have to make sure state is structured correctly above for this
-    getUserProfile(this.props.location.pathname.slice(1)).then(player => {
-      // this.setState({
-      //   player
-      // });
+    // getUserProfile(this.props.location.pathname.slice(1)).then(player => {
+    // this.setState({
+    //   player
+    // });
+    // });
+
+    // TODO: Move this to after getting user profile so we know what game to pull info for
+    // if (player.game === "PUBG") {
+    getSeasonStats(
+      this.state.player.pubgId,
+      "division.bro.official.pc-2018-01"
+    ).then(data => {
+      const pubgSeasonStats = [];
+      const pubgSeasonStatsOrder = [];
+      for (const key in data) {
+        pubgSeasonStatsOrder.push(key);
+        pubgSeasonStats.push(data[key]);
+      }
+      this.setState({
+        pubgSeasonStats,
+        pubgSeasonStatsOrder
+      });
     });
+    // TODO: Finish last 10 games endpoint
+    // getLastTenGames(this.state.player.pubgId).then(pubgLast10Games => {
+    //   this.setState({
+    //     pubgLast10Games
+    //   });
+    // });
+    getLifetimeStats(this.state.player.pubgId).then(data => {
+      // TODO: need to be caching this
+      const pubgLifetimeStats = [];
+      const pubgLifetimeStatsOrder = [];
+      for (const key in data) {
+        pubgLifetimeStatsOrder.push(key);
+        pubgLifetimeStats.push(data[key]);
+      }
+      this.setState({
+        pubgLifetimeStats,
+        pubgLifetimeStatsOrder
+      });
+    });
+    // }
   }
 
   // TODO: remove all these useless functions below by combining by function
@@ -161,6 +258,8 @@ class Profile extends Component {
     });
   };
 
+  // END STUPID FUNCTION CHAIN
+
   deleteAccount = () => {
     // TODO: delete account functionality
   };
@@ -203,6 +302,7 @@ class Profile extends Component {
           <img
             className="profile-playerHeader-profileImage"
             src={ProfileImage}
+            alt="Profile"
           />
           <div className="profile-playerHeader-info">
             {isOwnProfile && (
@@ -300,7 +400,7 @@ class Profile extends Component {
             </div>
           </div>
           <div className="profile-playerHeader-views">
-            <img src={EyeIcon} />
+            <img src={EyeIcon} alt="Views" />
             <p>{this.state.player.views}</p>
           </div>
         </div>
@@ -337,7 +437,7 @@ class Profile extends Component {
             <div>
               <div className="profile-stream">
                 <ReactTwitchEmbedVideo
-                  id="twitchStream"
+                  id="twitch-stream"
                   targetClass="twitch-stream"
                   channel={this.state.player.twitchUsername}
                   width="100%"
@@ -365,11 +465,24 @@ class Profile extends Component {
                   }&autoplay=false&muted=true`}
                   height="520"
                   width="100%"
+                  title="ProfileTwitchStream"
                   theme="dark"
                   layout="video"
                   allowFullScreen={true}
                 />
               </div>
+              <Stats
+                stats={this.state.pubgLifetimeStats}
+                order={this.state.pubgLifetimeStatsOrder}
+                title="Lifetime Stats"
+                game={"PUBG"}
+              />
+              <Stats
+                stats={this.state.pubgSeasonStats}
+                order={this.state.pubgLifetimeStatsOrder}
+                title="Season Stats"
+                game={"PUBG"}
+              />
             </div>
             <div>
               <Summary

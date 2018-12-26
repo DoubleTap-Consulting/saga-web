@@ -5,7 +5,6 @@ import { Route, Switch } from "react-router";
 import asyncLoader from "components/asyncComponentLoader";
 import PrivateRoute from "components/privateRoute";
 import { refreshLogin, saveUserToStore } from "actions/auth";
-import ScrollToTop from "../scroll-to-top/ScrollToTop";
 // import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
 import { Helmet } from "react-helmet";
@@ -13,6 +12,7 @@ import { Helmet } from "react-helmet";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import Profile from "../../containers/profile/profile";
+import { ScrollContext } from "react-router-scroll-4";
 
 import "./app.css";
 
@@ -86,18 +86,18 @@ class App extends Component {
 
   render() {
     return (
-      <ScrollToTop history={this.props.history}>
-        <div className="app">
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>Saga.GG - your home for esports</title>
-            <meta
-              name="description"
-              content="Your esports resume, curated content, events and much more."
-            />
-            <link rel="canonical" href="http://saga.gg" />
-          </Helmet>
-          <Header location={this.props.location} />
+      <div className="app">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Saga.GG - your home for esports</title>
+          <meta
+            name="description"
+            content="Your esports resume, curated content, events and much more."
+          />
+          <link rel="canonical" href="http://saga.gg" />
+        </Helmet>
+        <Header location={this.props.location} />
+        <ScrollContext>
           <div className="app-container">
             <Switch>
               <Route exact path="/" component={asyncHome} />
@@ -158,9 +158,9 @@ class App extends Component {
               <Route component={asyncHome} />
             </Switch>
           </div>
-          <Footer />
-        </div>
-      </ScrollToTop>
+        </ScrollContext>
+        <Footer />
+      </div>
     );
   }
 }
