@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import ReactTwitchEmbedVideo from "react-twitch-embed-video";
-
 import "./league.css";
 
 class League extends Component {
@@ -101,13 +99,18 @@ class League extends Component {
             </div>
           </div>
           <div className="league-twitchStream">
-            <ReactTwitchEmbedVideo
-              id="leagueTwitchStream"
-              targetClass="twitch-stream"
-              channel={this.state.league.twitchStream}
+            <iframe
+              src={`https://player.twitch.tv/?channel=${
+                this.state.league.twitchStream
+              }&muted=true`}
+              title="LeagueTwitchLiveStream"
+              id="LeagueTwitchLiveStream"
               width="100%"
+              height="500px"
               theme="dark"
-              muted={true}
+              frameBorder="0"
+              scrolling="no"
+              allowFullScreen={true}
             />
           </div>
           <div className="league-leaderboard">

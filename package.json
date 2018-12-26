@@ -31,7 +31,6 @@
     "react-scripts": "2.1.1",
     "react-swipeable-views": "^0.13.0",
     "react-tooltip": "^3.9.0",
-    "react-twitch-embed-video": "^1.0.1",
     "redux": "^4.0.1",
     "redux-async-connect": "^1.0.0-rc4",
     "redux-devtools-extension": "^2.13.7",

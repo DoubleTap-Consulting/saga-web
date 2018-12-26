@@ -20,7 +20,6 @@ import DiscordIcon from "images/discord.png";
 import TwitchIcon from "images/twitch.png";
 import EyeIcon from "images/eye.svg";
 
-import ReactTwitchEmbedVideo from "react-twitch-embed-video";
 import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -436,13 +435,18 @@ class Profile extends Component {
           >
             <div>
               <div className="profile-stream">
-                <ReactTwitchEmbedVideo
-                  id="twitch-stream"
-                  targetClass="twitch-stream"
-                  channel={this.state.player.twitchUsername}
+                <iframe
+                  src={`https://player.twitch.tv/?channel=${
+                    this.state.player.twitchUsername
+                  }&muted=true`}
+                  title="ProfileTwitchLiveStream"
+                  id="ProfileTwitchLiveStream"
                   width="100%"
+                  height="500px"
                   theme="dark"
-                  muted={true}
+                  frameBorder="0"
+                  scrolling="no"
+                  allowFullScreen={true}
                 />
               </div>
               <Experiences
@@ -467,6 +471,7 @@ class Profile extends Component {
                   width="100%"
                   title="ProfileTwitchStream"
                   theme="dark"
+                  frameBorder="0"
                   layout="video"
                   allowFullScreen={true}
                 />

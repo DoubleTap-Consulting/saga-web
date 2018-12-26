@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 import Icon from "@material-ui/core/Icon";
 
-import ReactTwitchEmbedVideo from "react-twitch-embed-video";
-
 import "./tournament.css";
 
 class Tournament extends Component {
@@ -185,13 +183,18 @@ class Tournament extends Component {
           </div>
           <div className="tournament-twitchStream">
             {!this.state.tournament.completed && (
-              <ReactTwitchEmbedVideo
-                id="tournamentTwitchStream"
-                targetClass="twitch-stream"
-                channel={this.state.tournament.twitchStream}
+              <iframe
+                src={`https://player.twitch.tv/?channel=${
+                  this.state.tournament.twitchStream
+                }&muted=true`}
+                title="tournamentTwitchStream"
+                id="ProfileTwitchLiveStream"
                 width="100%"
+                height="500px"
                 theme="dark"
-                muted={true}
+                frameBorder="0"
+                scrolling="no"
+                allowFullScreen={true}
               />
             )}
             {this.state.tournament.completed && this.state.selectedVideo ? (
