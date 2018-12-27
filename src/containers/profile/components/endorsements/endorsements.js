@@ -20,7 +20,7 @@ class Endorsements extends Component {
           <Icon className="profile-container-card-header-icon">group</Icon>
           <h3>Endorsements</h3>
         </div>
-        {this.state.endorsements.map(endorsement => (
+        {this.props.endorsements.map(endorsement => (
           <div
             className="profile-playerHeader-info-experience"
             key={`profileEndorsements${endorsement.id}`}
