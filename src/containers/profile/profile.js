@@ -10,13 +10,8 @@ import Schedule from "./components/schedule/schedule";
 import Settings from "./components/settings/settings";
 import Summary from "./components/summary/summary";
 import Stats from "./components/stats/stats";
-
-import ProfileImage from "images/profile-image.jpeg";
-import TwitterIcon from "images/twitter.png";
-import InstagramIcon from "images/instagram.png";
-import DiscordIcon from "images/discord.png";
-import TwitchIcon from "images/twitch.png";
-import EyeIcon from "images/eye.svg";
+import ProfileHeader from "./components/profile-header/profileHeader";
+import HackerFlag from "./components/hacker-flag/hackerFlag";
 
 import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
@@ -127,16 +122,34 @@ class Profile extends Component {
           friday: "5pm - 11pm CST",
           saturday: "5pm - 11pm CST",
           sunday: ""
-        }
-      },
-      dateFrom: "",
-      dateTo: "",
-      description: ""
+        },
+        experiences: [
+          {
+            team: "Saga",
+            game: "PUBG",
+            role: "IGL",
+            dateFrom: "11/03/2018",
+            dateTo: "Current",
+            id: 0,
+            description:
+              "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
+          },
+          {
+            team: "FAZE",
+            game: "PUBG",
+            role: "IGL",
+            dateFrom: "11/05/2017",
+            dateTo: "11/02/2018",
+            id: 1,
+            description: "Some description"
+          }
+        ]
+      }
     };
   }
 
   componentDidMount() {
-    // TODO: have to make sure state is structured correctly above for this
+    // TODO: Have to make sure state is structured correctly above for this
     // getUserProfile(this.props.location.pathname.slice(1)).then(player => {
     // this.setState({
     //   player
@@ -149,7 +162,6 @@ class Profile extends Component {
         this.state.player.pubgId,
         "division.bro.official.pc-2018-01"
       ).then(data => {
-        console.log("data", data);
         const pubgSeasonStats = [];
         const pubgSeasonStatsOrder = [];
         for (const key in data) {
@@ -165,14 +177,16 @@ class Profile extends Component {
           pubgSeasonStatsOrder
         });
       });
+
       // TODO: Finish last 10 games endpoint
       // getLastTenGames(this.state.player.pubgId).then(pubgLast10Games => {
       //   this.setState({
       //     pubgLast10Games
       //   });
       // });
+
       getLifetimeStats(this.state.player.pubgId).then(data => {
-        // TODO: need to be caching this
+        // TODO: need to be caching this and everything with game APIs
         const pubgLifetimeStats = [];
         const pubgLifetimeStatsOrder = [];
         for (const key in data) {
@@ -194,8 +208,6 @@ class Profile extends Component {
       });
     }
   }
-
-  // TODO: remove all these useless functions below by combining by function
 
   editHeader = () => {
     this.setState({
@@ -271,8 +283,6 @@ class Profile extends Component {
     });
   };
 
-  // END STUPID FUNCTION CHAIN
-
   deleteAccount = () => {
     // TODO: delete account functionality
   };
@@ -283,6 +293,12 @@ class Profile extends Component {
     });
   };
 
+  handleExperienceChange = event => {
+    this.setState({
+      player: event.target.value
+    });
+  };
+
   handlePlayerChange = event => {
     if (event.target.name === "summary" && event.target.value.length > 255) {
       return;
@@ -290,6 +306,15 @@ class Profile extends Component {
 
     let playerSnapshot = Object.assign({}, this.state.player);
     playerSnapshot[event.target.name] = event.target.value;
+    this.setState({
+      player: playerSnapshot
+    });
+  };
+
+  handleExperienceChange = event => {
+    let playerSnapshot = Object.assign({}, this.state.player);
+    playerSnapshot.experiences[event.target.id][event.target.name] =
+      event.target.value;
     this.setState({
       player: playerSnapshot
     });
@@ -306,128 +331,21 @@ class Profile extends Component {
   render() {
     let isOwnProfile =
       this.props.auth.user.gamerTag === this.props.location.pathname.slice(1);
+
     return (
       <div className="profile">
         <div className="profile-header brand-background-header">
           <h1>Profile</h1>
         </div>
-        <div className="profile-playerHeader brand-background-dark">
-          <img
-            className="profile-playerHeader-profileImage"
-            src={ProfileImage}
-            alt="Profile"
-          />
-          <div className="profile-playerHeader-info">
-            {isOwnProfile && (
-              <button
-                className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                  .state.editingHeader &&
-                  "profile-playerHeader-info-button-save"}`}
-                onClick={
-                  this.state.editingHeader ? this.submitHeader : this.editHeader
-                }
-              >
-                {this.state.editingHeader ? "Save" : "Edit"}
-              </button>
-            )}
-            <div className="column">
-              {this.state.editingHeader ? (
-                <input
-                  value={this.state.player.gamerTag}
-                  onChange={this.handlePlayerChange}
-                  name="gamerTag"
-                  placeholder="Gamer Tag"
-                  className="brand-input-dark"
-                />
-              ) : (
-                <h1 className="profile-playerHeader-info-gamerTag">
-                  {isOwnProfile
-                    ? this.props.auth.user.gamerTag
-                    : this.state.player.gamerTag}
-                </h1>
-              )}
-              {this.state.editingHeader ? (
-                <input
-                  value={this.state.player.tagline}
-                  onChange={this.handlePlayerChange}
-                  maxLength="100"
-                  name="tagline"
-                  placeholder="Tagline"
-                  className="brand-input-dark"
-                />
-              ) : (
-                <h4 className="profile-playerHeader-info-tagline">
-                  {this.state.player.tagline}
-                </h4>
-              )}
-            </div>
-            <div className="row profile-playerHeader-info-socials">
-              {this.state.player.twitterUrl && (
-                <a
-                  href={this.state.player.twitterUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={TwitterIcon}
-                    className="social-icon"
-                    alt="twitter"
-                  />
-                </a>
-              )}
-              {this.state.player.instagramUrl && (
-                <a
-                  href={this.state.player.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={InstagramIcon}
-                    className="social-icon"
-                    alt="instgram"
-                  />
-                </a>
-              )}
-              {this.state.player.discordUrl && (
-                <a
-                  href={this.state.player.discordUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={DiscordIcon}
-                    className="social-icon"
-                    alt="discord"
-                  />
-                </a>
-              )}
-              {this.state.player.twitchUrl && (
-                <a
-                  href={this.state.player.twitchUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={TwitchIcon} className="social-icon" alt="twitch" />
-                </a>
-              )}
-            </div>
-          </div>
-          <div className="profile-playerHeader-views">
-            <img src={EyeIcon} alt="Views" />
-            <p>{this.state.player.views}</p>
-          </div>
-        </div>
-        {isOwnProfile && (
-          <button className="profile-container-editAvatar">Edit Avatar</button>
-        )}
-        {this.state.player.hacker && (
-          <div className="profile-hacker">
-            <h3>
-              * This player has been officially accused and confirmed hacking.
-              #GG
-            </h3>
-          </div>
-        )}
+        <ProfileHeader
+          player={this.state.player}
+          editingHeader={this.state.editingHeader}
+          isOwnProfile={isOwnProfile}
+          editHeader={this.editHeader}
+          handlePlayerChange={this.handlePlayerChange}
+          submitHeader={this.submitHeader}
+        />
+        <HackerFlag hacker={this.state.player.hacker} />
         <div className="profile-tabs brand-background-dark">
           <AppBar position="static" color="default">
             <Tabs
@@ -464,6 +382,7 @@ class Profile extends Component {
                 />
               </div>
               <Experiences
+                experiences={this.state.player.experiences}
                 isOwnProfile={isOwnProfile}
                 editingExperience={this.state.editingExperience}
                 player={this.state.player}
@@ -472,7 +391,7 @@ class Profile extends Component {
                 description={this.state.description}
                 editExperience={this.editExperience}
                 submitExperience={this.submitExperience}
-                handleChange={this.handleChange}
+                handleChange={this.handleExperienceChange}
               />
             </div>
             <div>
@@ -539,13 +458,11 @@ class Profile extends Component {
               <Endorsements endorsements={this.state.player.endorsements} />
             </div>
             {isOwnProfile && (
-              <div>
-                <Settings
-                  player={this.state.player}
-                  handleChange={this.handlePlayerChange}
-                  deleteAccount={this.deleteAccount}
-                />
-              </div>
+              <Settings
+                player={this.state.player}
+                handleChange={this.handlePlayerChange}
+                deleteAccount={this.deleteAccount}
+              />
             )}
           </SwipeableViews>
         </div>

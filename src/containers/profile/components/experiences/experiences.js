@@ -10,29 +10,7 @@ class Experiences extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      experiences: [
-        {
-          team: "Saga",
-          game: "PUBG",
-          role: "IGL",
-          dateFrom: "11/03/2018",
-          dateTo: "Current",
-          id: 1,
-          description:
-            "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
-        },
-        {
-          team: "FAZE",
-          game: "PUBG",
-          role: "IGL",
-          dateFrom: "11/05/2017",
-          dateTo: "11/02/2018",
-          id: 2,
-          description: "Some description"
-        }
-      ]
-    };
+    this.state = {};
   }
 
   render() {
@@ -42,7 +20,7 @@ class Experiences extends Component {
           <Icon className="profile-container-card-header-icon">work</Icon>
           <h3>Experience</h3>
         </div>
-        {this.state.experiences.map(exp => (
+        {this.props.experiences.map(exp => (
           <div
             className="profile-playerHeader-info-experience"
             key={`profileExperiences${exp.id}`}
@@ -50,58 +28,64 @@ class Experiences extends Component {
             {this.props.isOwnProfile && (
               <button
                 className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                  .props.editingExperience == exp.id &&
+                  .props.editingExperience === exp.id &&
                   "profile-playerHeader-info-button-save"}`}
                 name={exp.id}
                 onClick={
-                  this.props.editingExperience == exp.id
+                  this.props.editingExperience === exp.id
                     ? this.props.submitExperience
                     : this.props.editExperience
                 }
               >
-                {this.props.editingExperience == exp.id ? "Save" : "Edit"}
+                {this.props.editingExperience === exp.id ? "Save" : "Edit"}
               </button>
             )}
-            {this.props.editingExperience == exp.id ? (
+            {this.props.editingExperience === exp.id ? (
               <div className="column">
                 <input
-                  name="teamName"
-                  value={this.props.player.teamName}
-                  onChange={this.handleChange}
+                  name="team"
+                  id={exp.id}
+                  value={exp.team}
+                  onChange={this.props.handleChange}
                   placeholder="Team Name"
                   className="brand-input-dark"
                 />
                 <input
                   name="game"
-                  value={this.props.player.game}
+                  id={exp.id}
+                  value={exp.game}
                   onChange={this.props.handleChange}
                   placeholder="Game"
                   className="brand-input-dark"
                 />
                 <input
                   name="role"
-                  value={this.props.player.role}
+                  id={exp.id}
+                  value={exp.role}
                   onChange={this.props.handleChange}
                   placeholder="Role"
                   className="brand-input-dark"
                 />
                 <input
                   name="dateFrom"
-                  value={this.props.dateFrom}
+                  id={exp.id}
+                  value={exp.dateFrom}
                   onChange={this.props.handleChange}
                   placeholder="Date Started (MM/DD/YYYY)"
                   className="brand-input-dark"
                 />
                 <input
                   name="dateTo"
-                  value={this.props.dateTo}
+                  id={exp.id}
+                  value={exp.dateTo}
                   onChange={this.props.handleChange}
                   placeholder="Date Ended (MM/DD/YYYY)"
                   className="brand-input-dark"
                 />
                 <textarea
                   name="description"
-                  value={this.props.description}
+                  id={exp.id}
+                  value={exp.description}
                   onChange={this.props.handleChange}
                   placeholder="Description"
                   className="brand-text-area-dark"
