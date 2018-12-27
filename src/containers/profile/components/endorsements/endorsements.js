@@ -10,9 +10,7 @@ class Endorsements extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      endorsements: []
-    };
+    this.state = {};
   }
 
   render() {
@@ -22,15 +20,16 @@ class Endorsements extends Component {
           <Icon className="profile-container-card-header-icon">group</Icon>
           <h3>Endorsements</h3>
         </div>
-        {this.state.endorsements.map(exp => (
+        {this.state.endorsements.map(endorsement => (
           <div
             className="profile-playerHeader-info-experience"
-            key={`profileExperiences${exp.id}`}
+            key={`profileEndorsements${endorsement.id}`}
           >
+            {/* TODO: create how this looks */}
             <h5>Endorsement</h5>
           </div>
         ))}
-        {this.state.endorsements.length === 0 && (
+        {this.props.endorsements.length === 0 && (
           <div className="profile-playerHeader-info-experience">
             <h3 className="profile-container-card-body-text">
               No endorsements to show.

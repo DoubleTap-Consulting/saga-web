@@ -143,7 +143,8 @@ class Profile extends Component {
             id: 1,
             description: "Some description"
           }
-        ]
+        ],
+        endorsements: []
       }
     };
   }
