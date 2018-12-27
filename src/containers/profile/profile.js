@@ -104,8 +104,8 @@ class Profile extends Component {
         tagline: "Fragger for Saga.GG",
         summary:
           "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognizable eSports personality out there, in any game or genre. Get in touch with inquires please :)",
-        gamerTag: "Sultyn",
-        pubgId: "account.b03956cdb3274xb086d49cb423ef057d",
+        gamerTag: "Saga_Sultyn",
+        pubgId: "account.b03956cdb3274db086d49cb423ef057d",
         game: "PUBG",
         perspectivePreference: "FPP",
         views: "52345",
@@ -149,6 +149,7 @@ class Profile extends Component {
         this.state.player.pubgId,
         "division.bro.official.pc-2018-01"
       ).then(data => {
+        console.log("data", data);
         const pubgSeasonStats = [];
         const pubgSeasonStatsOrder = [];
         for (const key in data) {

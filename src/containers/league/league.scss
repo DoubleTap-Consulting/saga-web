@@ -1,9 +1,13 @@
 .league {
+  &-backButton {
+    margin: 15px;
+  }
   &-container {
     display: flex;
     flex-wrap: wrap;
     padding: 40px;
     margin: 40px;
+    margin-top: 20px;
     justify-content: center;
 
     @media screen and (max-width: 580px) {
@@ -19,6 +23,7 @@
       margin: 10px;
     }
   }
+
   &-overview {
     display: flex;
     background-color: #11072d;
@@ -30,6 +35,8 @@
     & > * {
       width: 50%;
       padding: 15px;
+      padding-left: 45px;
+
       &:first-child {
         border-right: 2px dotted white;
       }
@@ -38,11 +45,59 @@
     @media screen and (max-width: 680px) {
       width: 95%;
     }
+    &-row {
+      display: flex;
+      width: 100%;
+
+      & > * {
+        width: 50%;
+      }
+    }
+
+    &-info {
+      padding: 10px;
+
+      & > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      h5 {
+        color: rgb(123, 79, 243);
+      }
+    }
+  }
+
+  &-videos {
+    display: flex;
+    background-color: #11072d;
+    padding: 30px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    border: 1px solid #2c1e52;
+    @media screen and (max-width: 680px) {
+      width: 95%;
+    }
+    &-row {
+      background-color: #372e50;
+      padding: 5px 15px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition-duration: 0.15s;
+
+      &:hover {
+        background-color: rgb(51, 37, 92);
+      }
+    }
   }
 
   &-twitchStream {
-    width: 95%;
-    padding: 15px;
+    width: 90%;
+    background-color: #11072d;
+    padding: 30px;
+    flex-wrap: nowrap;
+    border: 1px solid #2c1e52;
   }
 
   &-leaderboard {
@@ -50,6 +105,10 @@
     width: 90%;
     padding: 30px;
     border: 1px solid #2c1e52;
+
+    @media screen and (max-width: 680px) {
+      width: 95%;
+    }
 
     &-labels {
       display: flex;
@@ -70,16 +129,12 @@
       padding: 10px;
       display: flex;
       border: 1px solid gray;
+      position: relative;
+      align-items: center;
       & > * {
         width: 20%;
         min-width: 60px;
         padding: 10px;
-      }
-      &:nth-child(even) {
-        background: #16162e;
-      }
-      &:nth-child(odd) {
-        background: rgb(55, 46, 80);
       }
       h3:first-child {
         width: 50px;
@@ -87,6 +142,9 @@
       }
       &:hover {
         border: 1px solid lightgray;
+      }
+      &-player {
+        padding: 5px 20px;
       }
     }
   }
