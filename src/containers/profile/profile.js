@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getUserProfile } from "utils/profile";
-
 import Experiences from "./components/experiences/experiences";
 import Personal from "./components/personal/personal";
 import Endorsements from "./components/endorsements/endorsements";
@@ -30,6 +28,8 @@ import {
   getSeasonStats,
   getLastTenGames
 } from "utils/pubgApi";
+import { getPlayer } from "utils/fortniteApi";
+import { getUserProfile } from "utils/profile";
 
 import "./profile.css";
 
@@ -105,8 +105,9 @@ class Profile extends Component {
         summary:
           "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognizable eSports personality out there, in any game or genre. Get in touch with inquires please :)",
         gamerTag: "Sultyn",
-        pubgId: "account.b03956cdb3274db086d49cb423ef057d",
+        pubgId: "account.b03956cdb3274xb086d49cb423ef057d",
         game: "PUBG",
+        perspectivePreference: "FPP",
         views: "52345",
         teamName: "Saga.GG",
         twitchUsername: "Sultyn",
@@ -143,42 +144,54 @@ class Profile extends Component {
     // });
 
     // TODO: Move this to after getting user profile so we know what game to pull info for
-    // if (player.game === "PUBG") {
-    getSeasonStats(
-      this.state.player.pubgId,
-      "division.bro.official.pc-2018-01"
-    ).then(data => {
-      const pubgSeasonStats = [];
-      const pubgSeasonStatsOrder = [];
-      for (const key in data) {
-        pubgSeasonStatsOrder.push(key);
-        pubgSeasonStats.push(data[key]);
-      }
-      this.setState({
-        pubgSeasonStats,
-        pubgSeasonStatsOrder
+    if (this.state.player.game === "PUBG") {
+      getSeasonStats(
+        this.state.player.pubgId,
+        "division.bro.official.pc-2018-01"
+      ).then(data => {
+        const pubgSeasonStats = [];
+        const pubgSeasonStatsOrder = [];
+        for (const key in data) {
+          if (
+            key.includes(this.state.player.perspectivePreference.toLowerCase())
+          ) {
+            pubgSeasonStatsOrder.push(key);
+            pubgSeasonStats.push(data[key]);
+          }
+        }
+        this.setState({
+          pubgSeasonStats,
+          pubgSeasonStatsOrder
+        });
       });
-    });
-    // TODO: Finish last 10 games endpoint
-    // getLastTenGames(this.state.player.pubgId).then(pubgLast10Games => {
-    //   this.setState({
-    //     pubgLast10Games
-    //   });
-    // });
-    getLifetimeStats(this.state.player.pubgId).then(data => {
-      // TODO: need to be caching this
-      const pubgLifetimeStats = [];
-      const pubgLifetimeStatsOrder = [];
-      for (const key in data) {
-        pubgLifetimeStatsOrder.push(key);
-        pubgLifetimeStats.push(data[key]);
-      }
-      this.setState({
-        pubgLifetimeStats,
-        pubgLifetimeStatsOrder
+      // TODO: Finish last 10 games endpoint
+      // getLastTenGames(this.state.player.pubgId).then(pubgLast10Games => {
+      //   this.setState({
+      //     pubgLast10Games
+      //   });
+      // });
+      getLifetimeStats(this.state.player.pubgId).then(data => {
+        // TODO: need to be caching this
+        const pubgLifetimeStats = [];
+        const pubgLifetimeStatsOrder = [];
+        for (const key in data) {
+          if (
+            key.includes(this.state.player.perspectivePreference.toLowerCase())
+          ) {
+            pubgLifetimeStatsOrder.push(key);
+            pubgLifetimeStats.push(data[key]);
+          }
+        }
+        this.setState({
+          pubgLifetimeStats,
+          pubgLifetimeStatsOrder
+        });
       });
-    });
-    // }
+    } else if (this.state.player.game === "FORTNITE") {
+      getPlayer("Sultyn").then(data => {
+        console.log("fortnite stats", data);
+      });
+    }
   }
 
   // TODO: remove all these useless functions below by combining by function
@@ -480,13 +493,13 @@ class Profile extends Component {
                 stats={this.state.pubgLifetimeStats}
                 order={this.state.pubgLifetimeStatsOrder}
                 title="Lifetime Stats"
-                game={"PUBG"}
+                game={this.state.player.game}
               />
               <Stats
                 stats={this.state.pubgSeasonStats}
                 order={this.state.pubgLifetimeStatsOrder}
                 title="Season Stats"
-                game={"PUBG"}
+                game={this.state.player.game}
               />
             </div>
             <div>

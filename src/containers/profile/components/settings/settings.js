@@ -52,6 +52,20 @@ class Settings extends Component {
               <option value={"PRO_TIER_1"}>Pro - Tier 1</option>
             </select>
           </h3>
+          <h3 className="profile-container-card-body-text">
+            Game Perspective Preference:
+            <select
+              className="brand-select"
+              value={this.props.player.perspectivePreference}
+              name="perspectivePreference"
+              style={{ marginLeft: "5px" }}
+              onChange={this.props.handleChange}
+            >
+              <option value={"FPP"}>FPP</option>
+              <option value={"TPP"}>TPP</option>
+              <option value={"BOTH"}>Both</option>
+            </select>
+          </h3>
           <div className="divider" />
           <button
             className="brand-button-failure-dark right"
