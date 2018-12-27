@@ -14,27 +14,39 @@ class Players extends Component {
     this.players = [
       {
         gamerTag: "Sultyn",
-        id: 1
+        id: 1,
+        role: "IGL",
+        team: "Faze Clan"
       },
       {
         gamerTag: "Bulba",
-        id: 2
+        id: 2,
+        role: "IGL",
+        team: "Faze Clan"
       },
       {
         gamerTag: "BigT",
-        id: 3
+        id: 3,
+        role: "IGL",
+        team: "Faze Clan"
       },
       {
         gamerTag: "Sultyn",
-        id: 4
+        id: 4,
+        role: "IGL",
+        team: "Faze Clan"
       },
       {
         gamerTag: "Bulba",
-        id: 5
+        id: 5,
+        role: "IGL",
+        team: "Faze Clan"
       },
       {
         gamerTag: "BigT",
-        id: 6
+        id: 6,
+        role: "IGL",
+        team: "Faze Clan"
       }
     ];
 
