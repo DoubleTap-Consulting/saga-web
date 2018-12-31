@@ -123,7 +123,11 @@ class Header extends Component {
                 <Paper>
                   <ClickAwayListener onClickAway={this.handleToggle}>
                     <MenuList style={styles}>
-                      <MenuItem onClick={this.handleToggle} id="/">
+                      <MenuItem
+                        onClick={this.handleToggle}
+                        id="/"
+                        className="header-navItem"
+                      >
                         Home
                       </MenuItem>
                       {this.props.auth.user && (
