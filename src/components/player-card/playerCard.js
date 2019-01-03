@@ -10,6 +10,8 @@ import TwitterIcon from "images/twitter.png";
 import InstagramIcon from "images/instagram.png";
 import TwitchIcon from "images/twitch.png";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./playerCard.css";
 
 class PlayerCard extends Component {
@@ -46,7 +48,14 @@ class PlayerCard extends Component {
             data-tip="You must sign in to view a player's profile"
             data-tip-disable={this.props.auth.user ? true : false}
           >
-            <h2 className="gamerTag">{this.props.player.gamerTag}</h2>
+            <h2
+              className="gamerTag"
+              id="PlayerCard"
+              name="Players"
+              onClick={trackClick}
+            >
+              {this.props.player.gamerTag}
+            </h2>
           </Link>
           <ReactTooltip />
           <h4 className="job-title">

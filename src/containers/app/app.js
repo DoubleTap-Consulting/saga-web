@@ -13,6 +13,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import Profile from "../../containers/profile/profile";
 import { ScrollContext } from "react-router-scroll-4";
+import ReactGA from "react-ga";
 
 import "./app.css";
 
@@ -82,6 +83,11 @@ class App extends Component {
     }
 
     this.state = {};
+  }
+
+  componentDidMount() {
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    this.props.history.listen(location => ReactGA.pageview(location.pathname));
   }
 
   render() {

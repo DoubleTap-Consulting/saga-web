@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./marketplace.css";
 
 class Marketplace extends Component {

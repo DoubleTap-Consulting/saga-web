@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { convertToCurrency } from "utils/currency";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./tournamentCard.css";
 
 class TournamentCard extends Component {
@@ -39,8 +41,7 @@ TournamentCard.propTypes = {
     prize: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     game: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired
   }).isRequired
 };
 

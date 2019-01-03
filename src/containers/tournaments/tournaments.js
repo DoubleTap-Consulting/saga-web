@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import TournamentCard from "components/tournament-card/tournamentCard";
 import PgiImage from "images/pgi.jpg";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./tournaments.css";
 
 class Tournaments extends Component {
@@ -96,6 +98,9 @@ class Tournaments extends Component {
             <Link
               to={`/tournaments/${tournament.id}`}
               key={`tournamentList${tournament.id}`}
+              id="TournamentCard"
+              name="Tournaments"
+              onClick={trackClick}
             >
               <TournamentCard tournament={tournament} />
             </Link>

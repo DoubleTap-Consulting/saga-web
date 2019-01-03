@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./contentCard.css";
 
 class ContentCard extends Component {

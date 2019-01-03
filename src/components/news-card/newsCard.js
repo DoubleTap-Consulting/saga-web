@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
 
+import { trackClick } from "utils/googleAnalytics";
+
 import "./newsCard.css";
 
 class NewsCard extends Component {
@@ -21,6 +23,9 @@ class NewsCard extends Component {
           style={!this.props.auth.user ? { cursor: "not-allowed" } : {}}
           data-tip="You must sign in to view articles"
           data-tip-disable={this.props.auth.user ? true : false}
+          id="NewsCard"
+          name="News"
+          onClick={trackClick}
         >
           <img
             src={this.props.news.image}
