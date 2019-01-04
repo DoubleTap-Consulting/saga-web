@@ -32,7 +32,6 @@ class Home extends Component {
             </div>
           )}
         </div>
-        {/* TODO: only show if not logged in */}
         {!this.props.auth.user && (
           <span>
             <SellingPoints />

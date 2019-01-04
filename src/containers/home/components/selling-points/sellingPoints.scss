@@ -1,7 +1,83 @@
 .sellingPoints {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: 40px;
+
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-smallSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+    width: 200px;
+    flex-direction: column;
+    background-color: #23104d;
+    margin: 30px;
+    border: 1px solid #4968ce;
+    padding: 30px;
+    border-radius: 5px;
+    &-description {
+      color: rgb(170, 170, 170);
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+    &-title {
+      font-weight: 600;
+      font-size: 25px;
+      margin-top: 0;
+      font-style: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  &-playerTypeContainer {
+    margin: 0;
+    padding: 80px 50px;
+
+    &-title {
+      text-transform: uppercase;
+      font-size: 50px;
+      margin-top: 5px;
+      font-weight: 600;
+      transform: scaleY(1.2);
+      line-height: 1;
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#0273ac),
+        to(#0b1311)
+      );
+      background-image: linear-gradient(90deg, #301968, #4968cd);
+      display: inline-block;
+      color: transparent;
+      margin-bottom: 25px;
+      -webkit-background-clip: text;
+    }
+    &-description {
+      color: rgb(170, 170, 170);
+      margin-bottom: 5px;
+      font-weight: 400;
+      font-size: 20px;
+    }
+    &-help {
+      color: lightgray;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 5px;
+    }
+    &-body {
+      color: lightgray;
+      font-size: 24px;
+    }
+  }
 
   @media screen and (max-width: 900px) {
     display: flex;
