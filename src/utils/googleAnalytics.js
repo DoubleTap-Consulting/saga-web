@@ -3,6 +3,7 @@ ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
 
 export function trackClick(event) {
   console.log("event", event.target.name);
+  console.log("eve", event.target.id);
   ReactGA.event({
     category: event.target.name,
     action: event.target.id

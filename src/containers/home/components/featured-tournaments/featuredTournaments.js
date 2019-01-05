@@ -61,6 +61,8 @@ class FeaturedTournaments extends Component {
             <TournamentCard
               tournament={tournament}
               key={`featuredTournament${tournament.id}`}
+              requiresLogin
+              user={this.props.user}
             />
           ))}
         </div>

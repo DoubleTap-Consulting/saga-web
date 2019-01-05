@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
-import ProfilePreview from "images/profilePreview.png";
-import ContentPreview from "images/content.png";
-import TournamentsPreview from "images/tournaments.png";
+import { Link } from "react-router-dom";
 
 import Icon from "@material-ui/core/Icon";
+
+import ProfilePreview from "images/profilePreview.png";
+import TournamentsImage from "images/tournaments.png";
+import ContentImage from "images/content.png";
 
 import "./sellingPoints.css";
 
@@ -15,12 +16,114 @@ class SellingPoints extends Component {
 
     this.state = {};
 
-    // Create ref for scrollTo
+    // Create refs for scrollTo
     this.proRef = React.createRef();
     this.aspiringProRef = React.createRef();
     this.streamerRef = React.createRef();
     this.teamRef = React.createRef();
     this.esportsRef = React.createRef();
+
+    this.playerTypeSections = [
+      {
+        description: "you are a",
+        role: "Professional",
+        ref: this.proRef,
+        id: "proRef",
+        subTitle: "We help pros show their skill, prestige and experience",
+        bullets: [
+          {
+            id: 1,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          },
+          {
+            id: 2,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          }
+        ]
+      },
+      {
+        description: "you are an",
+        role: "Aspiring Pro",
+        ref: this.aspiringProRef,
+        id: "aspiringProRef",
+        subTitle: "We help players get recruited and stand out from the crowd",
+        darkTheme: true,
+        bullets: [
+          {
+            id: 1,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          }
+        ]
+      },
+      {
+        description: "you are a",
+        role: "Streamer",
+        ref: this.streamerRef,
+        id: "streamerRef",
+        subTitle:
+          "We help streamers stand out by providing your own personal website",
+        bullets: [
+          {
+            id: 1,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          }
+        ]
+      },
+      {
+        description: "you are a",
+        role: "Team or Manager",
+        ref: this.teamRef,
+        id: "teamRef",
+        darkTheme: true,
+        subTitle:
+          "We help teams connect with the best players and teams in each game",
+        bullets: [
+          {
+            id: 1,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          },
+          {
+            id: 2,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          }
+        ]
+      },
+      {
+        description: "you are",
+        role: "Interested in Esports",
+        ref: this.esportsRef,
+        id: "esportsRef",
+        subTitle:
+          "Maybe playing isn't your forte -- well we've got you covered with all types of opportunities in esports",
+        bullets: [
+          {
+            id: 1,
+            bold:
+              "This is your own personal esports website. For pros, built by pros.",
+            text:
+              "From your experience, stream, detailed stats and much more, this is the place for people to find and follow you and your esports career."
+          }
+        ]
+      }
+    ];
   }
 
   scrollToMyRef = event => {
@@ -35,165 +138,69 @@ class SellingPoints extends Component {
     return (
       <div className="sellingPoints">
         <div className="sellingPoints-row">
-          <div className="sellingPoints-smallSection">
-            <h4 className="sellingPoints-smallSection-description">
-              you are a
-            </h4>
-            <h2 className="sellingPoints-smallSection-title">Professional</h2>
-            <Icon
+          {this.playerTypeSections.map(type => (
+            <div
+              className="sellingPoints-playerTypeSection"
               onClick={this.scrollToMyRef}
-              style={{ cursor: "pointer" }}
-              fontSize="large"
-              id="proRef"
+              id={type.id}
+              key={`homePlayerTypeSection${type.id}`}
             >
-              arrow_downward
-            </Icon>
-          </div>
-          <div className="sellingPoints-smallSection">
-            <h4 className="sellingPoints-smallSection-description">
-              you are a
-            </h4>
-            <h2 className="sellingPoints-smallSection-title">Aspiring Pro</h2>
-            <Icon
-              onClick={this.scrollToMyRef}
-              style={{ cursor: "pointer" }}
-              fontSize="large"
-              id="aspiringProRef"
-            >
-              arrow_downward
-            </Icon>
-          </div>
-          <div className="sellingPoints-smallSection">
-            <h4 className="sellingPoints-smallSection-description">
-              you are a
-            </h4>
-            <h2 className="sellingPoints-smallSection-title">Streamer</h2>
-            <Icon
-              onClick={this.scrollToMyRef}
-              style={{ cursor: "pointer" }}
-              fontSize="large"
-              id="streamerRef"
-            >
-              arrow_downward
-            </Icon>
-          </div>
-          <div className="sellingPoints-smallSection">
-            <h4 className="sellingPoints-smallSection-description">
-              you are a
-            </h4>
-            <h2 className="sellingPoints-smallSection-title">
-              Team or manager
+              <h4 className="sellingPoints-playerTypeSection-description">
+                {type.description}
+              </h4>
+              <h2 className="sellingPoints-playerTypeSection-title">
+                {type.role}
+              </h2>
+              <Icon
+                fontSize="large"
+                className="sellingPoints-playerTypeSection-icon"
+              >
+                arrow_downward
+              </Icon>
+            </div>
+          ))}
+        </div>
+        {this.playerTypeSections.map(type => (
+          <div
+            className={`sellingPoints-playerTypeContainer ${
+              type.darkTheme ? "brand-background-dark" : ""
+            }`}
+            ref={type.ref}
+            key={`homePlayerTypeSectionCard${type.id}`}
+          >
+            <h5 className="sellingPoints-playerTypeContainer-description">
+              {type.description}
+            </h5>
+            <h2 className="sellingPoints-playerTypeContainer-title">
+              {type.role}
             </h2>
-            <Icon
-              onClick={this.scrollToMyRef}
-              style={{ cursor: "pointer" }}
-              fontSize="large"
-              id="teamRef"
-            >
-              arrow_downward
-            </Icon>
+            <h4 className="sellingPoints-playerTypeContainer-help">
+              {type.subTitle}
+            </h4>
+            {type.bullets.map(bullet => (
+              <div
+                className="sellingPoints-playerTypeContainer-paragraph"
+                key={`homePlayerTypeBullets${type.id}bullet${bullet.id}`}
+              >
+                <p>
+                  <strong>{bullet.bold}</strong> {bullet.text}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="sellingPoints-smallSection">
-            <h4 className="sellingPoints-smallSection-description">you are</h4>
-            <h2 className="sellingPoints-smallSection-title">
-              interested in esports
-            </h2>
-            <Icon
-              onClick={this.scrollToMyRef}
-              style={{ cursor: "pointer" }}
-              fontSize="large"
-              id="esportsRef"
-            >
-              arrow_downward
-            </Icon>
-          </div>
+        ))}
+        <div className="home-signupNow">
+          <h3 className="home-signupNow-text">
+            Show the esports world who you are. #MySaga
+          </h3>
+          <Link to="/signup">
+            <h3 className="brand-button-neutral">Join</h3>
+          </Link>
         </div>
-        <div className="sellingPoints-playerTypeContainer" ref={this.proRef}>
-          <h5 className="sellingPoints-playerTypeContainer-description">
-            you are a
-          </h5>
-          <h2 className="sellingPoints-playerTypeContainer-title">
-            Professional
-          </h2>
-          <h4 className="sellingPoints-playerTypeContainer-help">
-            We help pros show their skill, prestige and experience
-          </h4>
-        </div>
-        <div
-          className="sellingPoints-playerTypeContainer brand-background-dark"
-          ref={this.aspiringProRef}
-        >
-          <h5
-            className="sellingPoints-playerTypeContainer-description"
-            ref={this.myRef}
-          >
-            you are a
-          </h5>
-          <h2 className="sellingPoints-playerTypeContainer-title">
-            Aspiring Professional
-          </h2>
-          <h4 className="sellingPoints-playerTypeContainer-help">
-            We help players get recruited and stand out from the crowd
-          </h4>
-        </div>
-        <div
-          className="sellingPoints-playerTypeContainer"
-          ref={this.streamerRef}
-        >
-          <h5
-            className="sellingPoints-playerTypeContainer-description"
-            ref={this.myRef}
-          >
-            you are a
-          </h5>
-          <h2 className="sellingPoints-playerTypeContainer-title">Streamer</h2>
-          <h4 className="sellingPoints-playerTypeContainer-help">
-            We help streamers stand out by providing your own personal website
-          </h4>
-        </div>
-        <div
-          className="sellingPoints-playerTypeContainer brand-background-dark"
-          ref={this.teamRef}
-        >
-          <h5
-            className="sellingPoints-playerTypeContainer-description"
-            ref={this.myRef}
-          >
-            you are a
-          </h5>
-          <h2 className="sellingPoints-playerTypeContainer-title">
-            Manager or Team
-          </h2>
-          <h4 className="sellingPoints-playerTypeContainer-help">
-            We help teams connect with the best players and teams in each game
-          </h4>
-        </div>
-        <div
-          className="sellingPoints-playerTypeContainer"
-          ref={this.esportsRef}
-        >
-          <h5
-            className="sellingPoints-playerTypeContainer-description"
-            ref={this.myRef}
-          >
-            you are
-          </h5>
-          <h2 className="sellingPoints-playerTypeContainer-title">
-            Interested in Esports
-          </h2>
-          <h4 className="sellingPoints-playerTypeContainer-help">
-            Maybe playing isn't your forte -- well we've got you covered with
-            all types of opportunities in esports
-          </h4>
-        </div>
-        <div className="sellingPoints-row">
+        <div className="sellingPoints-section-row">
           <div className="sellingPoints-section">
             <h1 className="sellingPoints-section-title">Resume</h1>
-            <img
-              src={ProfilePreview}
-              className="sellingPoints-section-image"
-              alt="profile preview"
-            />
+            <img src={ProfilePreview} className="sellingPoints-section-image" />
             <h3 className="sellingPoints-section-description">
               Saga.GG is your esports resume. Beautiful, fast and trustworthy.
               If you're in the scene or aspiring to be, this is what teams and
@@ -202,11 +209,7 @@ class SellingPoints extends Component {
           </div>
           <div className="sellingPoints-section">
             <h1 className="sellingPoints-section-title">Content</h1>
-            <img
-              src={ContentPreview}
-              className="sellingPoints-section-image"
-              alt="content preview"
-            />
+            <img src={ContentImage} className="sellingPoints-section-image" />
             <h3 className="sellingPoints-section-description">
               Forget about having to scour Twitter for breaking news, Saga.GG
               provides curated content from top tier pros, managers, coaches,
@@ -217,9 +220,8 @@ class SellingPoints extends Component {
           <div className="sellingPoints-section">
             <h1 className="sellingPoints-section-title">Events</h1>
             <img
-              src={TournamentsPreview}
+              src={TournamentsImage}
               className="sellingPoints-section-image"
-              alt="tournaments preview"
             />
             <h3 className="sellingPoints-section-description">
               Be the first to know about who, what, when and where from our

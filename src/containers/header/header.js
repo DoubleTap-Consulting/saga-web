@@ -12,8 +12,6 @@ import MenuList from "@material-ui/core/MenuList";
 import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
 
-import { trackClick } from "utils/googleAnalytics";
-
 import { logout } from "actions/auth";
 
 import "./header.css";
@@ -58,52 +56,27 @@ class Header extends Component {
           {this.props.auth.user && (
             <div className="header-navLinks-row">
               <Link to={"/users"}>
-                <p
-                  className="header-navLinks-text"
-                  id="Players"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Players">
                   Players
                 </p>
               </Link>
               <Link to={"/tournaments"}>
-                <p
-                  className="header-navLinks-text"
-                  id="Tournaments"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Tournaments">
                   Tournaments
                 </p>
               </Link>
               <Link to={"/leagues"}>
-                <p
-                  className="header-navLinks-text"
-                  id="Leagues"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Leagues">
                   Leagues
                 </p>
               </Link>
               <Link to={"/content"}>
-                <p
-                  className="header-navLinks-text"
-                  id="Content"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Content">
                   Curated Content
                 </p>
               </Link>
               <Link to={"/marketplace"}>
-                <p
-                  className="header-navLinks-text"
-                  id="Marketplace"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Marketplace">
                   Marketplace
                 </p>
               </Link>
@@ -114,12 +87,7 @@ class Header extends Component {
           {this.props.auth.user ? (
             <div className="header-navLinks-row">
               <Link to={`/${this.props.auth.user.gamerTag}`}>
-                <p
-                  className="header-navLinks-text"
-                  id="Profile"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-text" id="Profile">
                   My Profile
                 </p>
               </Link>
@@ -130,22 +98,12 @@ class Header extends Component {
           ) : (
             <div className="header-navLinks-row">
               <Link to={"/login"}>
-                <p
-                  className="header-navLinks-login"
-                  id="Login"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-login" id="Login">
                   Login
                 </p>
               </Link>
               <Link to={"/signup"}>
-                <p
-                  className="header-navLinks-signup"
-                  id="Signup"
-                  name="Header"
-                  onClick={trackClick}
-                >
+                <p className="header-navLinks-signup" id="Signup">
                   Signup
                 </p>
               </Link>

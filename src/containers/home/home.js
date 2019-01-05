@@ -32,21 +32,11 @@ class Home extends Component {
             </div>
           )}
         </div>
-        {!this.props.auth.user && (
-          <span>
-            <SellingPoints />
-            <div className="home-signupNow">
-              <h3 className="home-signupNow-text">
-                Show the esports world who you are. #MySaga
-              </h3>
-              <Link to="/signup">
-                <h3 className="brand-button-neutral">Join</h3>
-              </Link>
-            </div>
-          </span>
-        )}
+        <div style={{ width: "100%" }}>
+          <SellingPoints />
+        </div>
         <FeaturedContent />
-        <FeaturedTournaments />
+        <FeaturedTournaments user={this.props.auth.user} />
         <FeaturedPlayers />
       </div>
     );

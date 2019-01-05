@@ -9,7 +9,7 @@
     align-items: center;
   }
 
-  &-smallSection {
+  &-playerTypeSection {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,9 +22,16 @@
     border: 1px solid #4968ce;
     padding: 30px;
     border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      animation: pop 0.2s linear 1;
+      background-color: #2a145a;
+      border: 1px solid #637dd4;
+    }
     &-description {
       color: rgb(170, 170, 170);
       margin-bottom: 5px;
+      pointer-events: none;
       font-weight: 400;
     }
     &-title {
@@ -32,13 +39,21 @@
       font-size: 25px;
       margin-top: 0;
       font-style: bold;
+      pointer-events: none;
       text-transform: uppercase;
+    }
+    &-icon {
+      pointer-events: none;
     }
   }
 
   &-playerTypeContainer {
     margin: 0;
-    padding: 80px 50px;
+    padding: 80px 150px;
+
+    @media screen and (max-width: 900px) {
+      padding: 30px 40px;
+    }
 
     &-title {
       text-transform: uppercase;
@@ -59,6 +74,10 @@
       color: transparent;
       margin-bottom: 25px;
       -webkit-background-clip: text;
+
+      @media screen and (max-width: 900px) {
+        font-size: 40px;
+      }
     }
     &-description {
       color: rgb(170, 170, 170);
@@ -71,19 +90,26 @@
       font-size: 20px;
       text-transform: uppercase;
       font-weight: 500;
+      max-width: 700px;
       margin-top: 5px;
     }
     &-body {
       color: lightgray;
       font-size: 24px;
     }
+    &-paragraph {
+      padding-bottom: 10px;
+      max-width: 700px;
+      p {
+        line-height: 2;
+
+        @media screen and (max-width: 900px) {
+          line-height: 1.7;
+        }
+      }
+    }
   }
 
-  @media screen and (max-width: 900px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   &-section {
     width: 370px;
     background-color: #23104d;
@@ -91,6 +117,11 @@
     border: 1px solid #4968ce;
     padding: 50px;
     border-radius: 5px;
+    &-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     &-image {
       width: 370px;
 
@@ -116,5 +147,11 @@
         text-align: center;
       }
     }
+  }
+}
+
+@keyframes pop {
+  50% {
+    transform: scale(1.05);
   }
 }

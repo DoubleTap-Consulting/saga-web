@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Link } from "react-router-dom";
 
 import TournamentCard from "components/tournament-card/tournamentCard";
 import PgiImage from "images/pgi.jpg";
-
-import { trackClick } from "utils/googleAnalytics";
 
 import "./tournaments.css";
 
@@ -95,15 +92,10 @@ class Tournaments extends Component {
         </div>
         <div className="tournaments-container">
           {this.tournaments.map(tournament => (
-            <Link
-              to={`/tournaments/${tournament.id}`}
-              key={`tournamentList${tournament.id}`}
-              id="TournamentCard"
-              name="Tournaments"
-              onClick={trackClick}
-            >
-              <TournamentCard tournament={tournament} />
-            </Link>
+            <TournamentCard
+              tournament={tournament}
+              key={`tournamentList${this.props.tournament.id}`}
+            />
           ))}
         </div>
       </div>
