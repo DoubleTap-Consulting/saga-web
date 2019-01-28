@@ -32,9 +32,11 @@ class Home extends Component {
             </div>
           )}
         </div>
-        <div style={{ width: "100%" }}>
-          <SellingPoints />
-        </div>
+        {!this.props.auth.user && (
+          <div style={{ width: "100%" }}>
+            <SellingPoints />
+          </div>
+        )}
         <FeaturedContent />
         <FeaturedTournaments user={this.props.auth.user} />
         <FeaturedPlayers />
