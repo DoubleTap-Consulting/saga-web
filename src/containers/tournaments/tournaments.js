@@ -94,7 +94,7 @@ class Tournaments extends Component {
           {this.tournaments.map(tournament => (
             <TournamentCard
               tournament={tournament}
-              key={`tournamentList${this.props.tournament.id}`}
+              key={`tournamentList${tournament.id}`}
             />
           ))}
         </div>
