@@ -14,6 +14,8 @@ import Divider from "@material-ui/core/Divider";
 
 import { logout } from "actions/auth";
 
+import HeaderLogo from "images/brand/logo7@1000x.png";
+
 import "./header.css";
 
 class Header extends Component {
@@ -51,7 +53,7 @@ class Header extends Component {
       <div className="header" role="navigation">
         <div className="header-navLinks header-desktopMenu">
           <Link to={"/"}>
-            <p className="logo-small">Saga.GG</p>
+            <img src={HeaderLogo} className="logo-small" alt="logo" />
           </Link>
           {this.props.auth.user && (
             <div className="header-navLinks-row">

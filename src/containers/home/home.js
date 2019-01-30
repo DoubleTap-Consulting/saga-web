@@ -9,6 +9,8 @@ import FeaturedTournaments from "./components/featured-tournaments/featuredTourn
 import FeaturedContent from "./components/featured-news/featuredNews";
 import SellingPoints from "./components/selling-points/sellingPoints";
 
+import homeLogo from "images/brand/logo9.png";
+
 import "./home.css";
 
 class Home extends Component {
@@ -22,7 +24,7 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="home-header">
-          <h4 className="logo-big">Saga.GG</h4>
+          <img src={homeLogo} className="logo-big" alt="logo" />
           <h5 className="home-header-secondary">
             Your Home for All Things Esports
           </h5>
