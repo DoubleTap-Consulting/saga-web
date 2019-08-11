@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Route, Switch } from "react-router";
 import asyncLoader from "components/asyncComponentLoader";
 import PrivateRoute from "components/privateRoute";
-import { refreshLogin, saveUserToStore } from "actions/auth";
+import { saveUserToStore } from "actions/auth";
 // import { getUserInfo } from "actions/user";
 import { getAuth } from "utils/api";
 import { Helmet } from "react-helmet";
@@ -23,9 +23,6 @@ const asyncSignup = asyncLoader(() =>
 );
 const asyncPasswordReset = asyncLoader(() =>
   require("../../containers/password-reset/password-reset")
-);
-const asyncEmailValidation = asyncLoader(() =>
-  require("../../containers/email-validation/emailValidation")
 );
 const asyncHome = asyncLoader(() => require("../../containers/home/home"));
 const asyncProfile = asyncLoader(() =>

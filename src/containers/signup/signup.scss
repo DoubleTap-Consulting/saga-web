@@ -39,6 +39,12 @@
     margin-bottom: 40px;
   }
 
+  &-error {
+    color: red;
+    margin: 0;
+    font-size: 14px;
+  }
+
   &-input {
     outline: 0;
     border: 1px solid white;
@@ -53,6 +59,11 @@
     color: white;
     transition-duration: 0.25s;
     font-weight: 300;
+
+    &-error {
+      border: 1px solid red;
+      color: red !important;
+    }
 
     &:hover {
       background-color: fade(white, 40%);

@@ -19,6 +19,7 @@ class Signup extends Component {
       emailTouched: false,
       password: "",
       gamerTag: "",
+      gamerTagTaken: false,
       signingUp: false,
       emailTakenError: false
     };
@@ -62,7 +63,7 @@ class Signup extends Component {
   checkGamerTagTakenDebounced = _.debounce(() => {
     checkGamerTag(this.state.gamerTag).then(status => {
       this.setState({
-        gamerTagTaken: status.taken
+        gamerTagTaken: status
       });
     });
   }, 500);
@@ -142,7 +143,9 @@ class Signup extends Component {
           )}
           <input
             id="gamerTag"
-            className="signup-input"
+            className={`signup-input ${
+              this.state.gamerTagTaken ? "signup-input-error" : ""
+            }`}
             placeholder="Gamer Tag"
             autoComplete="gamerTag"
             value={this.state.gamerTag}
@@ -151,6 +154,9 @@ class Signup extends Component {
             onBlur={this.emailTouched}
             type="gamerTag"
           />
+          {this.state.gamerTagTaken && (
+            <p className="signup-error">GamerTag Taken</p>
+          )}
           <input
             id="password"
             className="signup-input"

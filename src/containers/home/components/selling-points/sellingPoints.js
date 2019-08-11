@@ -200,7 +200,11 @@ class SellingPoints extends Component {
         <div className="sellingPoints-section-row">
           <div className="sellingPoints-section">
             <h1 className="sellingPoints-section-title">Resume</h1>
-            <img src={ProfilePreview} className="sellingPoints-section-image" />
+            <img
+              src={ProfilePreview}
+              alt=""
+              className="sellingPoints-section-image"
+            />
             <h3 className="sellingPoints-section-description">
               Saga.GG is your esports resume. Beautiful, fast and trustworthy.
               If you're in the scene or aspiring to be, this is what teams and
@@ -209,7 +213,11 @@ class SellingPoints extends Component {
           </div>
           <div className="sellingPoints-section">
             <h1 className="sellingPoints-section-title">Content</h1>
-            <img src={ContentImage} className="sellingPoints-section-image" />
+            <img
+              src={ContentImage}
+              alt=""
+              className="sellingPoints-section-image"
+            />
             <h3 className="sellingPoints-section-description">
               Forget about having to scour Twitter for breaking news, Saga.GG
               provides curated content from top tier pros, managers, coaches,
@@ -221,6 +229,7 @@ class SellingPoints extends Component {
             <h1 className="sellingPoints-section-title">Events</h1>
             <img
               src={TournamentsImage}
+              alt=""
               className="sellingPoints-section-image"
             />
             <h3 className="sellingPoints-section-description">

@@ -7,17 +7,11 @@
  */
 
 import {
-  ACCESS_TOKEN,
   callApi,
   callApiWithJWT,
   decodeUserProfile,
-  loadRefreshToken,
-  REFRESH_TOKEN,
   removeTokens,
-  setAccessToken,
-  setGamerTag,
-  setRefreshToken,
-  setUserId
+  setAccessToken
 } from "../utils/api";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -64,17 +58,13 @@ function loginRequest(user) {
 }
 
 function loginSuccess(payload) {
-  if (payload.accessToken) {
-    const accessToken = payload.accessToken;
-    const refreshToken = payload.refreshToken;
-    const user = payload.user;
+  if (payload.tokens) {
+    const accessToken = payload.tokens;
+    const profile = decodeUserProfile(accessToken);
     setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
-    setUserId(payload.user.id);
-    setGamerTag(payload.user.gamerTag);
     return {
       type: LOGIN_SUCCESS,
-      user
+      user: profile
     };
   }
   return {
@@ -94,31 +84,6 @@ function loginFailure(error) {
     type: LOGIN_FAILURE,
     error
   };
-}
-
-/**
- * Reauthenticates the user based on the refresh token in local storage.
- * @param {string} refreshToken
- */
-export function refreshLogin(refresh_token = loadRefreshToken()) {
-  const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/auth/refresh`,
-    method: "post",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    data: {
-      refresh_token
-    }
-  };
-
-  return callApi(
-    config,
-    loginRequest(refresh_token),
-    loginSuccess,
-    loginFailure
-  );
 }
 
 /**
@@ -145,7 +110,7 @@ function logoutRequest() {
   };
 }
 
-function logoutSuccess(payload) {
+function logoutSuccess() {
   removeTokens();
   return {
     type: LOGOUT_SUCCESS,
@@ -202,10 +167,7 @@ export function emailConfirmed(token) {
  * Saves the user to the redux store.
  */
 export function saveUserToStore() {
-  const user = {
-    id: localStorage.getItem("USER_ID"),
-    gamerTag: localStorage.getItem("GAMERTAG")
-  };
+  const user = decodeUserProfile(localStorage.getItem("ACCESS_TOKEN"));
   return dispatch => dispatch(saveUserSuccess(user));
 }
 

@@ -40,9 +40,6 @@ class Header extends Component {
   };
 
   render() {
-    let onAuth =
-      this.props.location.pathname === "/signup" ||
-      this.props.location.pathname === "/login";
     const { mobileMenuOpen } = this.state;
     var styles = {
       dropDown: {

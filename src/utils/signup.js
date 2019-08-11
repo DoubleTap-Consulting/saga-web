@@ -4,9 +4,8 @@ import { nonActionApiWithJWT } from "./api";
  * Check if gamer tag is taken
  */
 export function checkGamerTag(gamerTag) {
-  // TODO: complete API call
   const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/v1/auth/gamerTag`,
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/auth/gamerTag/${gamerTag}`,
     method: "GET",
     headers: {
       enctype: "multipart/form-data",
@@ -15,6 +14,9 @@ export function checkGamerTag(gamerTag) {
     }
   };
   return nonActionApiWithJWT(config).then(response => {
+    if (response.data.user_exists) {
+      return true;
+    }
     return false;
   });
 }

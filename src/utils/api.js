@@ -36,13 +36,11 @@ export function callApi(config, request, onRequestSuccess, onRequestFailure) {
  */
 export function request(configObject) {
   const token = loadToken();
-  const refreshToken = loadRefreshToken();
   const config = configObject || {};
   if (!config.headers) {
     config.headers = {};
   }
   config.headers.Authorization = `${token}`;
-  config.headers.refreshToken = refreshToken;
 
   return axios
     .request(config)
@@ -168,7 +166,6 @@ export function nonActionApiWithJWT(config) {
  * Local Storage functions
  */
 export const ACCESS_TOKEN = "access_token";
-export const REFRESH_TOKEN = "refresh_token";
 export const USER_ID = "user_id";
 
 /**
@@ -188,14 +185,6 @@ export function setGamerTag(gamerTag) {
 }
 
 /**
- * Stores the refresh token in local storage.
- * @param {string} refreshToken - The refresh token.
- */
-export function setRefreshToken(refreshToken) {
-  localStorage.setItem("REFRESH_TOKEN", refreshToken);
-}
-
-/**
  * Stores the user's ID in local storage.
  * @param {number} userId - The user's ID.
  */
@@ -211,10 +200,7 @@ export function getUserId() {
  * Removes the access token, refresh token, and user ID from local storage.
  */
 export function removeTokens() {
-  localStorage.removeItem("USER_ID");
   localStorage.removeItem("ACCESS_TOKEN");
-  localStorage.removeItem("REFRESH_TOKEN");
-  localStorage.removeItem("GAMERTAG");
 }
 
 /**
@@ -245,13 +231,6 @@ export function getAuth() {
  */
 export function loadToken() {
   return localStorage.getItem("ACCESS_TOKEN");
-}
-
-/**
- * Retrieves the refresh token from local storage.
- */
-export function loadRefreshToken() {
-  return localStorage.getItem("REFRESH_TOKEN");
 }
 
 export function decodeUserProfile(accessToken) {
