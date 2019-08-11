@@ -165,8 +165,7 @@ export function nonActionApiWithJWT(config) {
 /*
  * Local Storage functions
  */
-export const ACCESS_TOKEN = "access_token";
-export const USER_ID = "user_id";
+export const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 /**
  * Stores the provided access token in local storage.
@@ -174,26 +173,6 @@ export const USER_ID = "user_id";
  */
 export function setAccessToken(accessToken) {
   localStorage.setItem("ACCESS_TOKEN", accessToken);
-}
-
-/**
- * Stores the provided access token in local storage.
- * @param {*} accessToken - The access token.
- */
-export function setGamerTag(gamerTag) {
-  localStorage.setItem("GAMERTAG", gamerTag);
-}
-
-/**
- * Stores the user's ID in local storage.
- * @param {number} userId - The user's ID.
- */
-export function setUserId(userId) {
-  localStorage.setItem("USER_ID", userId);
-}
-
-export function getUserId() {
-  return localStorage.getItem("USER_ID");
 }
 
 /**
