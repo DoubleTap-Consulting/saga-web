@@ -45,7 +45,7 @@ class ProfileHeader extends Component {
             <div className="column">
               {this.props.editingHeader ? (
                 <input
-                  value={this.props.player.gamerTag}
+                  value={this.props.profile.gamerTag}
                   onChange={this.props.handlePlayerChange}
                   name="gamerTag"
                   placeholder="Gamer Tag"
@@ -53,14 +53,12 @@ class ProfileHeader extends Component {
                 />
               ) : (
                 <h1 className="profile-playerHeader-info-gamerTag">
-                  {this.props.isOwnProfile
-                    ? this.props.auth.user.gamerTag
-                    : this.props.player.gamerTag}
+                  {this.props.profile.gamerTag}
                 </h1>
               )}
               {this.props.editingHeader ? (
                 <input
-                  value={this.props.player.tagline}
+                  value={this.props.profile.tagline}
                   onChange={this.props.handlePlayerChange}
                   maxLength="100"
                   name="tagline"
@@ -69,14 +67,16 @@ class ProfileHeader extends Component {
                 />
               ) : (
                 <h4 className="profile-playerHeader-info-tagline">
-                  {this.props.player.tagline}
+                  {this.props.profile.tagline}
                 </h4>
               )}
             </div>
             <div className="row profile-playerHeader-info-socials">
-              {this.props.player.twitterUrl && (
+              {this.props.profile.twitter_username && (
                 <a
-                  href={this.props.player.twitterUrl}
+                  href={`https://www.twitter.com/${
+                    this.props.profile.twitter_username
+                  }`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -87,9 +87,9 @@ class ProfileHeader extends Component {
                   />
                 </a>
               )}
-              {this.props.player.instagramUrl && (
+              {this.props.profile.instagram_url && (
                 <a
-                  href={this.props.player.instagramUrl}
+                  href={this.props.profile.instagram_url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -100,9 +100,9 @@ class ProfileHeader extends Component {
                   />
                 </a>
               )}
-              {this.props.player.discordUrl && (
+              {this.props.profile.discord_username && (
                 <a
-                  href={this.props.player.discordUrl}
+                  href={this.props.profile.discord_username}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -113,9 +113,9 @@ class ProfileHeader extends Component {
                   />
                 </a>
               )}
-              {this.props.player.twitchUrl && (
+              {this.props.profile.twitch_username && (
                 <a
-                  href={this.props.player.twitchUrl}
+                  href={`www.twitch.com/${this.props.profile.twitch_username}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -126,7 +126,7 @@ class ProfileHeader extends Component {
           </div>
           <div className="profile-playerHeader-views">
             <img src={EyeIcon} alt="Views" />
-            <p>{this.props.player.views}</p>
+            <p>{this.props.profile.profile_views}</p>
           </div>
         </div>
         {this.props.isOwnProfile && (
@@ -146,8 +146,8 @@ ProfileHeader.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(ProfileHeader);

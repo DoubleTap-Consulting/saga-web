@@ -39,7 +39,7 @@ class Summary extends Component {
             <span>
               <textarea
                 name="summary"
-                value={this.props.player.summary}
+                value={this.props.profile.summary}
                 onChange={this.props.handlePlayerChange}
                 placeholder="Summary"
                 className="brand-text-area-dark"
@@ -48,15 +48,15 @@ class Summary extends Component {
               />
               <p
                 className={`profile-container-card-body-lengthAlert ${
-                  this.props.player.summary.length > 240 ? "warning" : ""
+                  this.props.profile.summary.length > 240 ? "warning" : ""
                 }`}
               >
-                {this.props.player.summary.length} / 255
+                {this.props.profile.summary.length} / 255
               </p>
             </span>
           ) : (
             <h3 className="profile-container-card-body-text profile-container-card-body-summary">
-              {this.props.player.summary}
+              {this.props.profile.summary}
             </h3>
           )}
         </div>
@@ -74,8 +74,8 @@ Summary.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Summary);

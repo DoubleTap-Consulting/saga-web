@@ -8,12 +8,6 @@ import moment from "moment";
 import "./personal.css";
 
 class Personal extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="profile-container-card brand-background-dark">
@@ -38,31 +32,31 @@ class Personal extends Component {
         {this.props.editingPersonal ? (
           <div className="profile-container-card-body">
             <input
-              name="firstName"
-              value={this.props.player.firstName}
+              name="name"
+              value={this.props.profile.name}
               onChange={this.props.handlePlayerChange}
-              placeholder="First Name"
-              className="brand-input-dark"
-            />
-            <input
-              name="lastName"
-              value={this.props.player.lastName}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Last Name"
+              placeholder="Name"
               className="brand-input-dark"
             />
             <input
               name="birthday"
-              value={this.props.player.birthday}
+              value={this.props.profile.birthday}
               onChange={this.props.handlePlayerChange}
               placeholder="Birthday (MM/DD/YYYY)"
               className="brand-input-dark"
             />
             <input
               name="location"
-              value={this.props.player.location}
+              value={this.props.profile.city}
               onChange={this.props.handlePlayerChange}
-              placeholder="Location"
+              placeholder="City"
+              className="brand-input-dark"
+            />
+            <input
+              name="location"
+              value={this.props.profile.state}
+              onChange={this.props.handlePlayerChange}
+              placeholder="State"
               className="brand-input-dark"
             />
           </div>
@@ -73,13 +67,13 @@ class Personal extends Component {
                 Full Name
               </h2>
               <h3 className="profile-container-card-body-text">
-                {`${this.props.player.firstName} ${this.props.player.lastName}`}
+                {`${this.props.profile.name}`}
               </h3>
             </div>
             <div className="profile-container-card-body-line">
               <h2 className="profile-container-card-body-subtitle">Age</h2>
               <h3 className="profile-container-card-body-text">
-                {this.props.player.birthday
+                {this.props.profile.birthday
                   ? moment().diff(this.props.player.birthday, "years")
                   : ""}
               </h3>
@@ -87,7 +81,7 @@ class Personal extends Component {
             <div className="profile-container-card-body-line">
               <h2 className="profile-container-card-body-subtitle">Location</h2>
               <h3 className="profile-container-card-body-text">
-                {this.props.player.location}
+                {this.props.profile.city}, {this.props.profile.state}
               </h3>
             </div>
           </div>
@@ -106,8 +100,8 @@ Personal.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Personal);

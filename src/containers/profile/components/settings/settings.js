@@ -7,12 +7,6 @@ import Icon from "@material-ui/core/Icon";
 import "./settings.css";
 
 class Settings extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="profile-container-card brand-background-dark">
@@ -25,7 +19,7 @@ class Settings extends Component {
             Selected Game:
             <select
               className="brand-select"
-              value={this.props.player.game}
+              value={this.props.profile.game}
               name="game"
               style={{ marginLeft: "5px" }}
               onChange={this.props.handleChange}
@@ -39,7 +33,7 @@ class Settings extends Component {
             Gaming Level:
             <select
               className="brand-select"
-              value={this.props.player.level}
+              value={this.props.profile.gaming_level}
               name="level"
               style={{ marginLeft: "5px" }}
               onChange={this.props.handleChange}
@@ -56,7 +50,7 @@ class Settings extends Component {
             Game Perspective Preference:
             <select
               className="brand-select"
-              value={this.props.player.perspectivePreference}
+              value={this.props.profile.perspective_preference}
               name="perspectivePreference"
               style={{ marginLeft: "5px" }}
               onChange={this.props.handleChange}
@@ -88,8 +82,8 @@ Settings.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Settings);

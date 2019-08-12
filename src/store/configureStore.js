@@ -7,6 +7,7 @@ import tournaments from "../reducers/tournaments";
 import leagues from "../reducers/leagues";
 import players from "../reducers/players";
 import marketplace from "../reducers/marketplace";
+import profile from "../reducers/profile";
 import content from "../reducers/content";
 import {
   requestPasswordReset,
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   leagues,
   players,
   marketplace,
-  content
+  content,
+  profile
 });
 const initialState = {};
 

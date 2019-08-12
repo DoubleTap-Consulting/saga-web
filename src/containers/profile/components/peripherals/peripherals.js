@@ -66,8 +66,8 @@ Peripherals.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Peripherals);

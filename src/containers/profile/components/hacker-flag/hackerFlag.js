@@ -5,21 +5,18 @@ import PropTypes from "prop-types";
 import "./hackerFlag.css";
 
 class Hacker extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {};
-  }
-
   render() {
     return (
-      this.props.hacker && (
-        <div className="profile-hacker">
-          <h3>
-            * This player has been officially accused and confirmed hacking. #GG
-          </h3>
-        </div>
-      )
+      <span>
+        {this.props.hacker && (
+          <div className="profile-hacker">
+            <h3>
+              * This player has been officially accused and confirmed hacking.
+              #GG
+            </h3>
+          </div>
+        )}
+      </span>
     );
   }
 }
@@ -33,8 +30,8 @@ Hacker.contextTypes = {
   store: PropTypes.object.isRequired
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Hacker);
