@@ -13,17 +13,17 @@ export const LEAGUES_FAILURE = "LEAGUES_FAILURE";
  * Calls the leagues API.
  * @returns {object} The leagues object returned by the server.
  */
-export function getLeagues(email, password) {
+export function getLeagues() {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/leagues`,
-    method: "get",
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     }
   };
 
-  return callApi(config, leaguesRequest(email), leaguesSuccess, leaguesFailure);
+  return callApi(config, leaguesRequest, leaguesSuccess, leaguesFailure);
 }
 
 function leaguesRequest() {
@@ -33,25 +33,13 @@ function leaguesRequest() {
 }
 
 function leaguesSuccess(payload) {
-  if (payload.leagues) {
-    return {
-      type: LEAGUES_SUCCESS,
-      leagues: payload.leagues
-    };
-  }
   return {
-    type: LEAGUES_FAILURE,
-    error: payload.error
+    type: LEAGUES_SUCCESS,
+    leagues: payload.leagues
   };
 }
 
 function leaguesFailure(error) {
-  if (error) {
-    return {
-      type: LEAGUES_FAILURE,
-      error
-    };
-  }
   return {
     type: LEAGUES_FAILURE,
     error

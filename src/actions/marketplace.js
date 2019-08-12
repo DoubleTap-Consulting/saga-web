@@ -13,10 +13,10 @@ export const MARKETPLACE_FAILURE = "MARKETPLACE_FAILURE";
  * Calls the marketplace API.
  * @returns {object} The marketplace object returned by the server.
  */
-export function getMarketplace(email, password) {
+export function getMarketplace() {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/marketplace`,
-    method: "get",
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -25,7 +25,7 @@ export function getMarketplace(email, password) {
 
   return callApi(
     config,
-    marketplaceRequest(email),
+    marketplaceRequest,
     marketplaceSuccess,
     marketplaceFailure
   );
@@ -38,25 +38,13 @@ function marketplaceRequest() {
 }
 
 function marketplaceSuccess(payload) {
-  if (payload.marketplace) {
-    return {
-      type: MARKETPLACE_SUCCESS,
-      marketplace: payload.marketplace
-    };
-  }
   return {
-    type: MARKETPLACE_FAILURE,
-    error: payload.error
+    type: MARKETPLACE_SUCCESS,
+    marketplace: payload.marketplace
   };
 }
 
 function marketplaceFailure(error) {
-  if (error) {
-    return {
-      type: MARKETPLACE_FAILURE,
-      error
-    };
-  }
   return {
     type: MARKETPLACE_FAILURE,
     error

@@ -13,17 +13,17 @@ export const CONTENT_FAILURE = "CONTENT_FAILURE";
  * Calls the content API.
  * @returns {object} The content object returned by the server.
  */
-export function getContent(email, password) {
+export function getContent() {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/content`,
-    method: "get",
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     }
   };
 
-  return callApi(config, contentRequest(email), contentSuccess, contentFailure);
+  return callApi(config, contentRequest, contentSuccess, contentFailure);
 }
 
 function contentRequest() {
@@ -33,25 +33,13 @@ function contentRequest() {
 }
 
 function contentSuccess(payload) {
-  if (payload.content) {
-    return {
-      type: CONTENT_SUCCESS,
-      content: payload.content
-    };
-  }
   return {
-    type: CONTENT_FAILURE,
-    error: payload.error
+    type: CONTENT_SUCCESS,
+    content: payload.content
   };
 }
 
 function contentFailure(error) {
-  if (error) {
-    return {
-      type: CONTENT_FAILURE,
-      error
-    };
-  }
   return {
     type: CONTENT_FAILURE,
     error

@@ -13,22 +13,17 @@ export const PLAYERS_FAILURE = "PLAYERS_FAILURE";
  * Calls the players API.
  * @returns {object} The players object returned by the server.
  */
-export function getPlayers(email, password) {
+export function getPlayers() {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/players`,
-    method: "get",
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     }
   };
 
-  return callApiWithJWT(
-    config,
-    playersRequest(email),
-    playersSuccess,
-    playersFailure
-  );
+  return callApiWithJWT(config, playersRequest, playersSuccess, playersFailure);
 }
 
 function playersRequest() {
@@ -38,25 +33,13 @@ function playersRequest() {
 }
 
 function playersSuccess(payload) {
-  if (payload.players) {
-    return {
-      type: PLAYERS_SUCCESS,
-      players: payload.players
-    };
-  }
   return {
-    type: PLAYERS_FAILURE,
-    error: payload.error
+    type: PLAYERS_SUCCESS,
+    players: payload.players
   };
 }
 
 function playersFailure(error) {
-  if (error) {
-    return {
-      type: PLAYERS_FAILURE,
-      error
-    };
-  }
   return {
     type: PLAYERS_FAILURE,
     error
