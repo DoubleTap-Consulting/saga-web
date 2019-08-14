@@ -299,13 +299,7 @@ class Profile extends Component {
                 editPersonal={this.editPersonal}
                 submitPersonal={this.submitPersonal}
               />
-              <Peripherals
-                editingPeripherals={this.state.editingPeripherals}
-                editPeripherals={this.editPeripherals}
-                submitPeripherals={this.submitPeripherals}
-                handlePlayerChange={this.handlePlayerChange}
-                isOwnProfile={isOwnProfile}
-              />
+              <Peripherals isOwnProfile={isOwnProfile} />
               <Schedule
                 editingSchedule={this.state.editingSchedule}
                 editSchedule={this.editSchedule}

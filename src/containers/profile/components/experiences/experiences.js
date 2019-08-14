@@ -6,7 +6,7 @@ import Experience from "./components/experience";
 
 import Icon from "@material-ui/core/Icon";
 
-import "./experiences.css";
+import "./experiences.scss";
 
 function Experiences({ experiences, isOwnProfile, dispatch, userId }) {
   const [editingExperience, setEditingExperience] = useState(false);
@@ -47,10 +47,6 @@ function Experiences({ experiences, isOwnProfile, dispatch, userId }) {
     </div>
   );
 }
-
-Experiences.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
 
 function mapStateToProps({
   auth,

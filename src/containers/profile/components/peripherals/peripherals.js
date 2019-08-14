@@ -1,68 +1,80 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-
 import Icon from "@material-ui/core/Icon";
+import { updateProfileData, updateProfile } from "actions/profile";
 
-import "./peripherals.css";
+import "./peripherals.scss";
 
-class Peripherals extends Component {
-  constructor(props, context) {
-    super(props, context);
+function Peripherals({ peripherals = [], isOwnProfile, dispatch, userId }) {
+  const [editingPeripherals, setEditingPeripherals] = useState(false);
 
-    this.state = {
-      peripherals: []
-    };
-  }
+  const submitPeripherals = () => {
+    setEditingPeripherals(false);
+    dispatch(updateProfile(userId, { peripherals }));
+  };
 
-  render() {
-    return (
-      <div className="profile-container-card brand-background-dark">
-        <div className="profile-container-card-header">
-          <Icon className="profile-container-card-header-icon">computer</Icon>
-          <h3>Peripherals</h3>
-          {this.props.isOwnProfile && (
-            <button
-              className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${this
-                .props.editingPeripherals &&
-                "profile-playerHeader-info-button-save"}`}
-              onClick={
-                this.props.editingPeripherals
-                  ? this.props.submitPeripherals
-                  : this.props.editPeripherals
-              }
-            >
-              {this.props.editingPeripherals ? "Save" : "Edit"}
-            </button>
-          )}
-        </div>
-        {/* TODO: have to make adding and updating working correctly */}
-        {this.props.editingPeripherals ? (
-          <div className="profile-container-card-body">
-            <input
-              name="peripheral"
-              value="Logitech G933"
-              onChange={this.props.handlePlayerChange}
-              placeholder="Peripheral"
-              className="brand-input-dark"
-            />
-          </div>
-        ) : (
-          <div className="profile-container-card-body">
-            <h3 className="profile-container-card-body-text">Logitech G933</h3>
-          </div>
+  const editPeripherals = event => {
+    setEditingPeripherals(true);
+  };
+
+  const handleChange = event => {
+    let tempPeripherals = peripherals.slice();
+    tempPeripherals[event.target.id].name = event.target.value;
+    dispatch(updateProfileData({ peripherals: tempPeripherals }));
+  };
+
+  return (
+    <div className="profile-container-card brand-background-dark">
+      <div className="profile-container-card-header">
+        <Icon className="profile-container-card-header-icon">computer</Icon>
+        <h3>Peripherals</h3>
+        {isOwnProfile && (
+          <button
+            className={`profile-playerHeader-info-button profile-playerHeader-info-edit-main ${editingPeripherals &&
+              "profile-playerHeader-info-button-save"}`}
+            onClick={editingPeripherals ? submitPeripherals : editPeripherals}
+          >
+            {editingPeripherals ? "Save" : "Edit"}
+          </button>
         )}
       </div>
-    );
-  }
+      {editingPeripherals ? (
+        <div className="profile-container-card-body">
+          {peripherals.map((peripheral, index) => (
+            <div className="peripherals">
+              <h5 className="peripherals-title">{peripheral.type}</h5>
+              <input
+                name="peripheral"
+                value={peripheral.name}
+                id={index}
+                onChange={handleChange}
+                placeholder="Peripheral"
+                className="brand-input-dark"
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="profile-container-card-body">
+          {peripherals
+            .filter(peripheral => peripheral.name)
+            .map(peripheral => (
+              <h3 className="profile-container-card-body-text">
+                {`${peripheral.type}: ${peripheral.name}`}
+              </h3>
+            ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
-Peripherals.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
-
-function mapStateToProps({ auth, profile: { data: profile } }) {
-  return { auth, profile };
+function mapStateToProps({
+  profile: {
+    data: { peripherals, id }
+  }
+}) {
+  return { peripherals, userId: id };
 }
 
 export default connect(mapStateToProps)(Peripherals);
