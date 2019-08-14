@@ -57,8 +57,10 @@ export default function profile(state = initializeState(), action = {}) {
       };
     case PROFILE_UPDATE_INPUT:
       return Object.assign({}, state, {
-        ...state.data,
-        ...action.dataToUpdate
+        data: {
+          ...state.data,
+          ...action.dataToUpdate
+        }
       });
     default:
       return state;
