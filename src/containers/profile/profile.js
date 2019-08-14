@@ -213,13 +213,7 @@ class Profile extends Component {
         <div className="profile-header brand-background-header">
           <h1>Profile</h1>
         </div>
-        <ProfileHeader
-          editingHeader={this.state.editingHeader}
-          isOwnProfile={isOwnProfile}
-          editHeader={this.editHeader}
-          handlePlayerChange={this.handlePlayerChange}
-          submitHeader={this.submitHeader}
-        />
+        <ProfileHeader isOwnProfile={isOwnProfile} />
         <HackerFlag />
         <div className="profile-tabs brand-background-dark">
           <AppBar position="static" color="default">
