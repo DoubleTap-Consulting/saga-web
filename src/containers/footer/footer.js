@@ -47,11 +47,6 @@ Footer.propTypes = {
   })
 };
 
-Footer.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, user }) {
   return { auth, user };
 }

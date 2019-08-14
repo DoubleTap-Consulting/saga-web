@@ -21,8 +21,7 @@ import Tab from "@material-ui/core/Tab";
 import { getLifetimeStats, getSeasonStats } from "utils/pubgApi";
 import { loadUserProfile } from "utils/api";
 import { deleteAccount } from "utils/profile";
-import { getPlayer } from "utils/fortniteApi";
-import { getProfile } from "actions/profile";
+import { getProfile, updateProfileData } from "actions/profile";
 
 import "./profile.css";
 
@@ -79,7 +78,6 @@ class Profile extends Component {
       ],
       editingPersonal: false,
       editingHeader: false,
-      editingExperience: false,
       editingPeripherals: false,
       editingSchedule: false,
       editingSummary: false,
@@ -95,63 +93,6 @@ class Profile extends Component {
     this.props.dispatch(getProfile(this.props.location.pathname.slice(1)));
   }
 
-  componentDidMount() {
-    if (this.props.profile.game === "PUBG") {
-      getSeasonStats(
-        this.props.profile.pubgId,
-        "division.bro.official.pc-2018-01"
-      ).then(data => {
-        const pubgSeasonStats = [];
-        const pubgSeasonStatsOrder = [];
-        for (const key in data) {
-          if (
-            key.includes(
-              this.props.profile.perspective_preference.toLowerCase()
-            )
-          ) {
-            pubgSeasonStatsOrder.push(key);
-            pubgSeasonStats.push(data[key]);
-          }
-        }
-        this.setState({
-          pubgSeasonStats,
-          pubgSeasonStatsOrder
-        });
-      });
-
-      // TODO: Finish last 10 games endpoint
-      // getLastTenGames(this.props.profile.pubgId).then(pubgLast10Games => {
-      //   this.setState({
-      //     pubgLast10Games
-      //   });
-      // });
-
-      getLifetimeStats(this.props.profile.pubgId).then(data => {
-        // TODO: need to be caching this and everything with game APIs
-        const pubgLifetimeStats = [];
-        const pubgLifetimeStatsOrder = [];
-        for (const key in data) {
-          if (
-            key.includes(
-              this.props.profile.perspective_preference.toLowerCase()
-            )
-          ) {
-            pubgLifetimeStatsOrder.push(key);
-            pubgLifetimeStats.push(data[key]);
-          }
-        }
-        this.setState({
-          pubgLifetimeStats,
-          pubgLifetimeStatsOrder
-        });
-      });
-    } else if (this.props.profile.game === "fortnite") {
-      getPlayer(this.props.profile.fortnite_gamertag).then(data => {
-        console.log("fortnite stats", data);
-      });
-    }
-  }
-
   editHeader = () => {
     this.setState({
       editingHeader: true
@@ -161,12 +102,6 @@ class Profile extends Component {
   editPersonal = () => {
     this.setState({
       editingPersonal: true
-    });
-  };
-
-  editExperience = event => {
-    this.setState({
-      editingExperience: event.target.name
     });
   };
 
@@ -199,12 +134,6 @@ class Profile extends Component {
     // TODO: Save user info: firstName, lastName, birthday, lcoation, summary
     this.setState({
       editingPersonal: false
-    });
-  };
-
-  submitExperience = () => {
-    this.setState({
-      editingExperience: false
     });
   };
 
@@ -245,15 +174,6 @@ class Profile extends Component {
 
     let playerSnapshot = Object.assign({}, this.props.profile);
     playerSnapshot[event.target.name] = event.target.value;
-    this.setState({
-      player: playerSnapshot
-    });
-  };
-
-  handleExperienceChange = event => {
-    let playerSnapshot = Object.assign({}, this.props.profile);
-    playerSnapshot.experiences[event.target.id][event.target.name] =
-      event.target.value;
     this.setState({
       player: playerSnapshot
     });
@@ -335,13 +255,7 @@ class Profile extends Component {
                   allowFullScreen={true}
                 />
               </div>
-              <Experiences
-                isOwnProfile={isOwnProfile}
-                editingExperience={this.state.editingExperience}
-                editExperience={this.editExperience}
-                submitExperience={this.submitExperience}
-                handleChange={this.handleExperienceChange}
-              />
+              <Experiences isOwnProfile={isOwnProfile} />
             </div>
             <div>
               <div className="profile-stream">
@@ -416,11 +330,6 @@ Profile.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
-};
-
-Profile.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
 };
 
 function mapStateToProps({ auth, profile: { data: profile } }) {

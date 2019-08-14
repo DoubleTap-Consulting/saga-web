@@ -201,11 +201,6 @@ class Header extends Component {
   }
 }
 
-Header.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

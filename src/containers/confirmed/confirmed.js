@@ -45,11 +45,6 @@ Confirmed.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Confirmed.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

@@ -31,11 +31,6 @@ DiscordLink.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-DiscordLink.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

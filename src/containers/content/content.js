@@ -136,11 +136,6 @@ Content.defaultProps = {
   user: null
 };
 
-Content.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, user }) {
   return { auth, user };
 }

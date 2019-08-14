@@ -49,17 +49,11 @@ class NewsCard extends Component {
   }
 }
 
-NewsCard.contextTypes = {
+NewsCard.propTypes = {
   news: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
   })
-};
-
-NewsCard.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
 };
 
 function mapStateToProps({ auth }) {

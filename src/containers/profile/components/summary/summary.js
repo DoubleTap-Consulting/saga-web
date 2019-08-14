@@ -69,11 +69,6 @@ Summary.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-Summary.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, profile: { data: profile } }) {
   return { auth, profile };
 }

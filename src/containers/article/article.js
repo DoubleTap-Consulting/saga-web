@@ -65,11 +65,6 @@ Article.defaultProps = {
   user: null
 };
 
-Article.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, user }) {
   return { auth, user };
 }

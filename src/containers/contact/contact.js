@@ -53,11 +53,6 @@ Contact.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Contact.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

@@ -141,11 +141,6 @@ ProfileHeader.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-ProfileHeader.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, profile: { data: profile } }) {
   return { auth, profile };
 }

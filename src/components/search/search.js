@@ -5,16 +5,10 @@ import { Link } from "react-router-dom";
 import "./search.css";
 
 class Search extends Component {
-  constructor() {
-    super();
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="search">
-        <input type="text" required />
+        <input type="text" required onChange={this.props.updateSearch} />
         <span className="highlight" />
         <span className="bar" />
         <label>Search for a gamertag</label>
@@ -23,7 +17,13 @@ class Search extends Component {
             {this.props.results.map(row => (
               <Link to={`/${row.gamerTag}`}>
                 <div className="search-results-row">
-                  <h3>Michael Mitrakos</h3>
+                  <div className="search-results-column">
+                    <h4 className="search-results-gamertag">{row.gamerTag}</h4>
+                    {row.name && (
+                      <p className="search-results-name">{row.name}</p>
+                    )}
+                  </div>
+                  <h3 className="search-results-game">{row.game}</h3>
                 </div>
               </Link>
             ))}
@@ -42,11 +42,6 @@ Search.propTypes = {
 Search.defaultProps = {
   hideResults: false,
   results: []
-};
-
-Search.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
 };
 
 export default Search;

@@ -29,11 +29,6 @@ Question.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Question.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

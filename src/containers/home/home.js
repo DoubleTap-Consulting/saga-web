@@ -8,6 +8,8 @@ import FeaturedTournaments from "./components/featured-tournaments/featuredTourn
 import FeaturedContent from "./components/featured-news/featuredNews";
 import SellingPoints from "./components/selling-points/sellingPoints";
 
+import { getPlayers } from "actions/players";
+
 import homeLogo from "images/brand/logo9.png";
 
 import "./home.css";
@@ -16,20 +18,36 @@ class Home extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {};
+    this.state = {
+      searchText: ""
+    };
+
+    this.requestSearchUsers = searchText => {
+      this.props.dispatch(getPlayers(searchText));
+    };
   }
+
+  updateSearch = event => {
+    this.setState({
+      searchText: event.target.value
+    });
+    this.requestSearchUsers(event.target.value);
+  };
 
   render() {
     return (
       <div className="home">
         <div className="home-header">
-          <img src={homeLogo} className="logo-big" alt="logo" />
+          <img src={homeLogo} className="logo-small" alt="logo" />
           <h5 className="home-header-secondary">
             Your Home for All Things Esports
           </h5>
           {this.props.auth.user && (
             <div className="home-search">
-              <Search />
+              <Search
+                results={this.props.players.data}
+                updateSearch={this.updateSearch}
+              />
             </div>
           )}
         </div>
@@ -56,13 +74,8 @@ Home.defaultProps = {
   user: null
 };
 
-Home.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, players }) {
+  return { auth, players };
 }
 
 export default connect(mapStateToProps)(Home);

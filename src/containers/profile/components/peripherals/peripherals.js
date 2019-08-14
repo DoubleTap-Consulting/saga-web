@@ -61,11 +61,6 @@ Peripherals.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-Peripherals.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, profile: { data: profile } }) {
   return { auth, profile };
 }

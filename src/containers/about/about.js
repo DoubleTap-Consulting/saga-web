@@ -31,11 +31,6 @@ About.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-About.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

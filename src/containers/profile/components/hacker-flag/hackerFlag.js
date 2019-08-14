@@ -25,11 +25,6 @@ Hacker.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-Hacker.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth, profile: { data: profile } }) {
   return { auth, profile };
 }

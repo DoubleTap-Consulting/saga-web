@@ -44,11 +44,6 @@ Stats.propTypes = {
   order: PropTypes.array
 };
 
-Stats.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 Stats.defaultProps = {
   lifetimeStats: [],
   order: []

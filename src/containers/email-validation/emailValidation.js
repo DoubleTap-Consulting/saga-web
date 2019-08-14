@@ -49,9 +49,4 @@ EmailValidation.propTypes = {
   location: PropTypes.object
 };
 
-EmailValidation.contextTypes = {
-  location: PropTypes.object,
-  router: PropTypes.object
-};
-
 export default EmailValidation;
