@@ -1,10 +1,6 @@
-// this.authenticated = getAuth();
-// if (this.authenticated.hasValidToken) {
-//   this.props.dispatch(saveUserToStore());
-// }
-
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router";
+import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import configureStore from "store/configureStore";
 import PrivateRoute from "components/privateRoute";
@@ -57,12 +53,13 @@ class App extends Component {
   }
 
   render() {
+    const history = createBrowserHistory();
     return (
       <Provider store={store}>
         <div className="app" id="appRoot">
           <div className="app-container">
-            <BrowserRouter>
-              <div>
+            <div>
+              <Router history={history}>
                 <Header />
                 <Switch>
                   <Route exact path="/" component={Home} />
@@ -106,8 +103,8 @@ class App extends Component {
                   <Route exact path="/:username" component={Profile} />
                 </Switch>
                 <Footer />
-              </div>
-            </BrowserRouter>
+              </Router>
+            </div>
           </div>
         </div>
       </Provider>
