@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { trackClick } from "utils/googleAnalytics";
 
-import "./contentCard.css";
+import "./contentCard.scss";
 
 class ContentCard extends Component {
   constructor() {

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import renderHTML from "react-render-html";
 
-import "./question.css";
+import "./question.scss";
 
 class Question extends Component {
   constructor(props, context) {

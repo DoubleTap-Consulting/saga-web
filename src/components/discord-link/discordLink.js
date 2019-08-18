@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "./discordLink.css";
+import "./discordLink.scss";
 
 class DiscordLink extends Component {
   constructor(props, context) {

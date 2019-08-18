@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import "./search.css";
+import "./search.scss";
 
 class Search extends Component {
   render() {

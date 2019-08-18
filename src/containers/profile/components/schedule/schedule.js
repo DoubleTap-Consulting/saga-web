@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Icon from "@material-ui/core/Icon";
 
-import "./schedule.css";
+import "./schedule.scss";
 
 class Schedule extends Component {
   render() {

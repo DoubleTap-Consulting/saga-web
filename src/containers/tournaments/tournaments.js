@@ -6,7 +6,7 @@ import moment from "moment";
 import TournamentCard from "components/tournament-card/tournamentCard";
 import PgiImage from "images/pgi.jpg";
 
-import "./tournaments.css";
+import "./tournaments.scss";
 
 class Tournaments extends Component {
   constructor(props, context) {

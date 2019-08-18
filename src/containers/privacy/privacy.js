@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import renderHTML from "react-render-html";
 
-import "./privacy.css";
+import "./privacy.scss";
 
 class Privacy extends Component {
   constructor(props) {

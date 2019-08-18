@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Icon from "@material-ui/core/Icon";
 import moment from "moment";
 
-import "./personal.css";
+import "./personal.scss";
 
 class Personal extends Component {
   render() {

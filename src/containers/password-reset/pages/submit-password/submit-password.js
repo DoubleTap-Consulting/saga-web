@@ -7,7 +7,7 @@ import queryString from "query-string";
 import { submitPasswordReset } from "actions/password-reset";
 // Direct path imports
 import key from "images/key.png";
-import "./submit-password.css";
+import "./submit-password.scss";
 
 class SubmitPassword extends Component {
   constructor(props, context) {

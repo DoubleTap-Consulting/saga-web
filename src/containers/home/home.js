@@ -12,7 +12,7 @@ import { getPlayers } from "actions/players";
 
 import homeLogo from "images/brand/logo9.png";
 
-import "./home.css";
+import "./home.scss";
 
 class Home extends Component {
   constructor(props, context) {

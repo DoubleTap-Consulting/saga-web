@@ -6,7 +6,7 @@ import Icon from "@material-ui/core/Icon";
 
 import StatTabs from "./components/statTabs/statTabs";
 
-import "./stats.css";
+import "./stats.scss";
 
 class Stats extends Component {
   constructor(props, context) {

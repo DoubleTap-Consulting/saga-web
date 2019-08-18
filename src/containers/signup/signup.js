@@ -7,7 +7,7 @@ import { checkGamerTag, registerUser } from "utils/signup";
 
 import _ from "lodash";
 
-import "./signup.css";
+import "./signup.scss";
 
 class Signup extends Component {
   constructor(props, context) {

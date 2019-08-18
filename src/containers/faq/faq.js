@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Question from "./components/question/question";
 
-import "./faq.css";
+import "./faq.scss";
 
 class Faq extends Component {
   constructor(props, context) {

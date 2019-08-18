@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Icon from "@material-ui/core/Icon";
 
-import "./tournament.css";
+import "./tournament.scss";
 
 class Tournament extends Component {
   constructor(props, context) {

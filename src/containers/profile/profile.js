@@ -23,7 +23,7 @@ import { loadUserProfile } from "utils/api";
 import { deleteAccount } from "utils/profile";
 import { getProfile, updateProfileData } from "actions/profile";
 
-import "./profile.css";
+import "./profile.scss";
 
 class Profile extends Component {
   constructor(props, context) {

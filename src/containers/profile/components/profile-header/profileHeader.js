@@ -9,7 +9,7 @@ import DiscordIcon from "images/discord.png";
 import TwitchIcon from "images/twitch.png";
 import EyeIcon from "images/eye.svg";
 
-import "./profileHeader.css";
+import "./profileHeader.scss";
 
 function ProfileHeader({ isOwnProfile, dispatch, profile }) {
   const [editingHeader, setEditingHeader] = useState(false);

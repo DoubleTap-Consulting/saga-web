@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Icon from "@material-ui/core/Icon";
 
-import "./settings.css";
+import "./settings.scss";
 
 class Settings extends Component {
   render() {

@@ -8,7 +8,7 @@ import ProfilePreview from "images/profilePreview.png";
 import TournamentsImage from "images/tournaments.png";
 import ContentImage from "images/content.png";
 
-import "./sellingPoints.css";
+import "./sellingPoints.scss";
 
 class SellingPoints extends Component {
   constructor() {

@@ -8,7 +8,7 @@ import Tab from "@material-ui/core/Tab";
 
 import { getPlayer } from "utils/fortniteApi";
 
-import "./statTabs.css";
+import "./statTabs.scss";
 
 class StatTabs extends Component {
   constructor(props, context) {

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { requestPasswordReset } from "actions/password-reset";
 // Direct path imports
 import envelope from "images/envelope.png";
-import "./sent.css";
+import "./sent.scss";
 
 const styles = {
   block: {

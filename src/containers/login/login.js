@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import { login } from "../../actions/auth";
 
-import "./login.css";
+import "./login.scss";
 
 class Login extends Component {
   constructor(props, context) {

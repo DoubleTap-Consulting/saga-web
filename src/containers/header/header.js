@@ -16,7 +16,7 @@ import { logout } from "actions/auth";
 
 import HeaderLogo from "images/brand/logo7@1000x.png";
 
-import "./header.css";
+import "./header.scss";
 
 class Header extends Component {
   constructor(props) {

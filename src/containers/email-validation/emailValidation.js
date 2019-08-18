@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import "./emailValidation.css";
+import "./emailValidation.scss";
 
 class EmailValidation extends Component {
   constructor(props) {

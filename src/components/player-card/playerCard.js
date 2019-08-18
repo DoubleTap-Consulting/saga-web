@@ -12,7 +12,7 @@ import TwitchIcon from "images/twitch.png";
 
 import { trackClick } from "utils/googleAnalytics";
 
-import "./playerCard.css";
+import "./playerCard.scss";
 
 class PlayerCard extends Component {
   constructor() {

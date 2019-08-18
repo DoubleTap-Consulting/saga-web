@@ -7,7 +7,7 @@ import Search from "components/search/search";
 
 import { getPlayers } from "actions/players";
 
-import "./players.css";
+import "./players.scss";
 
 class Players extends Component {
   constructor(props, context) {

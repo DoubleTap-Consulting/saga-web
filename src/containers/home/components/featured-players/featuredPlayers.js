@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import PlayerCard from "components/player-card/playerCard";
 
-import "./featuredPlayers.css";
+import "./featuredPlayers.scss";
 
 class FeaturedPlayers extends Component {
   constructor() {

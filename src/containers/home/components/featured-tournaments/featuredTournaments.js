@@ -7,7 +7,7 @@ import PgiImage from "images/pgi.jpg";
 import GllImage from "images/gll.jpg";
 import HkPubg from "images/hkpubg.jpg";
 
-import "./featuredTournaments.css";
+import "./featuredTournaments.scss";
 
 class FeaturedTournaments extends Component {
   constructor() {

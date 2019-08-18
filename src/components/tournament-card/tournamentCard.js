@@ -6,7 +6,7 @@ import ReactTooltip from "react-tooltip";
 
 import { convertToCurrency } from "utils/currency";
 
-import "./tournamentCard.css";
+import "./tournamentCard.scss";
 
 class TournamentCard extends Component {
   constructor() {

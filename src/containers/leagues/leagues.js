@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "./leagues.css";
+import "./leagues.scss";
 
 class Leagues extends Component {
   constructor(props, context) {

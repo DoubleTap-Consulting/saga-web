@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import Icon from "@material-ui/core/Icon";
 
-import "./summary.css";
+import "./summary.scss";
 
 class Summary extends Component {
   constructor(props, context) {

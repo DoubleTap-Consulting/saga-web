@@ -6,7 +6,7 @@ import Article2Image from "images/article2.jpg";
 
 import renderHTML from "react-render-html";
 
-import "./article.css";
+import "./article.scss";
 
 class Article extends Component {
   constructor(props, context) {

@@ -7,7 +7,7 @@ import Article1Image from "images/article1.jpeg";
 import Article2Image from "images/article2.jpg";
 import Article3Image from "images/article3.jpg";
 
-import "./featuredNews.css";
+import "./featuredNews.scss";
 
 class FeaturedNews extends Component {
   constructor() {

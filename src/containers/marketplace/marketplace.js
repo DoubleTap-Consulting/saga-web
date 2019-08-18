@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "./marketplace.css";
+import "./marketplace.scss";
 
 class Marketplace extends Component {
   constructor(props, context) {

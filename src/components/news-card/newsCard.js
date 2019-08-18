@@ -6,7 +6,7 @@ import ReactTooltip from "react-tooltip";
 
 import { trackClick } from "utils/googleAnalytics";
 
-import "./newsCard.css";
+import "./newsCard.scss";
 
 class NewsCard extends Component {
   constructor() {

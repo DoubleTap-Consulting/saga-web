@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Request from "./pages/request/request";
 import Sent from "./pages/sent/sent";
 import SubmitPassword from "./pages/submit-password/submit-password";
-import "./password-reset.css";
+import "./password-reset.scss";
 
 class PasswordReset extends Component {
   render() {

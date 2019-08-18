@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { emailConfirmed } from "actions/auth";
 
-import "./confirmed.css";
+import "./confirmed.scss";
 
 class Confirmed extends Component {
   constructor(props, context) {

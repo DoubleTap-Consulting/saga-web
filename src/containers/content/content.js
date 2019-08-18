@@ -8,7 +8,7 @@ import Article1Image from "images/article1.jpeg";
 import Article2Image from "images/article2.jpg";
 import Article3Image from "images/article3.jpg";
 
-import "./content.css";
+import "./content.scss";
 
 class Content extends Component {
   constructor(props, context) {
