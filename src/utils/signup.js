@@ -13,8 +13,8 @@ export function checkGamerTag(gamerTag) {
       cacheControl: "no-cache"
     }
   };
-  return nonActionApiWithJWT(config).then(response => {
-    if (response.data.user_exists) {
+  return nonActionApiWithJWT(config).then(({ user_exists = false }) => {
+    if (user_exists) {
       return true;
     }
     return false;
