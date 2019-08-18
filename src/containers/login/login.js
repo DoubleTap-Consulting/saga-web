@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { login } from "../../actions/auth";
@@ -80,7 +80,7 @@ class Login extends Component {
       .then(response => {
         this.toggleLoggingIn();
         if (response.type === "LOGIN_SUCCESS") {
-          this.context.router.history.push("/");
+          this.props.history.push("/");
         }
       });
   };
@@ -150,4 +150,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

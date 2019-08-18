@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { checkGamerTag, registerUser } from "utils/signup";
@@ -199,4 +199,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Signup);
+export default withRouter(connect(mapStateToProps)(Signup));

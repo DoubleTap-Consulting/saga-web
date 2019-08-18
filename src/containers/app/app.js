@@ -62,42 +62,51 @@ class App extends Component {
         <div className="app" id="appRoot">
           <div className="app-container">
             <BrowserRouter>
-              <Header />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
-                <Route path="/passwordreset" component={PasswordReset} />
-                <PrivateRoute path="/article/:articleId" component={Article} />
-                <PrivateRoute exact path="/users" component={Players} />
-                <PrivateRoute
-                  exact
-                  path="/tournaments"
-                  component={Tournaments}
-                />
-                <PrivateRoute
-                  exact
-                  path="/tournaments/:tournamentId"
-                  component={Tournament}
-                />
-                <PrivateRoute exact path="/leagues" component={Leagues} />
-                <PrivateRoute
-                  exact
-                  path="/leagues/:leagueId"
-                  component={League}
-                />
-                <PrivateRoute exact path="/content" component={Content} />
-                <Route exact path="/account-confirmed" component={Confirmed} />
-                <Route exact path="/privacy" component={Privacy} />
-                <Route exact path="/confirm-email" component={ConfirmEmail} />
-                <Route exact path="/faq" component={Faq} />
-                <Route exact path="/contact" component={Contact} />
-                <Route exact path="/partners" component={Partners} />
-                <Route exact path="/marketplace" component={Marketplace} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/:username" component={Profile} />
-              </Switch>
-              <Footer />
+              <div>
+                <Header />
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/signup" component={Signup} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/passwordreset" component={PasswordReset} />
+                  <PrivateRoute
+                    path="/article/:articleId"
+                    component={Article}
+                  />
+                  <PrivateRoute exact path="/users" component={Players} />
+                  <PrivateRoute
+                    exact
+                    path="/tournaments"
+                    component={Tournaments}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/tournaments/:tournamentId"
+                    component={Tournament}
+                  />
+                  <PrivateRoute exact path="/leagues" component={Leagues} />
+                  <PrivateRoute
+                    exact
+                    path="/leagues/:leagueId"
+                    component={League}
+                  />
+                  <PrivateRoute exact path="/content" component={Content} />
+                  <Route
+                    exact
+                    path="/account-confirmed"
+                    component={Confirmed}
+                  />
+                  <Route exact path="/privacy" component={Privacy} />
+                  <Route exact path="/confirm-email" component={ConfirmEmail} />
+                  <Route exact path="/faq" component={Faq} />
+                  <Route exact path="/contact" component={Contact} />
+                  <Route exact path="/partners" component={Partners} />
+                  <Route exact path="/marketplace" component={Marketplace} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/:username" component={Profile} />
+                </Switch>
+                <Footer />
+              </div>
             </BrowserRouter>
           </div>
         </div>

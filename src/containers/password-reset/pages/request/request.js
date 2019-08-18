@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { requestPasswordReset } from "actions/password-reset";
 // Direct path imports
@@ -102,4 +103,4 @@ function mapStateToProps() {
   return { user: null };
 }
 
-export default connect(mapStateToProps)(Request);
+export default withRouter(connect(mapStateToProps)(Request));

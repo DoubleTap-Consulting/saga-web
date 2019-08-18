@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import FontAwesome from "react-fontawesome";
 import { isSafari } from "utils/browserDetector";
 import PropTypes from "prop-types";
@@ -200,4 +201,4 @@ function mapStateToProps() {
   return { user: null };
 }
 
-export default connect(mapStateToProps)(SubmitPassword);
+export default withRouter(connect(mapStateToProps)(SubmitPassword));

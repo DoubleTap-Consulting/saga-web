@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -30,13 +30,13 @@ class Header extends Component {
   handleToggle = event => {
     this.setState(state => ({ mobileMenuOpen: !state.mobileMenuOpen }));
     if (event.target.id) {
-      this.context.router.history.push(event.target.id);
+      this.props.history.push(event.target.id);
     }
   };
 
   logout = () => {
     this.props.dispatch(logout());
-    this.context.router.history.push("/login");
+    this.props.history.push("/login");
   };
 
   render() {
@@ -205,4 +205,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
