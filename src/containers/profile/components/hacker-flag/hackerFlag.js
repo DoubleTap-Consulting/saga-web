@@ -1,40 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
-import "./hackerFlag.css";
+import "./hackerFlag.scss";
 
-class Hacker extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      this.props.hacker && (
+function Hacker({ hacker }) {
+  return (
+    <span>
+      {hacker && (
         <div className="profile-hacker">
           <h3>
             * This player has been officially accused and confirmed hacking. #GG
           </h3>
         </div>
-      )
-    );
-  }
+      )}
+    </span>
+  );
 }
 
-Hacker.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
-
-Hacker.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ profile: { hacker } }) {
+  return { hacker };
 }
 
 export default connect(mapStateToProps)(Hacker);

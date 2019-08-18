@@ -1,13 +1,9 @@
 import { nonActionApiWithJWT } from "./api";
 
-/**
- * Registers a new user with the provided information.
- * @param {object} formData Should contain the email, password, first name, and last name.
- */
-export function getUserProfile(gamerTag) {
+export function deleteAccount() {
   const config = {
-    url: `${process.env.REACT_APP_API_DOMAIN}/v1/user`,
-    method: "GET",
+    url: `${process.env.REACT_APP_API_DOMAIN}/v1/users`,
+    method: "DELETE",
     header: {
       Accept: "application/json",
       "Content-Type": "application/json"

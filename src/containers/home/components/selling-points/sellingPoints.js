@@ -244,9 +244,4 @@ class SellingPoints extends Component {
   }
 }
 
-SellingPoints.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
 export default SellingPoints;

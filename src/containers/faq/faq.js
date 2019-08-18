@@ -124,11 +124,6 @@ Faq.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Faq.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

@@ -71,9 +71,4 @@ class FeaturedTournaments extends Component {
   }
 }
 
-FeaturedTournaments.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
 export default FeaturedTournaments;

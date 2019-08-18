@@ -12,7 +12,6 @@ class Article extends Component {
   constructor(props, context) {
     super(props, context);
 
-    console.log("this", this.props);
     // TODO: fix articleId param in props so I can grab article info with ID
 
     this.article = {
@@ -64,11 +63,6 @@ Article.propTypes = {
 
 Article.defaultProps = {
   user: null
-};
-
-Article.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
 };
 
 function mapStateToProps({ auth, user }) {

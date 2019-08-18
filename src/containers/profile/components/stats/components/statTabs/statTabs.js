@@ -6,6 +6,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
+import { getPlayer } from "utils/fortniteApi";
+
 import "./statTabs.css";
 
 class StatTabs extends Component {
@@ -15,6 +17,17 @@ class StatTabs extends Component {
     this.state = {
       value: 1
     };
+  }
+
+  componentDidMount(prevProps, nextProps) {
+    console.log("here", nextProps);
+    if (prevProps.profile.game !== nextProps.profile.game) {
+      if (nextProps.props.profile.game === "fortnite") {
+        getPlayer(this.props.profile.fortnite_gamertag).then(data => {
+          console.log("fortnite stats", data);
+        });
+      }
+    }
   }
 
   handleChange = (event, value) => {
@@ -104,15 +117,10 @@ StatTabs.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-StatTabs.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 StatTabs.defaultProps = {};
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(StatTabs);

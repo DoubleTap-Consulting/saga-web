@@ -7,12 +7,6 @@ import Icon from "@material-ui/core/Icon";
 import "./schedule.css";
 
 class Schedule extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="profile-container-card brand-background-dark">
@@ -36,105 +30,122 @@ class Schedule extends Component {
             </button>
           )}
         </div>
-        {this.props.editingSchedule ? (
-          <div className="profile-container-card-body">
-            <input
-              name="monday"
-              value={this.props.player.schedule.monday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="tuesday"
-              value={this.props.player.schedule.tuesday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="wednesday"
-              value={this.props.player.schedule.wednesday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="thursday"
-              value={this.props.player.schedule.thursday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="friday"
-              value={this.props.player.schedule.friday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="saturday"
-              value={this.props.player.schedule.saturday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-            <input
-              name="sunday"
-              value={this.props.player.schedule.sunday}
-              onChange={this.props.handlePlayerChange}
-              placeholder="Day Off"
-              className="brand-input-dark"
-            />
-          </div>
-        ) : (
-          <div className="profile-container-card-body">
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Monday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.monday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Tuesday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.tuesday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">
-                Wednesday
-              </h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.wednesday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Thursday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.thursday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Friday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.friday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Saturday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.saturday || "Day Off"}
-              </h3>
-            </div>
-            <div className="profile-container-card-body-line">
-              <h3 className="profile-container-card-body-subtitle">Sunday</h3>
-              <h3 className="profile-container-card-body-text">
-                {this.props.player.schedule.sunday || "Day Off"}
-              </h3>
-            </div>
-          </div>
+        {this.props.profile.schedule && (
+          <span>
+            {this.props.editingSchedule ? (
+              <div className="profile-container-card-body">
+                <input
+                  name="monday"
+                  value={this.props.profile.schedule.monday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="tuesday"
+                  value={this.props.profile.schedule.tuesday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="wednesday"
+                  value={this.props.profile.schedule.wednesday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="thursday"
+                  value={this.props.profile.schedule.thursday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="friday"
+                  value={this.props.profile.schedule.friday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="saturday"
+                  value={this.props.profile.schedule.saturday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+                <input
+                  name="sunday"
+                  value={this.props.profile.schedule.sunday}
+                  onChange={this.props.handlePlayerChange}
+                  placeholder="Day Off"
+                  className="brand-input-dark"
+                />
+              </div>
+            ) : (
+              // FIX THIS
+              <div className="profile-container-card-body">
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Monday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.monday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Tuesday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.tuesday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Wednesday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.wednesday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Thursday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.thursday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Friday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.friday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Saturday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.saturday || "Day Off"}
+                  </h3>
+                </div>
+                <div className="profile-container-card-body-line">
+                  <h3 className="profile-container-card-body-subtitle">
+                    Sunday
+                  </h3>
+                  <h3 className="profile-container-card-body-text">
+                    {this.props.profile.schedule.sunday || "Day Off"}
+                  </h3>
+                </div>
+              </div>
+            )}
+          </span>
         )}
       </div>
     );
@@ -145,13 +156,8 @@ Schedule.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-Schedule.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Schedule);

@@ -146,11 +146,6 @@ Login.propTypes = {
   location: PropTypes.object.isRequired
 };
 
-Login.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

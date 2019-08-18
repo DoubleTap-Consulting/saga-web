@@ -19,7 +19,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 import { getLifetimeStats, getSeasonStats } from "utils/pubgApi";
-import { getPlayer } from "utils/fortniteApi";
+import { loadUserProfile } from "utils/api";
+import { deleteAccount } from "utils/profile";
+import { getProfile, updateProfileData } from "actions/profile";
 
 import "./profile.css";
 
@@ -28,16 +30,6 @@ class Profile extends Component {
     super(props, context);
 
     this.state = {
-      value: 0,
-      editingPersonal: false,
-      editingHeader: false,
-      editingExperience: false,
-      editingPeripherals: false,
-      editingSchedule: false,
-      editingSummary: false,
-      pubgLifetimeStats: [],
-      pubgLifetimeStatsOrder: [],
-      pubgLast10Games: [],
       pubgSeasons: [
         {
           id: "division.bro.official.pc-2018-02",
@@ -84,125 +76,21 @@ class Profile extends Component {
           name: "2018 Season 1"
         }
       ],
+      editingPersonal: false,
+      editingHeader: false,
+      editingPeripherals: false,
+      editingSchedule: false,
+      editingSummary: false,
+      pubgLifetimeStats: [],
+      pubgLifetimeStatsOrder: [],
+      pubgLast10Games: [],
       pubgSeasonStats: [],
-      pubgSeasonStatsOrder: [],
-      player: {
-        firstName: "Michael",
-        lastName: "Mitrakos",
-        location: "Austin, Texas",
-        birthday: "02/19/1990",
-        tagline: "Fragger for Saga.GG",
-        summary:
-          "I've been involved with esports broadcasting for years. Having started out as a Counter-Strike caster he has grown to become perhaps the most recognizable eSports personality out there, in any game or genre. Get in touch with inquires please :)",
-        gamerTag: "Saga_Sultyn",
-        pubgId: "account.b03956cdb3274db086d49cb423ef057d",
-        game: "PUBG",
-        perspectivePreference: "FPP",
-        views: "52345",
-        teamName: "Saga.GG",
-        twitchUsername: "Sultyn",
-        twitchHighlightVideo: "176854397",
-        role: "Fragger",
-        level: "Casual",
-        twitchUrl: "http://www.twitch.tv/sultyn",
-        twitterUrl: "http://www.twitter.com/mike_mitrakos",
-        discordUrl: "",
-        instagramUrl: "http://www.instagram.com/michael_mitrakos",
-        hacker: false,
-        schedule: {
-          monday: "5pm - 11pm CST",
-          tuesday: "",
-          wednesday: "5pm - 11pm CST",
-          thursday: "",
-          friday: "5pm - 11pm CST",
-          saturday: "5pm - 11pm CST",
-          sunday: ""
-        },
-        experiences: [
-          {
-            team: "Saga",
-            game: "PUBG",
-            role: "IGL",
-            dateFrom: "11/03/2018",
-            dateTo: "Current",
-            id: 0,
-            description:
-              "Some description. Some description Some description Some description Some descriptionSome description Some description Some description. Some description Some description Some description Some description."
-          },
-          {
-            team: "FAZE",
-            game: "PUBG",
-            role: "IGL",
-            dateFrom: "11/05/2017",
-            dateTo: "11/02/2018",
-            id: 1,
-            description: "Some description"
-          }
-        ],
-        endorsements: []
-      }
+      pubgSeasonStatsOrder: []
     };
   }
 
-  componentDidMount() {
-    // TODO: Have to make sure state is structured correctly above for this
-    // getUserProfile(this.props.location.pathname.slice(1)).then(player => {
-    // this.setState({
-    //   player
-    // });
-    // });
-
-    // TODO: Move this to after getting user profile so we know what game to pull info for
-    if (this.state.player.game === "PUBG") {
-      getSeasonStats(
-        this.state.player.pubgId,
-        "division.bro.official.pc-2018-01"
-      ).then(data => {
-        const pubgSeasonStats = [];
-        const pubgSeasonStatsOrder = [];
-        for (const key in data) {
-          if (
-            key.includes(this.state.player.perspectivePreference.toLowerCase())
-          ) {
-            pubgSeasonStatsOrder.push(key);
-            pubgSeasonStats.push(data[key]);
-          }
-        }
-        this.setState({
-          pubgSeasonStats,
-          pubgSeasonStatsOrder
-        });
-      });
-
-      // TODO: Finish last 10 games endpoint
-      // getLastTenGames(this.state.player.pubgId).then(pubgLast10Games => {
-      //   this.setState({
-      //     pubgLast10Games
-      //   });
-      // });
-
-      getLifetimeStats(this.state.player.pubgId).then(data => {
-        // TODO: need to be caching this and everything with game APIs
-        const pubgLifetimeStats = [];
-        const pubgLifetimeStatsOrder = [];
-        for (const key in data) {
-          if (
-            key.includes(this.state.player.perspectivePreference.toLowerCase())
-          ) {
-            pubgLifetimeStatsOrder.push(key);
-            pubgLifetimeStats.push(data[key]);
-          }
-        }
-        this.setState({
-          pubgLifetimeStats,
-          pubgLifetimeStatsOrder
-        });
-      });
-    } else if (this.state.player.game === "FORTNITE") {
-      getPlayer("Sultyn").then(data => {
-        console.log("fortnite stats", data);
-      });
-    }
+  componentWillMount() {
+    this.props.dispatch(getProfile(this.props.location.pathname.slice(1)));
   }
 
   editHeader = () => {
@@ -214,12 +102,6 @@ class Profile extends Component {
   editPersonal = () => {
     this.setState({
       editingPersonal: true
-    });
-  };
-
-  editExperience = event => {
-    this.setState({
-      editingExperience: event.target.name
     });
   };
 
@@ -255,12 +137,6 @@ class Profile extends Component {
     });
   };
 
-  submitExperience = () => {
-    this.setState({
-      editingExperience: false
-    });
-  };
-
   submitPeripherals = () => {
     this.setState({
       editingPeripherals: false
@@ -280,19 +156,15 @@ class Profile extends Component {
   };
 
   deleteAccount = () => {
-    // TODO: delete account functionality
+    this.props.dispatch(deleteAccount());
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    //
   };
 
   handleExperienceChange = event => {
-    this.setState({
-      player: event.target.value
-    });
+    //
   };
 
   handlePlayerChange = event => {
@@ -300,17 +172,8 @@ class Profile extends Component {
       return;
     }
 
-    let playerSnapshot = Object.assign({}, this.state.player);
+    let playerSnapshot = Object.assign({}, this.props.profile);
     playerSnapshot[event.target.name] = event.target.value;
-    this.setState({
-      player: playerSnapshot
-    });
-  };
-
-  handleExperienceChange = event => {
-    let playerSnapshot = Object.assign({}, this.state.player);
-    playerSnapshot.experiences[event.target.id][event.target.name] =
-      event.target.value;
     this.setState({
       player: playerSnapshot
     });
@@ -325,23 +188,33 @@ class Profile extends Component {
   };
 
   render() {
-    let isOwnProfile =
-      this.props.auth.user.gamerTag === this.props.location.pathname.slice(1);
+    let currentUser = loadUserProfile();
+    let isOwnProfile = false;
+    if (this.props.profile.id) {
+      isOwnProfile = this.props.profile.id === currentUser.user_id;
+    }
+    let profileTabs = [
+      {
+        label: "Professional"
+      },
+      {
+        label: "Stats & Highlights"
+      },
+      {
+        label: "Personal"
+      }
+    ];
+    if (isOwnProfile && profileTabs.length === 3) {
+      profileTabs.push({ label: "Settings" });
+    }
 
     return (
       <div className="profile">
         <div className="profile-header brand-background-header">
           <h1>Profile</h1>
         </div>
-        <ProfileHeader
-          player={this.state.player}
-          editingHeader={this.state.editingHeader}
-          isOwnProfile={isOwnProfile}
-          editHeader={this.editHeader}
-          handlePlayerChange={this.handlePlayerChange}
-          submitHeader={this.submitHeader}
-        />
-        <HackerFlag hacker={this.state.player.hacker} />
+        <ProfileHeader isOwnProfile={isOwnProfile} />
+        <HackerFlag />
         <div className="profile-tabs brand-background-dark">
           <AppBar position="static" color="default">
             <Tabs
@@ -350,10 +223,9 @@ class Profile extends Component {
               indicatorColor="primary"
               textColor="primary"
             >
-              <Tab label="Professional" />
-              <Tab label="Stats & Highlights" />
-              <Tab label="Personal" />
-              {isOwnProfile && <Tab label="Settings" />}
+              {profileTabs.map(tab => (
+                <Tab label={tab.label} key={`profile--tabs-${tab.label}`} />
+              ))}
             </Tabs>
           </AppBar>
           <SwipeableViews
@@ -365,7 +237,7 @@ class Profile extends Component {
               <div className="profile-stream">
                 <iframe
                   src={`https://player.twitch.tv/?channel=${
-                    this.state.player.twitchUsername
+                    this.props.profile.twitch_username
                   }&muted=true`}
                   title="ProfileTwitchLiveStream"
                   id="ProfileTwitchLiveStream"
@@ -377,25 +249,12 @@ class Profile extends Component {
                   allowFullScreen={true}
                 />
               </div>
-              <Experiences
-                experiences={this.state.player.experiences}
-                isOwnProfile={isOwnProfile}
-                editingExperience={this.state.editingExperience}
-                player={this.state.player}
-                dateFrom={this.state.dateFrom}
-                dateTo={this.state.dateTo}
-                description={this.state.description}
-                editExperience={this.editExperience}
-                submitExperience={this.submitExperience}
-                handleChange={this.handleExperienceChange}
-              />
+              <Experiences isOwnProfile={isOwnProfile} />
             </div>
             <div>
               <div className="profile-stream">
                 <iframe
-                  src={`https://player.twitch.tv/?video=v${
-                    this.state.player.twitchHighlightVideo
-                  }&autoplay=false&muted=true`}
+                  src={`https://player.twitch.tv/?video=v176854397&autoplay=false&muted=true`}
                   height="520"
                   width="100%"
                   title="ProfileTwitchStream"
@@ -409,18 +268,17 @@ class Profile extends Component {
                 stats={this.state.pubgLifetimeStats}
                 order={this.state.pubgLifetimeStatsOrder}
                 title="Lifetime Stats"
-                game={this.state.player.game}
+                game={this.props.profile.game}
               />
               <Stats
                 stats={this.state.pubgSeasonStats}
                 order={this.state.pubgLifetimeStatsOrder}
                 title="Season Stats"
-                game={this.state.player.game}
+                game={this.props.profile.game}
               />
             </div>
             <div>
               <Summary
-                player={this.state.player}
                 isOwnProfile={isOwnProfile}
                 handlePlayerChange={this.handlePlayerChange}
                 editingSummary={this.state.editingSummary}
@@ -428,38 +286,27 @@ class Profile extends Component {
                 submitSummary={this.submitSummary}
               />
               <Personal
-                player={this.state.player}
+                player={this.props.profile}
                 isOwnProfile={isOwnProfile}
                 handlePlayerChange={this.handlePlayerChange}
                 editingPersonal={this.state.editingPersonal}
                 editPersonal={this.editPersonal}
                 submitPersonal={this.submitPersonal}
               />
-              <Peripherals
-                editingPeripherals={this.state.editingPeripherals}
-                editPeripherals={this.editPeripherals}
-                submitPeripherals={this.submitPeripherals}
-                player={this.state.player}
-                handlePlayerChange={this.handlePlayerChange}
-                isOwnProfile={isOwnProfile}
-              />
+              <Peripherals isOwnProfile={isOwnProfile} />
               <Schedule
                 editingSchedule={this.state.editingSchedule}
                 editSchedule={this.editSchedule}
                 submitSchedule={this.submitSchedule}
-                player={this.state.player}
                 handlePlayerChange={this.handlePlayerChange}
                 isOwnProfile={isOwnProfile}
               />
-              <Endorsements endorsements={this.state.player.endorsements} />
+              <Endorsements endorsements={this.props.profile.endorsements} />
             </div>
-            {isOwnProfile && (
-              <Settings
-                player={this.state.player}
-                handleChange={this.handlePlayerChange}
-                deleteAccount={this.deleteAccount}
-              />
-            )}
+            <Settings
+              handleChange={this.handlePlayerChange}
+              deleteAccount={this.deleteAccount}
+            />
           </SwipeableViews>
         </div>
       </div>
@@ -473,13 +320,9 @@ Profile.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-Profile.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  console.log("profile", profile);
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Profile);

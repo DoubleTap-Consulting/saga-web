@@ -1,19 +1,19 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
-// import { createLogger } from 'redux-logger';
+import logger from "redux-logger";
 // Reducers
 import auth from "../reducers/auth";
 import tournaments from "../reducers/tournaments";
 import leagues from "../reducers/leagues";
 import players from "../reducers/players";
 import marketplace from "../reducers/marketplace";
+import profile from "../reducers/profile";
 import content from "../reducers/content";
 import {
   requestPasswordReset,
   submitPasswordReset
 } from "../reducers/password-reset";
 
-// const logger = createLogger();
 /**
  * @var {function} rootReducer - The result of the combineReducers helper function,
  * which turns an object whose values are different reducing functions into a single reducing
@@ -27,7 +27,8 @@ const rootReducer = combineReducers({
   leagues,
   players,
   marketplace,
-  content
+  content,
+  profile
 });
 const initialState = {};
 
@@ -53,8 +54,10 @@ export default function configureStore() {
       rootReducer,
       initialState,
       compose(
-        applyMiddleware(thunkMiddleware),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
+        applyMiddleware(thunkMiddleware, logger),
+        ...(window.__REDUX_DEVTOOLS_EXTENSION__
+          ? [window.__REDUX_DEVTOOLS_EXTENSION__()]
+          : [])
       )
     );
   } else {

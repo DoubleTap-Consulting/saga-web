@@ -15,8 +15,6 @@ class Stats extends Component {
     this.state = {};
   }
 
-  // <div className="profile-container-card brand-background-dark">
-
   render() {
     return (
       <div className="stats profile-container-card brand-background-dark">
@@ -30,7 +28,7 @@ class Stats extends Component {
         </div>
         <div className="stats-container profile-playerHeader-info-experience">
           {/* PUBG */}
-          {this.props.game === "PUBG" && (
+          {this.props.profile.game === "PUBG" && (
             <StatTabs stats={this.props.stats} order={this.props.order} />
           )}
         </div>
@@ -46,18 +44,13 @@ Stats.propTypes = {
   order: PropTypes.array
 };
 
-Stats.contextTypes = {
-  router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
 Stats.defaultProps = {
   lifetimeStats: [],
   order: []
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile: { data: profile } }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Stats);

@@ -171,11 +171,6 @@ PlayerCard.defaultProps = {
   }
 };
 
-PlayerCard.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

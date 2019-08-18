@@ -24,9 +24,4 @@ PasswordReset.propTypes = {
   location: PropTypes.object
 };
 
-PasswordReset.contextTypes = {
-  location: PropTypes.object,
-  router: PropTypes.object
-};
-
 export default PasswordReset;

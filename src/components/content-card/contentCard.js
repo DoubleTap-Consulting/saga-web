@@ -22,7 +22,7 @@ class ContentCard extends Component {
   }
 }
 
-ContentCard.contextTypes = {
+ContentCard.propTypes = {
   content: PropTypes.shape({
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
@@ -31,11 +31,6 @@ ContentCard.contextTypes = {
     date: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired
   })
-};
-
-ContentCard.contextTypes = {
-  store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
 };
 
 export default ContentCard;
