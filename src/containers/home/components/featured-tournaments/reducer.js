@@ -2,7 +2,7 @@ import {
   TOURNAMENTS_REQUEST,
   TOURNAMENTS_SUCCESS,
   TOURNAMENTS_FAILURE
-} from "../actions/tournaments";
+} from './actions';
 
 const initialState = {
   tournaments: [],
