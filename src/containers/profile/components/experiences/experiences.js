@@ -7,7 +7,7 @@ import Icon from "@material-ui/core/Icon";
 
 import "./experiences.scss";
 
-function Experiences({ experiences, isOwnProfile, dispatch, userId }) {
+function Experiences({ experiences = [], isOwnProfile, dispatch, userId }) {
   const [editingExperience, setEditingExperience] = useState(false);
 
   const submitExperience = () => {
@@ -17,6 +17,29 @@ function Experiences({ experiences, isOwnProfile, dispatch, userId }) {
 
   const editExperience = event => {
     setEditingExperience(parseInt(event.target.id));
+  };
+
+  const addExperience = () => {
+    let tempExperiences = experiences.slice();
+    tempExperiences.unshift({
+      team: "",
+      game: "",
+      role: "",
+      dateFrom: "",
+      dateTo: "",
+      description: ""
+    });
+    for (let i = 0; i < tempExperiences.length; i++) {
+      tempExperiences[i].id = i;
+    }
+    dispatch(
+      updateProfileData({
+        experiences: tempExperiences
+      })
+    );
+    setTimeout(() => {
+      setEditingExperience(0);
+    }, 50);
   };
 
   const handleChange = event => {
@@ -30,19 +53,26 @@ function Experiences({ experiences, isOwnProfile, dispatch, userId }) {
       <div className="profile-container-card-header">
         <Icon className="profile-container-card-header-icon">work</Icon>
         <h3>Experience</h3>
+        <div
+          onClick={addExperience}
+          className="profile-container-card-header-addButton"
+        >
+          <Icon className="profile-container-card-header-icon">
+            control_point
+          </Icon>
+        </div>
       </div>
-      {experiences &&
-        experiences.map((exp, index) => (
-          <Experience
-            experience={exp}
-            index={index}
-            handleChange={handleChange}
-            editExperience={editExperience}
-            submitExperience={submitExperience}
-            editingExperience={editingExperience}
-            isOwnProfile={isOwnProfile}
-          />
-        ))}
+      {experiences.map((exp, index) => (
+        <Experience
+          experience={exp}
+          index={index}
+          handleChange={handleChange}
+          editExperience={editExperience}
+          submitExperience={submitExperience}
+          editingExperience={editingExperience}
+          isOwnProfile={isOwnProfile}
+        />
+      ))}
     </div>
   );
 }

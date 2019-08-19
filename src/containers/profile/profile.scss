@@ -258,6 +258,11 @@
         padding: 8px 15px;
         min-height: 50px;
 
+        &-addButton {
+          cursor: pointer;
+          margin-left: auto;
+        }
+
         &-icon {
           margin-right: 15px;
         }

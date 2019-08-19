@@ -14,7 +14,7 @@ function Experience({
   return (
     <div
       className="profile-playerHeader-info-experience"
-      key={`profileExperiences${index}`}
+      key={`profileExperiences${index}-${experience.name}`}
     >
       {isOwnProfile && (
         <button
@@ -90,7 +90,7 @@ function Experience({
             Role: {experience.role}
           </h5>
           <h5 className="profile-playerHeader-info-experience-date">
-            {experience.dateFrom} - {experience.dateTo}
+            {experience.dateFrom} - {experience.dateTo || "Current"}
           </h5>
           <h5 className="profile-playerHeader-info-experience-description">
             {experience.description}
