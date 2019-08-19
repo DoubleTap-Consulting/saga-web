@@ -117,7 +117,7 @@
       &-gamerTag {
         margin-top: 0;
         margin-bottom: 5px;
-        font-size: 70px;
+        font-size: 60px;
         @media screen and (max-width: 900px) {
           font-size: 50px;
         }
@@ -257,6 +257,11 @@
         border-radius: 8px 8px 0 0;
         padding: 8px 15px;
         min-height: 50px;
+
+        &-addButton {
+          cursor: pointer;
+          margin-left: auto;
+        }
 
         &-icon {
           margin-right: 15px;

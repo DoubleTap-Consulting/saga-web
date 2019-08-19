@@ -83,7 +83,8 @@ class Profile extends Component {
       pubgLifetimeStatsOrder: [],
       pubgLast10Games: [],
       pubgSeasonStats: [],
-      pubgSeasonStatsOrder: []
+      pubgSeasonStatsOrder: [],
+      tabSelected: 0
     };
   }
 
@@ -92,11 +93,11 @@ class Profile extends Component {
   }
 
   handleChangeIndex = index => {
-    this.setState({ value: index });
+    this.setState({ tabSelected: index });
   };
 
   handleTabChange = (event, value) => {
-    this.setState({ value });
+    this.setState({ tabSelected: value });
   };
 
   render() {
@@ -130,7 +131,7 @@ class Profile extends Component {
         <div className="profile-tabs brand-background-dark">
           <AppBar position="static" color="default">
             <Tabs
-              value={this.state.value}
+              value={this.state.tabSelected}
               onChange={this.handleTabChange}
               indicatorColor="primary"
               textColor="primary"
@@ -142,7 +143,7 @@ class Profile extends Component {
           </AppBar>
           <SwipeableViews
             axis={"x"}
-            index={this.state.value}
+            index={this.state.tabSelected}
             onChangeIndex={this.handleChangeIndex}
           >
             <div>

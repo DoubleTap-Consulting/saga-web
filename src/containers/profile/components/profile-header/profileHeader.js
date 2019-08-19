@@ -92,9 +92,9 @@ function ProfileHeader({ isOwnProfile, dispatch, profile }) {
                 />
               </a>
             )}
-            {profile.discord_username && (
+            {profile.discord_url && (
               <a
-                href={profile.discord_username}
+                href={`http://www.discord.com/${profile.discord_url}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -103,7 +103,7 @@ function ProfileHeader({ isOwnProfile, dispatch, profile }) {
             )}
             {profile.twitch_username && (
               <a
-                href={`www.twitch.com/${profile.twitch_username}`}
+                href={`http://www.twitch.com/${profile.twitch_username}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
