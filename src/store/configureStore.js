@@ -5,7 +5,7 @@ import logger from "redux-logger";
 import auth from "../reducers/auth";
 import tournaments from '../containers/home/components/featured-tournaments/reducer'
 import leagues from "../reducers/leagues";
-import players from "../reducers/players";
+import players from '../containers/home/components/featured-players/reducer';
 import marketplace from "../reducers/marketplace";
 import profile from "../reducers/profile";
 import content from "../reducers/content";
