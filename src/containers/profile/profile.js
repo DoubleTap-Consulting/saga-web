@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import Experiences from "./components/experiences/experiences";
 import Personal from "./components/personal/personal";
@@ -20,8 +19,7 @@ import Tab from "@material-ui/core/Tab";
 
 import { getLifetimeStats, getSeasonStats } from "utils/pubgApi";
 import { loadUserProfile } from "utils/api";
-import { deleteAccount } from "utils/profile";
-import { getProfile, updateProfileData } from "actions/profile";
+import { getProfile } from "actions/profile";
 
 import "./profile.scss";
 
@@ -92,92 +90,6 @@ class Profile extends Component {
   componentWillMount() {
     this.props.dispatch(getProfile(this.props.location.pathname.slice(1)));
   }
-
-  editHeader = () => {
-    this.setState({
-      editingHeader: true
-    });
-  };
-
-  editPersonal = () => {
-    this.setState({
-      editingPersonal: true
-    });
-  };
-
-  editPeripherals = () => {
-    this.setState({
-      editingPeripherals: true
-    });
-  };
-
-  editSchedule = () => {
-    this.setState({
-      editingSchedule: true
-    });
-  };
-
-  editSummary = () => {
-    this.setState({
-      editingSummary: true
-    });
-  };
-
-  submitHeader = () => {
-    // TODO: Save user info: gamerTag, tagline
-    this.setState({
-      editingHeader: false
-    });
-  };
-
-  submitPersonal = () => {
-    // TODO: Save user info: firstName, lastName, birthday, lcoation, summary
-    this.setState({
-      editingPersonal: false
-    });
-  };
-
-  submitPeripherals = () => {
-    this.setState({
-      editingPeripherals: false
-    });
-  };
-
-  submitSchedule = () => {
-    this.setState({
-      editingSchedule: false
-    });
-  };
-
-  submitSummary = () => {
-    this.setState({
-      editingSummary: false
-    });
-  };
-
-  deleteAccount = () => {
-    this.props.dispatch(deleteAccount());
-  };
-
-  handleChange = event => {
-    //
-  };
-
-  handleExperienceChange = event => {
-    //
-  };
-
-  handlePlayerChange = event => {
-    if (event.target.name === "summary" && event.target.value.length > 255) {
-      return;
-    }
-
-    let playerSnapshot = Object.assign({}, this.props.profile);
-    playerSnapshot[event.target.name] = event.target.value;
-    this.setState({
-      player: playerSnapshot
-    });
-  };
 
   handleChangeIndex = index => {
     this.setState({ value: index });
@@ -278,47 +190,19 @@ class Profile extends Component {
               />
             </div>
             <div>
-              <Summary
-                isOwnProfile={isOwnProfile}
-                handlePlayerChange={this.handlePlayerChange}
-                editingSummary={this.state.editingSummary}
-                editSummary={this.editSummary}
-                submitSummary={this.submitSummary}
-              />
-              <Personal
-                player={this.props.profile}
-                isOwnProfile={isOwnProfile}
-                handlePlayerChange={this.handlePlayerChange}
-                editingPersonal={this.state.editingPersonal}
-                editPersonal={this.editPersonal}
-                submitPersonal={this.submitPersonal}
-              />
+              <Summary isOwnProfile={isOwnProfile} />
+              <Personal isOwnProfile={isOwnProfile} />
               <Peripherals isOwnProfile={isOwnProfile} />
-              <Schedule
-                editingSchedule={this.state.editingSchedule}
-                editSchedule={this.editSchedule}
-                submitSchedule={this.submitSchedule}
-                handlePlayerChange={this.handlePlayerChange}
-                isOwnProfile={isOwnProfile}
-              />
+              <Schedule isOwnProfile={isOwnProfile} />
               <Endorsements endorsements={this.props.profile.endorsements} />
             </div>
-            <Settings
-              handleChange={this.handlePlayerChange}
-              deleteAccount={this.deleteAccount}
-            />
+            <Settings />
           </SwipeableViews>
         </div>
       </div>
     );
   }
 }
-
-Profile.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
 
 function mapStateToProps({ auth, profile: { data: profile } }) {
   return { auth, profile };
