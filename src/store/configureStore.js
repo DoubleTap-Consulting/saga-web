@@ -3,7 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import logger from "redux-logger";
 // Reducers
 import auth from "../reducers/auth";
-import tournaments from "../reducers/tournaments";
+import tournaments from '../containers/home/components/featured-tournaments/reducer'
 import leagues from "../reducers/leagues";
 import players from "../reducers/players";
 import marketplace from "../reducers/marketplace";

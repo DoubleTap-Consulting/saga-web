@@ -321,7 +321,6 @@ Profile.propTypes = {
 };
 
 function mapStateToProps({ auth, profile: { data: profile } }) {
-  console.log("profile", profile);
   return { auth, profile };
 }
 
