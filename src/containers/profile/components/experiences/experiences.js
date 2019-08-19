@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { updateProfileData, updateProfile } from "actions/profile";
 import Experience from "./components/experience";
 
