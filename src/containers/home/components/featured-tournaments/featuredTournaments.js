@@ -14,9 +14,7 @@ class FeaturedTournaments extends Component {
   }
 
   componentWillMount() {
-    console.log('mounting featured tournaments')
     const { getAllTournaments } = this.props
-    console.log('this.props', this.props)
     getAllTournaments()
   }
 

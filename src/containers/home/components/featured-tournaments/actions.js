@@ -30,7 +30,6 @@ const getAllTournaments = () => {
       "Content-Type": "application/json"
     }
   };
-  console.log('calling call api')
   return callApi(config, tournamentRequest, tournamentSuccess, tournamentFailure);
 }
 

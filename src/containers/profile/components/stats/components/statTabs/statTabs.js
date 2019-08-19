@@ -20,7 +20,6 @@ class StatTabs extends Component {
   }
 
   componentDidMount(prevProps, nextProps) {
-    console.log("here", nextProps);
     if (prevProps.profile.game !== nextProps.profile.game) {
       if (nextProps.props.profile.game === "fortnite") {
         getPlayer(this.props.profile.fortnite_gamertag).then(data => {
