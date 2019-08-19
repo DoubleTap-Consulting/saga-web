@@ -1,27 +1,29 @@
-import { callApi } from "../../../../utils/api";
+import { callApi } from "utils/api";
 
-export const PLAYERS_REQUEST = 'PLAYERS_REQUEST'
-export const PLAYERS_SUCCESS = 'PLAYERS_SUCCESS'
-export const PLAYERS_FAILURE = 'PLAYERS_FAILURE'
+export const FEATURED_PLAYERS_REQUEST = "FEATURED_PLAYERS_REQUEST";
+export const FEATURED_PLAYERS_SUCCESS = "FEATURED_PLAYERS_SUCCESS";
+export const FEATURED_PLAYERS_FAILURE = "FEATURED_PLAYERS_FAILURE";
 
-const playerRequest = () => ({
-  type: PLAYERS_REQUEST
-})
+const featuredPlayerRequest = () => ({
+  type: FEATURED_PLAYERS_REQUEST
+});
 
-const playerSuccess = payload => {
-  const players = payload.filter(({ type: featuredElementType }) => featuredElementType === 'player')
+const featuredPlayerSuccess = payload => {
+  const players = payload.filter(
+    ({ type: featuredElementType }) => featuredElementType === "player"
+  );
   return {
-    type: PLAYERS_SUCCESS,
+    type: FEATURED_PLAYERS_SUCCESS,
     players
-  }
-}
+  };
+};
 
-const playerFailure = error => ({
-  type: PLAYERS_FAILURE,
+const featuredPlayerFailure = error => ({
+  type: FEATURED_PLAYERS_FAILURE,
   error
-})
+});
 
-const getAllPlayers = () => {
+const getFeaturedPlayers = () => {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/featured/`,
     method: "GET",
@@ -30,10 +32,12 @@ const getAllPlayers = () => {
       "Content-Type": "application/json"
     }
   };
-  return callApi(config, playerRequest, playerSuccess, playerFailure);
-}
+  return callApi(
+    config,
+    featuredPlayerRequest,
+    featuredPlayerSuccess,
+    featuredPlayerFailure
+  );
+};
 
-
-export {
-  getAllPlayers
-}
+export { getFeaturedPlayers };

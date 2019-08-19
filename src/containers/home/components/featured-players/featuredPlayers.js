@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
-import { getAllPlayers } from './actions'
+import { connect } from "react-redux";
+import { getFeaturedPlayers } from "./actions";
 
 import PlayerCard from "components/player-card/playerCard";
 
@@ -14,12 +14,12 @@ class FeaturedPlayers extends Component {
   }
 
   componentWillMount() {
-    const { getAllPlayers } = this.props
-    getAllPlayers()
+    const { getFeaturedPlayers } = this.props;
+    getFeaturedPlayers();
   }
 
   render() {
-    const { players = [] } = this.props
+    const { players = [] } = this.props;
     return (
       <div className="featuredPlayers">
         <h1 className="heading-2">Featured Players</h1>
@@ -27,7 +27,7 @@ class FeaturedPlayers extends Component {
           {players.map(player => (
             <PlayerCard
               key={`featuredPlayer${player.id}`}
-              player={player}
+              player={player.data}
               showStatLine
             />
           ))}
@@ -38,11 +38,14 @@ class FeaturedPlayers extends Component {
 }
 
 const actionCreators = {
-  getAllPlayers
-}
+  getFeaturedPlayers
+};
 
-const mapStateToProps = ({ players: { players } }) => ({
+const mapStateToProps = ({ featuredPlayers: { players } }) => ({
   players
-})
+});
 
-export default connect(mapStateToProps, actionCreators)(FeaturedPlayers);
+export default connect(
+  mapStateToProps,
+  actionCreators
+)(FeaturedPlayers);

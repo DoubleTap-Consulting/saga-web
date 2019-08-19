@@ -1,38 +1,41 @@
 import {
-  PLAYERS_REQUEST,
-  PLAYERS_SUCCESS,
-  PLAYERS_FAILURE
-} from './actions';
+  FEATURED_PLAYERS_REQUEST,
+  FEATURED_PLAYERS_SUCCESS,
+  FEATURED_PLAYERS_FAILURE
+} from "./actions";
 
 const initialState = {
   players: [],
-  gettingPlayers: false,
-  gettingPlayersError: null
+  gettingFeaturedPlayers: false,
+  gettingFeaturedPlayersError: null
 };
 
 function initializeState() {
   return Object.assign({}, initialState);
 }
 
-export default function players(state = initializeState(), action = {}) {
+export default function featuredPlayers(
+  state = initializeState(),
+  action = {}
+) {
   switch (action.type) {
-    case PLAYERS_REQUEST:
+    case FEATURED_PLAYERS_REQUEST:
       return Object.assign({}, state, {
-        gettingPlayers: true,
-        gettingPlayersError: null
+        gettingFeaturedPlayers: true,
+        gettingFeaturedPlayersError: null
       });
-    case PLAYERS_SUCCESS:
+    case FEATURED_PLAYERS_SUCCESS:
       return Object.assign({}, state, {
         players: action.players,
-        gettingPlayers: false,
-        gettingPlayersError: null
+        gettingFeaturedPlayers: false,
+        gettingFeaturedPlayersError: null
       });
-    case PLAYERS_FAILURE:
+    case FEATURED_PLAYERS_FAILURE:
       return {
         ...state,
         players: null,
-        gettingPlayers: false,
-        gettingPlayersError: action.error
+        gettingFeaturedPlayers: false,
+        gettingFeaturedPlayersError: action.error
       };
     default:
       return state;

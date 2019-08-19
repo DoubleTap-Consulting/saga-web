@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
-import { getAllTournaments } from './actions'
+import { connect } from "react-redux";
+import { getFeaturedTournaments } from "./actions";
 
 import TournamentCard from "components/tournament-card/tournamentCard";
 
@@ -14,12 +14,13 @@ class FeaturedTournaments extends Component {
   }
 
   componentWillMount() {
-    const { getAllTournaments } = this.props
-    getAllTournaments()
+    const { getFeaturedTournaments } = this.props;
+    getFeaturedTournaments();
   }
 
   render() {
-    const { tournaments } = this.props
+    const { tournaments } = this.props;
+    console.log("fea", tournaments);
     return (
       <div className="featuredTournaments section">
         <h1 className="heading-2">Featured Tournaments</h1>
@@ -39,11 +40,14 @@ class FeaturedTournaments extends Component {
 }
 
 const actionCreators = {
-  getAllTournaments
-}
+  getFeaturedTournaments
+};
 
-const mapStateToProps = ({ tournaments: { tournaments } }) => ({
+const mapStateToProps = ({ featuredTournaments: { tournaments } }) => ({
   tournaments
-})
+});
 
-export default connect(mapStateToProps, actionCreators)(FeaturedTournaments);
+export default connect(
+  mapStateToProps,
+  actionCreators
+)(FeaturedTournaments);

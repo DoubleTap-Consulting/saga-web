@@ -67,9 +67,11 @@ class PlayerCard extends Component {
                 {this.props.player.tournament_name}
               </h4>
               <div className="featured-stats row">
-                {this.props.player.data.stats.map((stat) => (
+                {this.props.player.stats.map(stat => (
                   <div className="column">
-                    <h5 className="featured-stats-title">{Object.keys(stat)[0]}</h5>
+                    <h5 className="featured-stats-title">
+                      {Object.keys(stat)[0]}
+                    </h5>
                     <p>{Object.values(stat)[0]}</p>
                   </div>
                 ))}

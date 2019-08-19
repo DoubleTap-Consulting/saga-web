@@ -1,27 +1,29 @@
-import { callApi } from "../../../../utils/api";
+import { callApi } from "utils/api";
 
-export const TOURNAMENTS_REQUEST = 'TOURNAMENTS_REQUEST'
-export const TOURNAMENTS_SUCCESS = 'TOURNAMENTS_SUCCESS'
-export const TOURNAMENTS_FAILURE = 'TOURNAMENTS_FAILURE'
+export const FEATURED_TOURNAMENTS_REQUEST = "FEATURED_TOURNAMENTS_REQUEST";
+export const FEATURED_TOURNAMENTS_SUCCESS = "FEATURED_TOURNAMENTS_SUCCESS";
+export const FEATURED_TOURNAMENTS_FAILURE = "FEATURED_TOURNAMENTS_FAILURE";
 
-const tournamentRequest = () => ({
-  type: TOURNAMENTS_REQUEST
-})
+const featuredTournamentRequest = () => ({
+  type: FEATURED_TOURNAMENTS_REQUEST
+});
 
-const tournamentSuccess = payload => {
-  const tournaments = payload.filter(({ type: featuredElementType }) => featuredElementType === 'tournament')
+const featuredTournamentSuccess = payload => {
+  const tournaments = payload.filter(
+    ({ type: featuredElementType }) => featuredElementType === "tournament"
+  );
   return {
-    type: TOURNAMENTS_SUCCESS,
+    type: FEATURED_TOURNAMENTS_SUCCESS,
     tournaments
-  }
-}
+  };
+};
 
-const tournamentFailure = error => ({
-  type: TOURNAMENTS_FAILURE,
+const featuredTournamentFailure = error => ({
+  type: FEATURED_TOURNAMENTS_FAILURE,
   error
-})
+});
 
-const getAllTournaments = () => {
+const getFeaturedTournaments = () => {
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/featured/`,
     method: "GET",
@@ -30,10 +32,12 @@ const getAllTournaments = () => {
       "Content-Type": "application/json"
     }
   };
-  return callApi(config, tournamentRequest, tournamentSuccess, tournamentFailure);
-}
+  return callApi(
+    config,
+    featuredTournamentRequest,
+    featuredTournamentSuccess,
+    featuredTournamentFailure
+  );
+};
 
-
-export {
-  getAllTournaments
-}
+export { getFeaturedTournaments };

@@ -1,38 +1,41 @@
 import {
-  TOURNAMENTS_REQUEST,
-  TOURNAMENTS_SUCCESS,
-  TOURNAMENTS_FAILURE
-} from './actions';
+  FEATURED_TOURNAMENTS_REQUEST,
+  FEATURED_TOURNAMENTS_SUCCESS,
+  FEATURED_TOURNAMENTS_FAILURE
+} from "./actions";
 
 const initialState = {
   tournaments: [],
-  gettingTournaments: false,
-  gettingTournamentsError: null
+  gettingFeaturedTournaments: false,
+  gettingFeaturedTournamentsError: null
 };
 
 function initializeState() {
   return Object.assign({}, initialState);
 }
 
-export default function tournaments(state = initializeState(), action = {}) {
+export default function featuredTournaments(
+  state = initializeState(),
+  action = {}
+) {
   switch (action.type) {
-    case TOURNAMENTS_REQUEST:
+    case FEATURED_TOURNAMENTS_REQUEST:
       return Object.assign({}, state, {
-        gettingTournaments: true,
-        gettingTournamentsError: null
+        gettingFeaturedTournaments: true,
+        gettingFeaturedTournamentsError: null
       });
-    case TOURNAMENTS_SUCCESS:
+    case FEATURED_TOURNAMENTS_SUCCESS:
       return Object.assign({}, state, {
         tournaments: action.tournaments,
-        gettingTournaments: false,
-        gettingTournamentsError: null
+        gettingFeaturedTournaments: false,
+        gettingFeaturedTournamentsError: null
       });
-    case TOURNAMENTS_FAILURE:
+    case FEATURED_TOURNAMENTS_FAILURE:
       return {
         ...state,
         tournaments: null,
-        gettingTournaments: false,
-        gettingTournamentsError: action.error
+        gettingFeaturedTournaments: false,
+        gettingFeaturedTournamentsError: action.error
       };
     default:
       return state;
