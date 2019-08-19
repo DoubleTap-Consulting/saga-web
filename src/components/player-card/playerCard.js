@@ -86,45 +86,75 @@ class PlayerCard extends Component {
 
         <div className="playerCard-footer">
           <div className="stats">
-            <a
-              href={`${this.props.player.twitchLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="stat">
-                <img src={TwitchIcon} className="social-icon" alt="twitch" />
-                <span className="label">Followers</span>
-                <span className="value">56K</span>
-              </div>
-            </a>
-            <a
-              href={`${this.props.player.twitterLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              alt="twitter"
-            >
-              <div className="stat">
-                <img src={TwitterIcon} className="social-icon" alt="twitter" />
-                <span className="label">Followers</span>
-                <span className="value">940</span>
-              </div>
-            </a>
-            <a
-              href={`${this.props.player.instagramLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              alt="instagram"
-            >
-              <div className="stat">
-                <img
-                  src={InstagramIcon}
-                  className="social-icon"
-                  alt="instagram"
-                />
-                <span className="label">Followers</span>
-                <span className="value">320</span>
-              </div>
-            </a>
+            {this.props.player.twitch_username && (
+              <a
+                href={`www.twitch.tv/${this.props.player.twitch_username}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="stat">
+                  <img src={TwitchIcon} className="social-icon" alt="twitch" />
+                  {!this.props.hideSocialStats && (
+                    <span className="label">Followers</span>
+                  )}
+                  {!this.props.hideSocialStats && (
+                    <span className="value">
+                      {this.props.player.twitch_follower}
+                    </span>
+                  )}
+                </div>
+              </a>
+            )}
+            {this.props.player.twitter_username && (
+              <a
+                href={`www.twitter.com/${this.props.player.twitter_username}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                alt="twitter"
+              >
+                <div className="stat">
+                  <img
+                    src={TwitterIcon}
+                    className="social-icon"
+                    alt="twitter"
+                  />
+                  {!this.props.hideSocialStats && (
+                    <span className="label">Followers</span>
+                  )}
+                  {!this.props.hideSocialStats && (
+                    <span className="value">
+                      {this.props.player.twitter_follower}
+                    </span>
+                  )}
+                </div>
+              </a>
+            )}
+            {this.props.player.instagram_username && (
+              <a
+                href={`www.instagram.com/${
+                  this.props.player.instagram_username
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+                alt="instagram"
+              >
+                <div className="stat">
+                  <img
+                    src={InstagramIcon}
+                    className="social-icon"
+                    alt="instagram"
+                  />
+                  {!this.props.hideSocialStats && (
+                    <span className="label">Followers</span>
+                  )}
+                  {!this.props.hideSocialStats && (
+                    <span className="value">
+                      {this.props.player.instagram_follower}
+                    </span>
+                  )}
+                </div>
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -133,6 +163,7 @@ class PlayerCard extends Component {
 }
 
 PlayerCard.propTypes = {
+  hideSocialStats: PropTypes.bool,
   player: PropTypes.shape({
     instagramLink: PropTypes.string,
     twitterLink: PropTypes.string,
@@ -153,6 +184,7 @@ PlayerCard.propTypes = {
 };
 
 PlayerCard.defaultProps = {
+  hideSocialStats: false,
   player: {
     instagramLink: "",
     twitterLink: "",
