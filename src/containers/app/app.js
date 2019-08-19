@@ -19,7 +19,7 @@ import Players from "containers/players/players";
 import Article from "containers/article/article";
 import Leagues from "containers/leagues/leagues";
 import League from "containers/league/league";
-import Tournaments from "containers/tournament/tournament";
+import Tournaments from "containers/tournaments/tournaments";
 import Tournament from "containers/tournament/tournament";
 import Content from "containers/content/content";
 import Confirmed from "containers/confirmed/confirmed";
@@ -77,16 +77,11 @@ class App extends Component {
                     component={Tournaments}
                   />
                   <PrivateRoute
-                    exact
                     path="/tournaments/:tournamentId"
                     component={Tournament}
                   />
                   <PrivateRoute exact path="/leagues" component={Leagues} />
-                  <PrivateRoute
-                    exact
-                    path="/leagues/:leagueId"
-                    component={League}
-                  />
+                  <PrivateRoute path="/leagues/:leagueId" component={League} />
                   <PrivateRoute exact path="/content" component={Content} />
                   <Route
                     exact

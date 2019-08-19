@@ -20,7 +20,6 @@ class FeaturedTournaments extends Component {
 
   render() {
     const { tournaments } = this.props;
-    console.log("fea", tournaments);
     return (
       <div className="featuredTournaments section">
         <h1 className="heading-2">Featured Tournaments</h1>

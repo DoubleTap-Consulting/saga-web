@@ -40,7 +40,7 @@ function tournamentsRequest() {
 function tournamentsSuccess(payload) {
   return {
     type: TOURNAMENTS_SUCCESS,
-    tournaments: payload.tournaments
+    tournaments: payload
   };
 }
 
