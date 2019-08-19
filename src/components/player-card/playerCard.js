@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -64,21 +64,15 @@ class PlayerCard extends Component {
           {this.props.showStatLine && (
             <div className="brand-background-dark featured">
               <h4 className="featured-title">
-                {this.props.player.featured.tournament}
+                {this.props.player.tournament_name}
               </h4>
               <div className="featured-stats row">
-                <div className="column">
-                  <h5 className="featured-stats-title">Games</h5>
-                  <p>{this.props.player.featured.stats.games}</p>
-                </div>
-                <div className="column">
-                  <h5 className="featured-stats-title">K/D</h5>
-                  <p>{this.props.player.featured.stats.kd}</p>
-                </div>
-                <div className="column">
-                  <h5 className="featured-stats-title">ADR</h5>
-                  <p>{this.props.player.featured.stats.adr}</p>
-                </div>
+                {this.props.player.data.stats.map((stat) => (
+                  <div className="column">
+                    <h5 className="featured-stats-title">{Object.keys(stat)[0]}</h5>
+                    <p>{Object.values(stat)[0]}</p>
+                  </div>
+                ))}
               </div>
             </div>
           )}
