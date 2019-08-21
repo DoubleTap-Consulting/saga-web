@@ -5,7 +5,7 @@ import {
 } from "../actions/content";
 
 const initialState = {
-  content: [],
+  data: [],
   gettingContent: false,
   gettingContentError: null
 };
@@ -23,14 +23,14 @@ export default function tournaments(state = initializeState(), action = {}) {
       });
     case CONTENT_SUCCESS:
       return Object.assign({}, state, {
-        content: action.content,
+        data: action.data,
         gettingContent: false,
         gettingContentError: null
       });
     case CONTENT_FAILURE:
       return {
         ...state,
-        content: null,
+        data: null,
         gettingContent: false,
         gettingContentError: action.error
       };

@@ -63,9 +63,13 @@ class App extends Component {
                 <Header />
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path="/signup" component={Signup} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/passwordreset" component={PasswordReset} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/login" component={Login} />
+                  <Route
+                    exact
+                    path="/passwordreset"
+                    component={PasswordReset}
+                  />
                   <PrivateRoute
                     path="/article/:articleId"
                     component={Article}

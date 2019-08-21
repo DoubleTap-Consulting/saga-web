@@ -11,6 +11,7 @@ import featuredPlayers from "../containers/home/components/featured-players/redu
 import marketplace from "../reducers/marketplace";
 import profile from "../reducers/profile";
 import content from "../reducers/content";
+import article from "../reducers/article";
 import {
   requestPasswordReset,
   submitPasswordReset
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
   content,
   profile,
   featuredPlayers,
-  featuredTournaments
+  featuredTournaments,
+  article
 });
 const initialState = {};
 

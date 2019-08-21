@@ -35,7 +35,7 @@ function contentRequest() {
 function contentSuccess(payload) {
   return {
     type: CONTENT_SUCCESS,
-    content: payload.content
+    data: payload
   };
 }
 
