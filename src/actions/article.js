@@ -15,7 +15,7 @@ export const ARTICLE_CLEAR = "ARTICLE_CLEAR";
  * @returns {object} The content object returned by the server.
  */
 export function getArticle(articleId) {
-  console.log("hi");
+  console.log("hi", articleId);
   const config = {
     url: `${process.env.REACT_APP_API_DOMAIN}/v1/content/${articleId}`,
     method: "GET",

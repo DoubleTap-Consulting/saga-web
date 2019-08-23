@@ -11,12 +11,12 @@ function Article({
   match: {
     params: { articleId }
   },
-  article = {}
+  article
 }) {
   useEffect(() => {
-    console.log("hey");
+    console.log("hey", articleId);
     dispatch(getArticle(articleId));
-  });
+  }, []);
 
   return (
     <div className="article">
@@ -31,9 +31,10 @@ function Article({
         />
         <div className="article-container-articleView">
           <p className="article-container-articleView-date">{article.date}</p>
-          {article.body.map(paragraph => (
-            <p className="article-container-text">{paragraph.text}</p>
-          ))}
+          {article.body &&
+            article.body.map(paragraph => (
+              <p className="article-container-text">{paragraph.text}</p>
+            ))}
         </div>
       </div>
     </div>

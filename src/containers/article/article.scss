@@ -41,14 +41,9 @@
       font-size: 26px;
       letter-spacing: 0px;
       color: white;
-
-      &::first-letter {
-        color: #3f178a;
-        float: left;
-        font-weight: 600;
-        font-size: 5em;
-        margin: 10px 0.1em 1px 0;
-      }
+      margin: 5px;
+      padding: 45px;
+      padding-bottom: 20px;
     }
 
     &-articleView {
@@ -66,6 +61,16 @@
         right: 20px;
         font-size: 14px;
         color: white;
+      }
+
+      &:first-of-type {
+        &::first-letter {
+          color: #3f178a;
+          float: left;
+          font-weight: 600;
+          font-size: 5em;
+          margin: 10px 0.1em 1px 0;
+        }
       }
     }
 

@@ -6,7 +6,7 @@ import {
 } from "../actions/article";
 
 const initialState = {
-  data: null,
+  data: {},
   gettingArticle: false,
   gettingArticleError: null
 };
@@ -31,14 +31,14 @@ export default function article(state = initializeState(), action = {}) {
     case ARTICLE_FAILURE:
       return {
         ...state,
-        data: null,
+        data: {},
         gettingArticle: false,
         gettingArticleError: action.error
       };
     case ARTICLE_CLEAR:
       return {
         ...state,
-        data: null,
+        data: {},
         gettingArticle: false,
         gettingArticleError: null
       };
